@@ -6,6 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Instructions from "./pages/Instructions";
+import ExamLive from "./pages/ExamLive";
 import Notes from "./pages/Notes";
 import Syllabus from "./pages/Syllabus";
 import SetTheoryAlgebra from "./pages/notes/SetTheoryAlgebra";
@@ -31,7 +34,10 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/exam" element={<Index />} />
+          <Route path="/exam/:paperId/instructions" element={<Instructions />} />
+          <Route path="/exam/:paperId/start" element={<ExamLive />} />
           <Route path="/notes" element={<Notes />} />
           <Route path="/syllabus" element={<Syllabus />} />
           <Route path="/notes/set-theory" element={<SetTheoryAlgebra />} />

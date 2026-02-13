@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { GraduationCap, User, Lock, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,16 +11,18 @@ const DEFAULT_PASSWORD = "01011990"; // DOB format: DDMMYYYY
 
 const Login = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const redirectPath = searchParams.get("redirect") || "/exam";
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (userId === DEFAULT_ID && password === DEFAULT_PASSWORD) {
       localStorage.setItem("isAuthenticated", "true");
-      navigate("/exam");
+      navigate(redirectPath);
     } else {
       setError("Invalid credentials. Please try again.");
     }
@@ -39,7 +41,7 @@ const Login = () => {
 
         <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
           <h2 className="text-xl font-semibold text-gray-900 mb-6">Student Login</h2>
-          
+
           <form onSubmit={handleLogin} className="space-y-5">
             <div>
               <Label htmlFor="userId" className="text-sm font-medium text-gray-700 flex items-center gap-2 mb-2">

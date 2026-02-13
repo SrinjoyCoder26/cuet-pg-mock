@@ -88,7 +88,21 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
   const answeredCount = statuses.filter((s) => s === "answered" || s === "marked-answered").length;
 
   return (
-    <div className="h-screen flex flex-col overflow-hidden bg-slate-50">
+    <div className="h-screen flex flex-col overflow-hidden bg-slate-50 relative select-none">
+      {/* Watermark */}
+      <div className="fixed inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden opacity-[0.03]">
+        <div className="rotate-[-45deg] transform">
+          <h1 className="text-[15vw] font-black text-slate-900 whitespace-nowrap">CUET PG MOCK</h1>
+        </div>
+      </div>
+      <div className="fixed inset-0 pointer-events-none z-0 grid grid-cols-3 gap-8 opacity-[0.02]">
+        {Array.from({ length: 12 }).map((_, i) => (
+          <div key={i} className="flex items-center justify-center">
+            <h1 className="text-4xl font-black text-slate-900 rotate-[-45deg]">CONFIDENTIAL</h1>
+          </div>
+        ))}
+      </div>
+
       {/* Header */}
       <header className="bg-slate-900 text-white px-4 py-3 flex items-center justify-between flex-shrink-0 shadow-lg">
         <div className="flex items-center gap-3">

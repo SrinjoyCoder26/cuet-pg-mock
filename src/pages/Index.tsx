@@ -1,47 +1,14 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import type { ExamPaper } from "@/data/examTypes";
-import { examConfig as config2025, questions as questions2025 } from "@/data/examData";
-import { examConfig2024, questions2024 } from "@/data/examData2024";
-import ExamPage from "@/components/exam/ExamPage";
-import LoginDialog from "@/components/exam/LoginDialog";
+import { papers } from "@/data/papers";
 import { GraduationCap, Clock, FileText, Award, AlertCircle, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const papers: ExamPaper[] = [
-  { config: config2025, questions: questions2025 },
-  { config: examConfig2024, questions: questions2024 },
-];
-
 const Index = () => {
   const navigate = useNavigate();
-  const [selectedPaper, setSelectedPaper] = useState<ExamPaper | null>(null);
-  const [showLoginDialog, setShowLoginDialog] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [paperToStart, setPaperToStart] = useState<ExamPaper | null>(null);
 
-  const handleStartTest = (paper: ExamPaper) => {
-    setPaperToStart(paper);
-    setShowLoginDialog(true);
+  const handleStartTest = (paperId: string) => {
+    navigate(`/exam/${paperId}/instructions`);
   };
-
-  const handleLoginSuccess = () => {
-    setIsLoggedIn(true);
-    setShowLoginDialog(false);
-    if (paperToStart) {
-      setSelectedPaper(paperToStart);
-    }
-  };
-
-  const handleExit = () => {
-    setSelectedPaper(null);
-    setIsLoggedIn(false);
-    setPaperToStart(null);
-  };
-
-  if (selectedPaper && isLoggedIn) {
-    return <ExamPage paper={selectedPaper} onExit={handleExit} />;
-  }
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -80,9 +47,9 @@ const Index = () => {
 
         {/* Test Papers Grid */}
         <div className="grid gap-6">
-          {papers.map((paper, idx) => (
+          {papers.map((paper) => (
             <div
-              key={idx}
+              key={paper.id}
               className="bg-white rounded-lg border border-slate-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
             >
               {/* Paper Header */}
@@ -102,8 +69,8 @@ const Index = () => {
                       <span>{paper.config.subject}</span>
                     </div>
                   </div>
-                  <Button 
-                    onClick={() => handleStartTest(paper)}
+                  <Button
+                    onClick={() => handleStartTest(paper.id)}
                     size="lg"
                     className="bg-white text-slate-900 hover:bg-slate-100 font-semibold px-8"
                   >
@@ -162,8 +129,6 @@ const Index = () => {
           </div>
         </div>
       </main>
-
-      <LoginDialog open={showLoginDialog} onLoginSuccess={handleLoginSuccess} />
     </div>
   );
 };
