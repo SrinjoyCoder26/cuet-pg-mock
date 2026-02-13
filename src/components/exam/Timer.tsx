@@ -28,7 +28,7 @@ const Timer = ({ durationMinutes, onTimeUp, isRunning }: TimerProps) => {
   return (
     <div className="bg-white rounded border-2 border-slate-300 p-4">
       <div className="flex items-center justify-center gap-2 mb-3">
-        <Clock size={18} className={isLow ? "text-red-600" : "text-slate-700"} />
+        <Clock size={18} className={isLow ? "text-red-600 animate-pulse" : "text-slate-700"} />
         <span className="text-xs font-semibold text-gray-700">Time Remaining</span>
       </div>
       
@@ -44,7 +44,7 @@ const Timer = ({ durationMinutes, onTimeUp, isRunning }: TimerProps) => {
       </div>
       
       {isLow && (
-        <div className="flex items-center justify-center gap-1 text-xs text-red-600 font-semibold">
+        <div className="flex items-center justify-center gap-1 text-xs text-red-600 font-semibold animate-pulse">
           <AlertCircle size={14} />
           <span>Hurry Up!</span>
         </div>
