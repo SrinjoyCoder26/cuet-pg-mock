@@ -2,8 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Login from "./pages/Login";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Home from "./pages/Home";
@@ -16,11 +15,6 @@ import ComputerOrganization from "./pages/notes/ComputerOrganization";
 
 const queryClient = new QueryClient();
 
-const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
-  return isAuthenticated ? <>{children}</> : <Navigate to="/" replace />;
-};
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -28,15 +22,14 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-          <Route path="/exam" element={<ProtectedRoute><Index /></ProtectedRoute>} />
-          <Route path="/notes" element={<ProtectedRoute><Notes /></ProtectedRoute>} />
-          <Route path="/syllabus" element={<ProtectedRoute><Syllabus /></ProtectedRoute>} />
-          <Route path="/notes/set-theory" element={<ProtectedRoute><SetTheoryAlgebra /></ProtectedRoute>} />
-          <Route path="/notes/theory-of-computations" element={<ProtectedRoute><TheoryOfComputations /></ProtectedRoute>} />
-          <Route path="/notes/digital-logic" element={<ProtectedRoute><DigitalLogic /></ProtectedRoute>} />
-          <Route path="/notes/computer-organization" element={<ProtectedRoute><ComputerOrganization /></ProtectedRoute>} />
+          <Route path="/" element={<Home />} />
+          <Route path="/exam" element={<Index />} />
+          <Route path="/notes" element={<Notes />} />
+          <Route path="/syllabus" element={<Syllabus />} />
+          <Route path="/notes/set-theory" element={<SetTheoryAlgebra />} />
+          <Route path="/notes/theory-of-computations" element={<TheoryOfComputations />} />
+          <Route path="/notes/digital-logic" element={<DigitalLogic />} />
+          <Route path="/notes/computer-organization" element={<ComputerOrganization />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -4,7 +4,8 @@ import type { ExamPaper } from "@/data/examTypes";
 import { examConfig as config2025, questions as questions2025 } from "@/data/examData";
 import { examConfig2024, questions2024 } from "@/data/examData2024";
 import ExamPage from "@/components/exam/ExamPage";
-import { GraduationCap, Clock, FileText, Award, AlertCircle, LogOut } from "lucide-react";
+import LoginDialog from "@/components/exam/LoginDialog";
+import { GraduationCap, Clock, FileText, Award, AlertCircle, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const papers: ExamPaper[] = [
@@ -15,49 +16,64 @@ const papers: ExamPaper[] = [
 const Index = () => {
   const navigate = useNavigate();
   const [selectedPaper, setSelectedPaper] = useState<ExamPaper | null>(null);
+  const [showLoginDialog, setShowLoginDialog] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [paperToStart, setPaperToStart] = useState<ExamPaper | null>(null);
 
-  const handleLogout = () => {
-    if (window.confirm("Are you sure you want to logout?")) {
-      localStorage.removeItem("isAuthenticated");
-      navigate("/");
+  const handleStartTest = (paper: ExamPaper) => {
+    setPaperToStart(paper);
+    setShowLoginDialog(true);
+  };
+
+  const handleLoginSuccess = () => {
+    setIsLoggedIn(true);
+    setShowLoginDialog(false);
+    if (paperToStart) {
+      setSelectedPaper(paperToStart);
     }
   };
 
-  if (selectedPaper) {
-    return <ExamPage paper={selectedPaper} onExit={() => setSelectedPaper(null)} />;
+  const handleExit = () => {
+    setSelectedPaper(null);
+    setIsLoggedIn(false);
+    setPaperToStart(null);
+  };
+
+  if (selectedPaper && isLoggedIn) {
+    return <ExamPage paper={selectedPaper} onExit={handleExit} />;
   }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 p-4">
       <div className="w-full max-w-3xl">
+        <div className="mb-6">
+          <Button
+            variant="outline"
+            onClick={() => navigate("/")}
+            className="mb-4"
+          >
+            <ArrowLeft size={16} className="mr-2" />
+            Back to Home
+          </Button>
+        </div>
+
         <div className="text-center mb-10">
           <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
             <GraduationCap size={42} />
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">CUET PG Mock Test Platform</h1>
           <p className="text-gray-600">Data Science, AI, Cyber Security & Computer Science</p>
-          
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleLogout}
-            className="mt-4"
-          >
-            <LogOut size={16} className="mr-2" />
-            Logout
-          </Button>
         </div>
 
         <div className="grid gap-6">
           {papers.map((paper, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-2xl border-2 border-gray-200 hover:border-blue-500 hover:shadow-xl transition-all p-6 cursor-pointer group"
-              onClick={() => setSelectedPaper(paper)}
+              className="bg-white rounded-2xl border-2 border-gray-200 hover:border-blue-500 hover:shadow-xl transition-all p-6"
             >
               <div className="flex items-center justify-between mb-5">
                 <div>
-                  <h2 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors flex items-center gap-2">
+                  <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2">
                     <FileText size={24} />
                     {paper.config.title}
                   </h2>
@@ -66,7 +82,10 @@ const Index = () => {
                     {paper.config.date}
                   </p>
                 </div>
-                <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold px-6 py-3 rounded-xl shadow-md">
+                <Button 
+                  onClick={() => handleStartTest(paper)}
+                  className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold px-6 py-3 rounded-xl shadow-md"
+                >
                   Start Test →
                 </Button>
               </div>
@@ -116,6 +135,8 @@ const Index = () => {
           </p>
         </div>
       </div>
+
+      <LoginDialog open={showLoginDialog} onLoginSuccess={handleLoginSuccess} />
     </div>
   );
 };

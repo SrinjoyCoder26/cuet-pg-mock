@@ -5,6 +5,8 @@ import QuestionPanel from "@/components/exam/QuestionPanel";
 import QuestionPalette from "@/components/exam/QuestionPalette";
 import Timer from "@/components/exam/Timer";
 import ResultsPage from "@/components/exam/ResultsPage";
+import { CANDIDATE_NAME } from "@/components/exam/LoginDialog";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ChevronLeft, ChevronRight, Star, Eraser, Send, X, GraduationCap } from "lucide-react";
 
 interface ExamPageProps {
@@ -97,6 +99,13 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
           </div>
         </div>
         <div className="flex items-center gap-4 text-xs">
+          <div className="hidden md:flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-lg">
+            <Avatar className="w-7 h-7">
+              <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=Rahul" alt={CANDIDATE_NAME} />
+              <AvatarFallback className="bg-white text-blue-600 text-xs font-bold">RK</AvatarFallback>
+            </Avatar>
+            <span className="font-semibold">{CANDIDATE_NAME}</span>
+          </div>
           <span className="hidden sm:inline opacity-90">{config.date}</span>
           <span className="bg-white text-blue-600 px-3 py-1.5 rounded-full font-bold shadow-md">
             {answeredCount}/{config.totalQuestions}
