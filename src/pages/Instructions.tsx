@@ -3,9 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getPaperById } from "@/data/papers";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { AlertCircle, Clock, FileText, CheckCircle2, AlertTriangle, GraduationCap } from "lucide-react";
-import { Separator } from "@/components/ui/separator";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { AlertCircle, Clock, FileText, CheckCircle2, AlertTriangle, Eye, ShieldAlert, Monitor } from "lucide-react";
 
 const Instructions = () => {
     const { paperId } = useParams();
@@ -16,7 +15,6 @@ const Instructions = () => {
     useEffect(() => {
         const isAuthenticated = localStorage.getItem("isAuthenticated");
         if (!isAuthenticated) {
-            // Redirect to login with return url
             navigate(`/login?redirect=/exam/${paperId}/instructions`);
         }
     }, [navigate, paperId]);
@@ -37,123 +35,98 @@ const Instructions = () => {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 font-inter">
-            <div className="max-w-4xl mx-auto">
-                <div className="mb-8 text-center">
-                    <div className="mx-auto bg-slate-900 text-white w-12 h-12 rounded-lg flex items-center justify-center mb-4 shadow-lg">
-                        <GraduationCap size={28} />
+        <div className="min-h-screen bg-slate-50 flex items-center justify-center p-4 font-inter">
+            <Card className="w-full max-w-6xl shadow-xl border-slate-200 h-[90vh] flex flex-col">
+                <CardHeader className="bg-slate-900 text-white py-4 px-6 flex-shrink-0 flex flex-row items-center justify-between">
+                    <div>
+                        <CardTitle className="text-xl font-bold flex items-center gap-2">
+                            <Monitor size={20} className="text-blue-400" />
+                            {paper.config.title} <span className="text-blue-400 text-sm font-normal">| {paper.config.subject}</span>
+                        </CardTitle>
                     </div>
-                    <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Examination Instructions</h1>
-                    <p className="mt-2 text-slate-600">Please read the following instructions carefully before proceeding.</p>
-                </div>
+                    <div className="flex gap-4 text-xs font-medium">
+                        <span className="flex items-center gap-1 bg-white/10 px-2 py-1 rounded"><Clock size={12} /> {paper.config.durationMinutes} Mins</span>
+                        <span className="flex items-center gap-1 bg-white/10 px-2 py-1 rounded"><FileText size={12} /> {paper.config.totalQuestions} Qs</span>
+                        <span className="flex items-center gap-1 bg-green-500/20 text-green-300 px-2 py-1 rounded border border-green-500/30"><CheckCircle2 size={12} /> +{paper.config.correctMarks}</span>
+                        <span className="flex items-center gap-1 bg-red-500/20 text-red-300 px-2 py-1 rounded border border-red-500/30"><AlertTriangle size={12} /> {paper.config.wrongMarks}</span>
+                    </div>
+                </CardHeader>
 
-                <Card className="border-slate-200 shadow-md">
-                    <CardHeader className="bg-slate-50 border-b border-slate-200 pb-6">
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                            <div>
-                                <CardTitle className="text-xl font-bold text-slate-900">{paper.config.title}</CardTitle>
-                                <CardDescription className="text-slate-500 mt-1">{paper.config.subject}</CardDescription>
-                            </div>
-                            <div className="flex flex-wrap gap-4 text-sm">
-                                <div className="bg-white px-3 py-1.5 rounded border border-slate-200 flex items-center gap-2 text-slate-700 shadow-sm">
-                                    <Clock size={16} className="text-slate-500" />
-                                    <span className="font-semibold">{paper.config.durationMinutes} Minutes</span>
-                                </div>
-                                <div className="bg-white px-3 py-1.5 rounded border border-slate-200 flex items-center gap-2 text-slate-700 shadow-sm">
-                                    <FileText size={16} className="text-slate-500" />
-                                    <span className="font-semibold">{paper.config.totalQuestions} Questions</span>
-                                </div>
-                                <div className="bg-white px-3 py-1.5 rounded border border-slate-200 flex items-center gap-2 text-slate-700 shadow-sm">
-                                    <CheckCircle2 size={16} className="text-green-600" />
-                                    <span className="font-semibold">+{paper.config.correctMarks} Correct</span>
-                                </div>
-                                <div className="bg-white px-3 py-1.5 rounded border border-slate-200 flex items-center gap-2 text-slate-700 shadow-sm">
-                                    <AlertTriangle size={16} className="text-red-600" />
-                                    <span className="font-semibold">{paper.config.wrongMarks} Incorrect</span>
-                                </div>
-                            </div>
+                <CardContent className="flex-1 overflow-hidden p-0 flex flex-col md:flex-row divide-y md:divide-y-0 md:divide-x divide-slate-200">
+
+                    {/* Left Col: General Instructions */}
+                    <div className="flex-1 p-5 overflow-y-auto">
+                        <h3 className="text-sm font-bold text-slate-900 mb-3 flex items-center gap-2 uppercase tracking-wider">
+                            <FileText size={16} className="text-slate-500" /> Examination Rules
+                        </h3>
+                        <ul className="space-y-2 text-xs text-slate-700 list-disc pl-4 marker:text-slate-400">
+                            <li>Total duration is <strong>{paper.config.durationMinutes} minutes</strong>. Server clock is final.</li>
+                            <li>The countdown timer at the top right corner will display the time remaining.</li>
+                            <li>Question Palette on the right shows status of each question.</li>
+                            <li>Clicking a question number navigates to it <strong>without saving</strong>.</li>
+                            <li>You must click <strong>Save & Next</strong> to save an answer.</li>
+                            <li><strong>Mark for Review</strong> saves the answer but marks it for later review.</li>
+                            <li>To deselect, click the chosen option again or use <strong>Clear Response</strong>.</li>
+                        </ul>
+
+                        <div className="mt-6 bg-red-50 border border-red-100 rounded-lg p-3">
+                            <h3 className="text-sm font-bold text-red-800 mb-2 flex items-center gap-2">
+                                <ShieldAlert size={16} /> STRICT PROCTORING ENABLED
+                            </h3>
+                            <ul className="space-y-1.5 text-xs text-red-700">
+                                <li className="flex items-start gap-1.5">
+                                    <Eye size={12} className="mt-0.5 shrink-0" />
+                                    <span><strong>Full Screen Enforced:</strong> Exiting full screen will be recorded as a violation.</span>
+                                </li>
+                                <li className="flex items-start gap-1.5">
+                                    <Monitor size={12} className="mt-0.5 shrink-0" />
+                                    <span><strong>Tab Switching Prohibited:</strong> Navigating away from the test window will terminate the exam.</span>
+                                </li>
+                                <li className="flex items-start gap-1.5">
+                                    <AlertTriangle size={12} className="mt-0.5 shrink-0" />
+                                    <span><strong>No External Devices:</strong> Use of other devices/books is strictly prohibited.</span>
+                                </li>
+                            </ul>
                         </div>
-                    </CardHeader>
-                    <CardContent className="pt-8 pb-8 px-6 md:px-10 space-y-8">
+                    </div>
 
-                        <section>
-                            <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
-                                <span className="bg-slate-100 text-slate-700 w-6 h-6 rounded flex items-center justify-center text-sm border border-slate-200">1</span>
-                                General Instructions
-                            </h3>
-                            <ul className="space-y-3 text-slate-700 text-sm leading-relaxed ml-2 border-l-2 border-slate-100 pl-4">
-                                <li>The examination will comprise of Objective Type Multiple Choice Questions (MCQs).</li>
-                                <li>All questions are compulsory. There is no choice in any of the questions.</li>
-                                <li>The server will set the clock. The countdown timer in the top right corner of screen will display the remaining time available for you to complete the examination.</li>
-                                <li>When the timer reaches zero, the examination will end by itself. You will not be required to end or submit your examination.</li>
-                                <li>The Question Palette displayed on the right side of screen will show the status of each question using color codes.</li>
-                            </ul>
-                        </section>
-
-                        <Separator />
-
-                        <section>
-                            <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
-                                <span className="bg-slate-100 text-slate-700 w-6 h-6 rounded flex items-center justify-center text-sm border border-slate-200">2</span>
-                                Navigating to a Question
-                            </h3>
-                            <ul className="space-y-3 text-slate-700 text-sm leading-relaxed ml-2 border-l-2 border-slate-100 pl-4">
-                                <li>Click on the question number in the Question Palette at the right of your screen to go to that numbered question directly. Note that using this option does NOT save your answer to the current question.</li>
-                                <li>Click on <strong>Save & Next</strong> to save your answer for the current question and then go to the next question.</li>
-                                <li>Click on <strong>Mark for Review & Next</strong> to save your answer for the current question, mark it for review, and then go to the next question.</li>
-                            </ul>
-                        </section>
-
-                        <Separator />
-
-                        <section>
-                            <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center gap-2">
-                                <span className="bg-slate-100 text-slate-700 w-6 h-6 rounded flex items-center justify-center text-sm border border-slate-200">3</span>
-                                Answering a Question
-                            </h3>
-                            <ul className="space-y-3 text-slate-700 text-sm leading-relaxed ml-2 border-l-2 border-slate-100 pl-4">
-                                <li>To select your answer, click on the button of one of the options.</li>
-                                <li>To deselect your chosen answer, click on the button of the chosen option again or click on the <strong>Clear Response</strong> button.</li>
-                                <li>To change your chosen answer, click on the button of another option.</li>
-                                <li>To save your answer, you MUST click on the <strong>Save & Next</strong> button.</li>
-                                <li>To mark the question for review, click on the <strong>Mark for Review & Next</strong> button.</li>
-                            </ul>
-                        </section>
-
-                        <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 flex gap-3 mt-6">
-                            <AlertCircle className="text-amber-600 flex-shrink-0" size={20} />
-                            <div className="text-sm text-amber-900">
-                                <p className="font-semibold mb-1">Declaration:</p>
-                                <p>I have read and understood the instructions. I agree that in case of not adhering to the instructions, I shall be liable to be debarred from this Test and/or to disciplinary action, which may include ban from future tests / examinations.</p>
+                    {/* Right Col: Agreement & Action */}
+                    <div className="w-full md:w-[350px] p-5 bg-slate-50 flex flex-col flex-shrink-0">
+                        <div className="flex-1">
+                            <h3 className="text-sm font-bold text-slate-900 mb-3">Declaration</h3>
+                            <div className="text-xs text-slate-600 leading-relaxed border border-slate-200 bg-white p-3 rounded text-justify">
+                                <p>I have read and understood all the instructions. I understand that any attempt to cheat, switch tabs, or exit full-screen mode will result in immediate disqualification.</p>
+                                <p className="mt-2 text-slate-900 font-semibold">System Activity is being monitored.</p>
                             </div>
                         </div>
 
-                        <div className="flex items-center space-x-2 pt-4">
-                            <Checkbox
-                                id="terms"
-                                checked={agreed}
-                                onCheckedChange={(checked) => setAgreed(checked as boolean)}
-                                className="data-[state=checked]:bg-slate-900 data-[state=checked]:border-slate-900"
-                            />
-                            <label
-                                htmlFor="terms"
-                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-slate-700"
+                        <div className="mt-auto space-y-4">
+                            <div className="flex items-start space-x-2 bg-white p-3 rounded border border-slate-200">
+                                <Checkbox
+                                    id="terms"
+                                    checked={agreed}
+                                    onCheckedChange={(checked) => setAgreed(checked as boolean)}
+                                    className="mt-0.5 data-[state=checked]:bg-blue-700 data-[state=checked]:border-blue-700"
+                                />
+                                <label
+                                    htmlFor="terms"
+                                    className="text-xs font-medium leading-tight peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-slate-800"
+                                >
+                                    I am ready to begin. I agree to the proctoring terms.
+                                </label>
+                            </div>
+
+                            <Button
+                                onClick={handleStart}
+                                className="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-6 text-base shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                                disabled={!agreed}
                             >
-                                I am ready to begin the examination
-                            </label>
+                                START MOCK TEST
+                            </Button>
                         </div>
-
-                        <Button
-                            onClick={handleStart}
-                            className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-6 text-lg shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-                            disabled={!agreed}
-                        >
-                            Start Examination
-                        </Button>
-
-                    </CardContent>
-                </Card>
-            </div>
+                    </div>
+                </CardContent>
+            </Card>
         </div>
     );
 };

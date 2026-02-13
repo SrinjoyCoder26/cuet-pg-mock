@@ -7,7 +7,7 @@ import Timer from "@/components/exam/Timer";
 import ResultsPage from "@/components/exam/ResultsPage";
 import { CANDIDATE_NAME } from "@/components/exam/LoginDialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronLeft, ChevronRight, Star, Eraser, Send, X, GraduationCap } from "lucide-react";
+import { ChevronLeft, ChevronRight, Star, Eraser, Send, GraduationCap, Eye, ShieldCheck } from "lucide-react";
 
 interface ExamPageProps {
   paper: ExamPaper;
@@ -76,12 +76,6 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
     setSubmitted(true);
   }, []);
 
-  const handleExit = () => {
-    if (window.confirm("Are you sure you want to exit? Your progress will be lost.")) {
-      onExit();
-    }
-  };
-
   if (submitted) return <ResultsPage paper={paper} answers={answers} statuses={statuses} onBack={onExit} />;
 
   const isMarked = statuses[currentIndex] === "marked" || statuses[currentIndex] === "marked-answered";
@@ -104,7 +98,7 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
       </div>
 
       {/* Header */}
-      <header className="bg-slate-900 text-white px-4 py-3 flex items-center justify-between flex-shrink-0 shadow-lg">
+      <header className="bg-slate-900 text-white px-4 py-3 flex items-center justify-between flex-shrink-0 shadow-lg z-10">
         <div className="flex items-center gap-3">
           <div className="bg-white/10 backdrop-blur-sm p-1.5 rounded-lg border border-white/20">
             <GraduationCap size={20} />
@@ -114,32 +108,33 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
             <span className="text-xs text-slate-300 hidden sm:inline">{config.subject}</span>
           </div>
         </div>
-        <div className="flex items-center gap-3 text-xs">
+
+        <div className="flex items-center gap-4 text-xs">
+          <div className="hidden md:flex items-center gap-2 bg-red-500/10 border border-red-500/50 px-3 py-1.5 rounded-full animate-pulse">
+            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+            <span className="text-red-200 font-bold tracking-wider flex items-center gap-1">
+              <Eye size={12} /> PROCTORED ACTIVE
+            </span>
+          </div>
+
           <div className="hidden md:flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/20">
             <Avatar className="w-6 h-6">
-              <AvatarImage src="https://images.unsplash.com/flagged/photo-1571367034861-e6729ad9c2d5?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt={CANDIDATE_NAME} />
+              <AvatarImage src="https://images.unsplash.com/flagged/photo-1571367034861-e6729ad9c2d5?q=80&w=764&auto=format&fit=crop" alt={CANDIDATE_NAME} />
               <AvatarFallback className="bg-white text-slate-900 text-xs font-bold">RK</AvatarFallback>
             </Avatar>
             <span className="font-medium">{CANDIDATE_NAME}</span>
           </div>
           <span className="hidden sm:inline text-slate-300">{config.date}</span>
           <div className="bg-white text-slate-900 px-3 py-1.5 rounded-lg font-bold shadow-sm">
-            {answeredCount}/{config.totalQuestions}
+            {answeredCount}/{config.totalQuestions} Attempted
           </div>
-          <button
-            onClick={handleExit}
-            className="bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-lg font-semibold transition-colors flex items-center gap-1.5 shadow-sm"
-          >
-            <X size={14} />
-            Exit
-          </button>
         </div>
       </header>
 
       {/* Main: question + sidebar */}
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 overflow-hidden z-10">
         {/* Question Area */}
-        <div className="flex-1 flex flex-col min-w-0 bg-white">
+        <div className="flex-1 flex flex-col min-w-0 bg-white shadow-inner">
           <QuestionPanel
             question={questions[currentIndex]}
             selectedOption={answers[currentIndex]}
@@ -148,26 +143,29 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
           />
 
           {/* Bottom nav */}
-          <div className="flex items-center justify-between px-4 py-3 border-t border-slate-200 bg-slate-50 flex-shrink-0 gap-3">
+          <div className="flex items-center justify-between px-6 py-4 border-t border-slate-200 bg-slate-50 flex-shrink-0 gap-3">
             <button
               onClick={goPrev}
               disabled={currentIndex === 0}
-              className="bg-slate-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-800 transition-colors flex items-center gap-2 shadow-sm"
+              className="bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 px-6 py-2.5 rounded-lg text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center gap-2 shadow-sm"
             >
               <ChevronLeft size={16} />
               Previous
             </button>
-            <div className="flex gap-2">
+            <div className="flex gap-3">
               <button
                 onClick={toggleMark}
-                className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 shadow-sm"
+                className={`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all flex items-center gap-2 shadow-sm ${isMarked
+                    ? "bg-amber-100 text-amber-900 border border-amber-200 hover:bg-amber-200"
+                    : "bg-white border border-slate-300 text-slate-700 hover:bg-slate-50"
+                  }`}
               >
-                <Star size={16} fill={isMarked ? "white" : "none"} />
-                {isMarked ? "Unmark" : "Mark"}
+                <Star size={16} className={isMarked ? "fill-amber-600 text-amber-600" : "text-slate-400"} />
+                {isMarked ? "Marked for Review" : "Mark for Review"}
               </button>
               <button
                 onClick={clearResponse}
-                className="bg-slate-600 hover:bg-slate-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 shadow-sm"
+                className="bg-white border border-slate-300 text-slate-700 hover:bg-slate-50 px-6 py-2.5 rounded-lg text-sm font-semibold transition-all flex items-center gap-2 shadow-sm"
               >
                 <Eraser size={16} />
                 Clear
@@ -176,7 +174,7 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
             <button
               onClick={goNext}
               disabled={currentIndex === questions.length - 1}
-              className="bg-slate-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-800 transition-colors flex items-center gap-2 shadow-sm"
+              className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-2.5 rounded-lg text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed transition-all flex items-center gap-2 shadow-md hover:shadow-lg"
             >
               Next
               <ChevronRight size={16} />
@@ -185,21 +183,30 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
         </div>
 
         {/* Sidebar */}
-        <aside className="w-[260px] lg:w-[300px] border-l border-slate-200 bg-white flex flex-col p-4 gap-4 flex-shrink-0 overflow-y-auto shadow-lg">
-          <Timer durationMinutes={config.durationMinutes} onTimeUp={handleTimeUp} isRunning={true} />
+        <aside className="w-[280px] lg:w-[320px] border-l border-slate-200 bg-slate-50 flex flex-col p-4 gap-4 flex-shrink-0 overflow-y-auto shadow-xl z-20">
+          <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+            <Timer durationMinutes={config.durationMinutes} onTimeUp={handleTimeUp} isRunning={true} />
+          </div>
 
-          <QuestionPalette
-            totalQuestions={questions.length}
-            currentQuestion={currentIndex}
-            questionStatuses={statuses}
-            onQuestionClick={visitQuestion}
-          />
+          <div className="flex-1 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
+            <div className="p-3 border-b border-slate-100 bg-slate-50/50">
+              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Question Palette</span>
+            </div>
+            <div className="p-3 overflow-y-auto flex-1">
+              <QuestionPalette
+                totalQuestions={questions.length}
+                currentQuestion={currentIndex}
+                questionStatuses={statuses}
+                onQuestionClick={visitQuestion}
+              />
+            </div>
+          </div>
 
           <button
             onClick={handleSubmit}
-            className="mt-auto bg-green-700 hover:bg-green-800 text-white px-4 py-3.5 rounded-lg text-sm font-bold transition-colors flex-shrink-0 flex items-center justify-center gap-2 shadow-md"
+            className="mt-auto bg-green-600 hover:bg-green-700 text-white px-4 py-4 rounded-xl text-base font-bold transition-all flex-shrink-0 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
           >
-            <Send size={18} />
+            <ShieldCheck size={20} />
             SUBMIT EXAM
           </button>
         </aside>
