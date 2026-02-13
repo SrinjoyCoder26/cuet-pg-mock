@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import type { ExamPaper } from "@/data/examTypes";
 import { examConfig as config2025, questions as questions2025 } from "@/data/examData";
 import { examConfig2024, questions2024 } from "@/data/examData2024";
 import ExamPage from "@/components/exam/ExamPage";
+import { GraduationCap, Clock, FileText, Award, AlertCircle, LogOut } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const papers: ExamPaper[] = [
   { config: config2025, questions: questions2025 },
@@ -10,66 +13,107 @@ const papers: ExamPaper[] = [
 ];
 
 const Index = () => {
+  const navigate = useNavigate();
   const [selectedPaper, setSelectedPaper] = useState<ExamPaper | null>(null);
+
+  const handleLogout = () => {
+    if (window.confirm("Are you sure you want to logout?")) {
+      localStorage.removeItem("isAuthenticated");
+      navigate("/");
+    }
+  };
 
   if (selectedPaper) {
     return <ExamPage paper={selectedPaper} onExit={() => setSelectedPaper(null)} />;
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
-      <div className="w-full max-w-2xl">
-        <div className="text-center mb-8">
-          <div className="bg-primary text-primary-foreground w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-3 text-xl font-black">
-            NTA
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 p-4">
+      <div className="w-full max-w-3xl">
+        <div className="text-center mb-10">
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+            <GraduationCap size={42} />
           </div>
-          <h1 className="text-2xl font-bold text-foreground">CUET PG Mock Test</h1>
-          <p className="text-sm text-muted-foreground mt-1">Data Science, AI, Cyber Security & CS</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">CUET PG Mock Test Platform</h1>
+          <p className="text-gray-600">Data Science, AI, Cyber Security & Computer Science</p>
+          
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleLogout}
+            className="mt-4"
+          >
+            <LogOut size={16} className="mr-2" />
+            Logout
+          </Button>
         </div>
 
-        <div className="grid gap-4">
+        <div className="grid gap-6">
           {papers.map((paper, idx) => (
             <div
               key={idx}
-              className="bg-card rounded-xl border-2 border-border hover:border-primary/50 transition-all p-5 cursor-pointer group"
+              className="bg-white rounded-2xl border-2 border-gray-200 hover:border-blue-500 hover:shadow-xl transition-all p-6 cursor-pointer group"
               onClick={() => setSelectedPaper(paper)}
             >
-              <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center justify-between mb-5">
                 <div>
-                  <h2 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+                  <h2 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors flex items-center gap-2">
+                    <FileText size={24} />
                     {paper.config.title}
                   </h2>
-                  <p className="text-xs text-secondary font-semibold">{paper.config.date}</p>
+                  <p className="text-sm text-gray-500 mt-1 flex items-center gap-1">
+                    <Clock size={14} />
+                    {paper.config.date}
+                  </p>
                 </div>
-                <button className="bg-secondary text-secondary-foreground px-4 py-2 rounded-lg text-sm font-bold hover:opacity-90 transition-opacity flex-shrink-0">
-                  Start
-                </button>
+                <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold px-6 py-3 rounded-xl shadow-md">
+                  Start Test →
+                </Button>
               </div>
 
-              <div className="grid grid-cols-4 gap-3 text-center">
-                <div>
-                  <div className="font-bold text-foreground">{paper.config.totalQuestions}</div>
-                  <div className="text-[10px] text-muted-foreground">Questions</div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="bg-blue-50 rounded-xl p-4 text-center border border-blue-200">
+                  <div className="flex items-center justify-center text-blue-600 mb-2">
+                    <FileText size={20} />
+                  </div>
+                  <div className="text-2xl font-bold text-blue-700">{paper.config.totalQuestions}</div>
+                  <div className="text-xs text-blue-600 mt-1">Questions</div>
                 </div>
-                <div>
-                  <div className="font-bold text-foreground">{paper.config.totalMarks}</div>
-                  <div className="text-[10px] text-muted-foreground">Marks</div>
+                <div className="bg-purple-50 rounded-xl p-4 text-center border border-purple-200">
+                  <div className="flex items-center justify-center text-purple-600 mb-2">
+                    <Award size={20} />
+                  </div>
+                  <div className="text-2xl font-bold text-purple-700">{paper.config.totalMarks}</div>
+                  <div className="text-xs text-purple-600 mt-1">Total Marks</div>
                 </div>
-                <div>
-                  <div className="font-bold text-exam-answered">+{paper.config.correctMarks}</div>
-                  <div className="text-[10px] text-muted-foreground">Correct</div>
+                <div className="bg-green-50 rounded-xl p-4 text-center border border-green-200">
+                  <div className="text-2xl font-bold text-green-700">+{paper.config.correctMarks}</div>
+                  <div className="text-xs text-green-600 mt-1">Correct</div>
                 </div>
-                <div>
-                  <div className="font-bold text-destructive">{paper.config.wrongMarks}</div>
-                  <div className="text-[10px] text-muted-foreground">Wrong</div>
+                <div className="bg-red-50 rounded-xl p-4 text-center border border-red-200">
+                  <div className="text-2xl font-bold text-red-700">{paper.config.wrongMarks}</div>
+                  <div className="text-xs text-red-600 mt-1">Wrong</div>
                 </div>
               </div>
 
-              <div className="mt-3 bg-muted rounded-lg p-2.5 text-[11px] text-muted-foreground">
-                Duration: {paper.config.durationMinutes} min • Auto-submit on timeout • +4/-1 marking
+              <div className="mt-5 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 border border-blue-200">
+                <div className="flex items-start gap-2 text-sm text-gray-700">
+                  <AlertCircle size={16} className="mt-0.5 text-blue-600 flex-shrink-0" />
+                  <div>
+                    <span className="font-semibold">Duration:</span> {paper.config.durationMinutes} minutes • 
+                    <span className="font-semibold"> Auto-submit</span> on timeout • 
+                    <span className="font-semibold"> +4/-1</span> marking scheme
+                  </div>
+                </div>
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="text-center mt-8">
+          <p className="text-sm text-gray-500">
+            National Testing Agency (NTA) • Official Mock Test Platform
+          </p>
         </div>
       </div>
     </div>
