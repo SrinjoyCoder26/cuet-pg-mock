@@ -12,6 +12,14 @@ import SetTheoryAlgebra from "./pages/notes/SetTheoryAlgebra";
 import TheoryOfComputations from "./pages/notes/TheoryOfComputations";
 import DigitalLogic from "./pages/notes/DigitalLogic";
 import ComputerOrganization from "./pages/notes/ComputerOrganization";
+import Microprocessors from "./pages/notes/Microprocessors";
+import ProgrammingDataStructures from "./pages/notes/ProgrammingDataStructures";
+import Algorithm from "./pages/notes/Algorithm";
+import OperatingSystem from "./pages/notes/OperatingSystem";
+import ComputerNetworks from "./pages/notes/ComputerNetworks";
+import ArtificialIntelligence from "./pages/notes/ArtificialIntelligence";
+import CryptographyNetworkSecurity from "./pages/notes/CryptographyNetworkSecurity";
+import DataScience from "./pages/notes/DataScience";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +38,14 @@ const App = () => (
           <Route path="/notes/theory-of-computations" element={<TheoryOfComputations />} />
           <Route path="/notes/digital-logic" element={<DigitalLogic />} />
           <Route path="/notes/computer-organization" element={<ComputerOrganization />} />
+          <Route path="/notes/microprocessors" element={<Microprocessors />} />
+          <Route path="/notes/programming-data-structures" element={<ProgrammingDataStructures />} />
+          <Route path="/notes/algorithm" element={<Algorithm />} />
+          <Route path="/notes/operating-system" element={<OperatingSystem />} />
+          <Route path="/notes/computer-networks" element={<ComputerNetworks />} />
+          <Route path="/notes/artificial-intelligence" element={<ArtificialIntelligence />} />
+          <Route path="/notes/cryptography" element={<CryptographyNetworkSecurity />} />
+          <Route path="/notes/data-science" element={<DataScience />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
