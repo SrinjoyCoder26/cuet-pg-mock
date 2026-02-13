@@ -58,9 +58,9 @@ const renderTextWithMath = (text: string) => {
 
 const QuestionPanel = ({ question, selectedOption, onSelectOption, isMarked }: QuestionPanelProps) => {
   return (
-    <div className="flex-1 overflow-y-auto p-4 lg:p-6 bg-gradient-to-br from-gray-50 to-white">
+    <div className="flex-1 overflow-y-auto p-4 lg:p-6 bg-white">
       <div className="flex items-center gap-3 mb-4">
-        <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-xl shadow-md">
+        <div className="bg-slate-700 text-white px-4 py-2 rounded border border-slate-800">
           <span className="font-bold text-sm">Question {question.id}</span>
           <span className="text-xs opacity-90 ml-3 flex items-center gap-1">
             <Award size={12} />
@@ -68,14 +68,14 @@ const QuestionPanel = ({ question, selectedOption, onSelectOption, isMarked }: Q
           </span>
         </div>
         {isMarked && (
-          <span className="bg-yellow-500 text-white text-xs px-3 py-1.5 rounded-lg font-semibold shadow-sm flex items-center gap-1">
+          <span className="bg-amber-600 text-white text-xs px-3 py-1.5 rounded font-semibold flex items-center gap-1 border border-amber-700">
             <Star size={12} fill="white" />
             Marked for Review
           </span>
         )}
       </div>
 
-      <div className="mb-6 text-base leading-relaxed whitespace-pre-line text-gray-800 bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+      <div className="mb-6 text-base leading-relaxed whitespace-pre-line text-gray-800 bg-slate-50 p-4 rounded border border-slate-200">
         {renderTextWithMath(question.text)}
       </div>
 
@@ -83,11 +83,11 @@ const QuestionPanel = ({ question, selectedOption, onSelectOption, isMarked }: Q
         {question.options.map((option, index) => (
           <label
             key={index}
-            className={`flex items-start gap-3 p-4 rounded-xl border-2 cursor-pointer transition-all text-sm
+            className={`flex items-start gap-3 p-4 rounded border-2 cursor-pointer transition-all text-sm
               ${
                 selectedOption === index + 1
-                  ? "border-blue-500 bg-blue-50 shadow-md"
-                  : "border-gray-200 hover:border-blue-300 hover:bg-gray-50"
+                  ? "border-blue-600 bg-blue-50"
+                  : "border-slate-300 hover:border-blue-400 hover:bg-slate-50"
               }`}
           >
             <input

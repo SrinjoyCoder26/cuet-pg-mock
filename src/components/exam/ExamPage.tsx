@@ -90,7 +90,7 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
   return (
     <div className="h-screen flex flex-col overflow-hidden bg-gray-50">
       {/* Header */}
-      <header className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-3 flex items-center justify-between flex-shrink-0 shadow-lg">
+      <header className="bg-slate-800 text-white px-4 py-3 flex items-center justify-between flex-shrink-0 border-b-4 border-slate-700">
         <div className="flex items-center gap-3">
           <GraduationCap size={24} />
           <div>
@@ -99,20 +99,20 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
           </div>
         </div>
         <div className="flex items-center gap-4 text-xs">
-          <div className="hidden md:flex items-center gap-2 bg-white/10 px-3 py-1.5 rounded-lg">
+          <div className="hidden md:flex items-center gap-2 bg-slate-700 px-3 py-1.5 rounded border border-slate-600">
             <Avatar className="w-7 h-7">
               <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=Rahul" alt={CANDIDATE_NAME} />
-              <AvatarFallback className="bg-white text-blue-600 text-xs font-bold">RK</AvatarFallback>
+              <AvatarFallback className="bg-white text-slate-800 text-xs font-bold">RK</AvatarFallback>
             </Avatar>
             <span className="font-semibold">{CANDIDATE_NAME}</span>
           </div>
           <span className="hidden sm:inline opacity-90">{config.date}</span>
-          <span className="bg-white text-blue-600 px-3 py-1.5 rounded-full font-bold shadow-md">
+          <span className="bg-white text-slate-800 px-3 py-1.5 rounded font-bold border border-slate-300">
             {answeredCount}/{config.totalQuestions}
           </span>
           <button
             onClick={handleExit}
-            className="bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-lg font-semibold transition-all flex items-center gap-1"
+            className="bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded font-semibold transition-colors flex items-center gap-1 border border-red-700"
           >
             <X size={16} />
             Exit
@@ -132,11 +132,11 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
           />
 
           {/* Bottom nav */}
-          <div className="flex items-center justify-between px-4 py-3 border-t bg-white flex-shrink-0 gap-3 shadow-lg">
+          <div className="flex items-center justify-between px-4 py-3 border-t border-slate-200 bg-white flex-shrink-0 gap-3">
             <button
               onClick={goPrev}
               disabled={currentIndex === 0}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-lg text-sm font-semibold disabled:opacity-30 disabled:cursor-not-allowed hover:shadow-md transition-all flex items-center gap-2"
+              className="bg-slate-600 text-white px-4 py-2 rounded text-sm font-semibold disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-700 transition-colors flex items-center gap-2 border border-slate-700"
             >
               <ChevronLeft size={16} />
               Previous
@@ -144,14 +144,14 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
             <div className="flex gap-2">
               <button
                 onClick={toggleMark}
-                className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-2 shadow-md"
+                className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded text-sm font-semibold transition-colors flex items-center gap-2 border border-amber-700"
               >
                 <Star size={16} fill={isMarked ? "white" : "none"} />
                 {isMarked ? "Unmark" : "Mark"}
               </button>
               <button
                 onClick={clearResponse}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-2 shadow-md"
+                className="bg-slate-500 hover:bg-slate-600 text-white px-4 py-2 rounded text-sm font-semibold transition-colors flex items-center gap-2 border border-slate-600"
               >
                 <Eraser size={16} />
                 Clear
@@ -160,7 +160,7 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
             <button
               onClick={goNext}
               disabled={currentIndex === questions.length - 1}
-              className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-4 py-2 rounded-lg text-sm font-semibold disabled:opacity-30 disabled:cursor-not-allowed hover:shadow-md transition-all flex items-center gap-2"
+              className="bg-slate-600 text-white px-4 py-2 rounded text-sm font-semibold disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-700 transition-colors flex items-center gap-2 border border-slate-700"
             >
               Next
               <ChevronRight size={16} />
@@ -169,7 +169,7 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
         </div>
 
         {/* Sidebar */}
-        <aside className="w-[240px] lg:w-[280px] border-l bg-white flex flex-col p-4 gap-4 flex-shrink-0 overflow-y-auto shadow-xl">
+        <aside className="w-[240px] lg:w-[280px] border-l border-slate-200 bg-slate-50 flex flex-col p-4 gap-4 flex-shrink-0 overflow-y-auto">
           <Timer durationMinutes={config.durationMinutes} onTimeUp={handleTimeUp} isRunning={true} />
 
           <QuestionPalette
@@ -181,7 +181,7 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
 
           <button
             onClick={handleSubmit}
-            className="mt-auto bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-4 py-3 rounded-xl text-sm font-bold transition-all flex-shrink-0 shadow-lg flex items-center justify-center gap-2"
+            className="mt-auto bg-green-700 hover:bg-green-800 text-white px-4 py-3 rounded text-sm font-bold transition-colors flex-shrink-0 flex items-center justify-center gap-2 border-2 border-green-800"
           >
             <Send size={18} />
             SUBMIT EXAM
