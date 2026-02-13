@@ -26,7 +26,7 @@ const Notes = () => {
         <div className="mb-8">
           <Button
             variant="outline"
-            onClick={() => navigate("/home")}
+            onClick={() => navigate("/")}
             className="mb-6"
           >
             <ArrowLeft size={16} className="mr-2" />

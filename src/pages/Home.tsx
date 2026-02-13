@@ -1,16 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { GraduationCap, FileText, BookOpen, Library, LogOut } from "lucide-react";
+import { GraduationCap, FileText, BookOpen, Library } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Home = () => {
   const navigate = useNavigate();
-
-  const handleLogout = () => {
-    if (window.confirm("Are you sure you want to logout?")) {
-      localStorage.removeItem("isAuthenticated");
-      navigate("/");
-    }
-  };
 
   const navigationCards = [
     {
@@ -49,16 +42,6 @@ const Home = () => {
           <h1 className="text-4xl font-bold text-gray-900 mb-3">CUET PG Mock Test Platform</h1>
           <p className="text-xl text-gray-600 mb-2">Data Science, AI, Cyber Security & Computer Science</p>
           <p className="text-sm text-gray-500">(MTQP04)</p>
-          
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={handleLogout}
-            className="mt-6"
-          >
-            <LogOut size={16} className="mr-2" />
-            Logout
-          </Button>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
