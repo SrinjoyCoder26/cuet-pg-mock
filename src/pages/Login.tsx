@@ -6,15 +6,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 // Default credentials
-const DEFAULT_ID = "CUET2024";
-const DEFAULT_PASSWORD = "01011990"; // DOB format: DDMMYYYY
+const DEFAULT_ID = "2430012345";
+const DEFAULT_PASSWORD = "password123";
 
 const Login = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const redirectPath = searchParams.get("redirect") || "/exam";
-  const [userId, setUserId] = useState("");
-  const [password, setPassword] = useState("");
+  // Prefill with default credentials
+  const [userId, setUserId] = useState(DEFAULT_ID);
+  const [password, setPassword] = useState(DEFAULT_PASSWORD);
   const [error, setError] = useState("");
 
   const handleLogin = (e: React.FormEvent) => {
@@ -46,7 +47,7 @@ const Login = () => {
             <div>
               <Label htmlFor="userId" className="text-sm font-medium text-gray-700 flex items-center gap-2 mb-2">
                 <User size={16} />
-                User ID
+                Roll Number
               </Label>
               <Input
                 id="userId"
@@ -56,7 +57,7 @@ const Login = () => {
                   setUserId(e.target.value);
                   setError("");
                 }}
-                placeholder="Enter your User ID"
+                placeholder="Enter your Roll Number"
                 className="w-full"
                 required
               />
@@ -65,7 +66,7 @@ const Login = () => {
             <div>
               <Label htmlFor="password" className="text-sm font-medium text-gray-700 flex items-center gap-2 mb-2">
                 <Lock size={16} />
-                Password (Date of Birth)
+                Password
               </Label>
               <Input
                 id="password"
@@ -75,14 +76,10 @@ const Login = () => {
                   setPassword(e.target.value);
                   setError("");
                 }}
-                placeholder="DDMMYYYY (e.g., 01011990)"
+                placeholder="Enter Password"
                 className="w-full"
                 required
               />
-              <p className="text-xs text-gray-500 mt-1 flex items-center gap-1">
-                <Calendar size={12} />
-                Format: DDMMYYYY
-              </p>
             </div>
 
             {error && (
@@ -102,7 +99,7 @@ const Login = () => {
           <div className="mt-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
             <p className="text-xs text-blue-800 font-semibold mb-2">Default Login Credentials:</p>
             <div className="text-xs text-blue-700 space-y-1">
-              <p>• User ID: <span className="font-mono font-semibold">{DEFAULT_ID}</span></p>
+              <p>• Roll Number: <span className="font-mono font-semibold">{DEFAULT_ID}</span></p>
               <p>• Password: <span className="font-mono font-semibold">{DEFAULT_PASSWORD}</span></p>
             </div>
           </div>

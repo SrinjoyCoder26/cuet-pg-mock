@@ -12,6 +12,7 @@ interface QuestionPanelProps {
 }
 
 const renderTextWithMath = (text: string) => {
+  if (!text) return null;
   // Split by double newlines for paragraph spacing
   const paragraphs = text.split(/\n\n+/);
 
@@ -101,9 +102,22 @@ const QuestionPanel = ({ question, selectedOption, onSelectOption, isMarked }: Q
         )}
       </div>
 
-      {/* Question Text */}
-      <div className="mb-8 prose prose-slate prose-lg max-w-none text-slate-800">
-        {renderTextWithMath(question.text)}
+      {/* Question Content */}
+      <div className="mb-8">
+        {question.image && (
+          <div className="mb-6">
+            <img
+              src={question.image}
+              alt={`Question ${question.id}`}
+              className="max-w-full h-auto"
+            />
+          </div>
+        )}
+        {question.text && (
+          <div className="prose prose-slate prose-lg max-w-none text-slate-800">
+            {renderTextWithMath(question.text)}
+          </div>
+        )}
       </div>
 
       {/* Options */}
