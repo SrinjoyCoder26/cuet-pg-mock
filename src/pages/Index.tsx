@@ -22,7 +22,7 @@ const Index = () => {
               </div>
               <div>
                 <h1 className="text-lg font-bold text-slate-900">CUET PG Mock Test</h1>
-                <p className="text-xs text-slate-600">National Testing Agency</p>
+
               </div>
             </div>
             <Button
@@ -125,7 +125,7 @@ const Index = () => {
         <div className="mt-8 text-center">
           <div className="inline-flex items-center gap-2 text-sm text-slate-500 bg-white px-4 py-2 rounded-full border border-slate-200">
             <Award size={16} />
-            <span>Official NTA Mock Test Platform</span>
+            <span>Mock Test Platform</span>
           </div>
         </div>
       </main>

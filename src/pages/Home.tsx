@@ -43,7 +43,7 @@ const Home = () => {
             </div>
             <div>
               <h1 className="text-lg font-bold text-slate-900">CUET PG Preparation Platform</h1>
-              <p className="text-xs text-slate-600">National Testing Agency (NTA)</p>
+
             </div>
           </div>
         </div>
@@ -122,7 +122,7 @@ const Home = () => {
       <footer className="bg-white border-t border-slate-200 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center">
           <p className="text-sm text-slate-500">
-            National Testing Agency (NTA) • Official Mock Test Platform
+            © 2024 CUET PG Mock Test Platform
           </p>
         </div>
       </footer>

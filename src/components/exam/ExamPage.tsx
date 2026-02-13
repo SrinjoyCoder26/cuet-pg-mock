@@ -110,12 +110,7 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
         </div>
 
         <div className="flex items-center gap-4 text-xs">
-          <div className="hidden md:flex items-center gap-2 bg-red-500/10 border border-red-500/50 px-3 py-1.5 rounded-full animate-pulse">
-            <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-            <span className="text-red-200 font-bold tracking-wider flex items-center gap-1">
-              <Eye size={12} /> PROCTORED ACTIVE
-            </span>
-          </div>
+
 
           <div className="hidden md:flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/20">
             <Avatar className="w-6 h-6">
@@ -156,8 +151,8 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
               <button
                 onClick={toggleMark}
                 className={`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all flex items-center gap-2 shadow-sm ${isMarked
-                    ? "bg-amber-100 text-amber-900 border border-amber-200 hover:bg-amber-200"
-                    : "bg-white border border-slate-300 text-slate-700 hover:bg-slate-50"
+                  ? "bg-amber-100 text-amber-900 border border-amber-200 hover:bg-amber-200"
+                  : "bg-white border border-slate-300 text-slate-700 hover:bg-slate-50"
                   }`}
               >
                 <Star size={16} className={isMarked ? "fill-amber-600 text-amber-600" : "text-slate-400"} />
