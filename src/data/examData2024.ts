@@ -7,7 +7,7 @@ export const examConfig2024: ExamConfig = {
   totalMarks: 300,
   correctMarks: 4,
   wrongMarks: -1,
-  durationMinutes: 105,
+  durationMinutes: 90,
   date: "27 March 2024 - Shift 1",
 };
 

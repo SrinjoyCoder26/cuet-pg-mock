@@ -101,7 +101,7 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
         <div className="flex items-center gap-4 text-xs">
           <div className="hidden md:flex items-center gap-2 bg-slate-700 px-3 py-1.5 rounded border border-slate-600">
             <Avatar className="w-7 h-7">
-              <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=Rahul" alt={CANDIDATE_NAME} />
+              <AvatarImage src="https://images.unsplash.com/flagged/photo-1571367034861-e6729ad9c2d5?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt={CANDIDATE_NAME} />
               <AvatarFallback className="bg-white text-slate-800 text-xs font-bold">RK</AvatarFallback>
             </Avatar>
             <span className="font-semibold">{CANDIDATE_NAME}</span>
