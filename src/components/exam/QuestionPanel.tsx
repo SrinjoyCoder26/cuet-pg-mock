@@ -11,54 +11,71 @@ interface QuestionPanelProps {
 }
 
 const renderTextWithMath = (text: string) => {
-  // Render inline math with $...$ and block math with $$...$$
-  const parts: React.ReactNode[] = [];
-  let currentIndex = 0;
-  
-  // Match $$...$$ for block math and $...$ for inline math
-  const mathRegex = /(\$\$[\s\S]+?\$\$|\$[^$\n]+?\$)/g;
-  let match;
-  
-  while ((match = mathRegex.exec(text)) !== null) {
-    // Add text before math
-    if (match.index > currentIndex) {
-      parts.push(text.substring(currentIndex, match.index));
-    }
-    
-    // Add math
-    const mathText = match[0];
-    if (mathText.startsWith('$$')) {
-      // Block math
-      const latex = mathText.slice(2, -2);
-      try {
-        parts.push(<BlockMath key={match.index} math={latex} />);
-      } catch {
-        parts.push(mathText);
-      }
-    } else {
-      // Inline math
-      const latex = mathText.slice(1, -1);
-      try {
-        parts.push(<InlineMath key={match.index} math={latex} />);
-      } catch {
-        parts.push(mathText);
-      }
-    }
-    
-    currentIndex = match.index + mathText.length;
-  }
-  
-  // Add remaining text
-  if (currentIndex < text.length) {
-    parts.push(text.substring(currentIndex));
-  }
-  
-  return parts.length > 0 ? parts : text;
+  // Split by double newlines for paragraph spacing
+  const paragraphs = text.split(/\n\n+/);
+
+  return (
+    <div className="space-y-4">
+      {paragraphs.map((paragraph, pIndex) => {
+        // Render inline math with $...$ and block math with $$...$$
+        const parts: React.ReactNode[] = [];
+        let currentIndex = 0;
+
+        // Match $$...$$ for block math and $...$ for inline math
+        const mathRegex = /(\$\$[\s\S]+?\$\$|\$[^$\n]+?\$)/g;
+        let match;
+
+        while ((match = mathRegex.exec(paragraph)) !== null) {
+          // Add text before math
+          if (match.index > currentIndex) {
+            parts.push(<span key={`${pIndex}-text-${currentIndex}`}>{paragraph.substring(currentIndex, match.index)}</span>);
+          }
+
+          // Add math
+          const mathText = match[0];
+          if (mathText.startsWith('$$')) {
+            // Block math
+            const latex = mathText.slice(2, -2);
+            try {
+              parts.push(
+                <div key={`${pIndex}-math-${match.index}`} className="my-4 overflow-x-auto">
+                  <BlockMath math={latex} />
+                </div>
+              );
+            } catch {
+              parts.push(mathText);
+            }
+          } else {
+            // Inline math
+            const latex = mathText.slice(1, -1);
+            try {
+              parts.push(<InlineMath key={`${pIndex}-math-${match.index}`} math={latex} />);
+            } catch {
+              parts.push(mathText);
+            }
+          }
+
+          currentIndex = match.index + mathText.length;
+        }
+
+        // Add remaining text
+        if (currentIndex < paragraph.length) {
+          parts.push(<span key={`${pIndex}-text-end`}>{paragraph.substring(currentIndex)}</span>);
+        }
+
+        return (
+          <p key={pIndex} className="text-slate-700 leading-relaxed text-lg">
+            {parts.length > 0 ? parts : paragraph}
+          </p>
+        );
+      })}
+    </div>
+  );
 };
 
 const QuestionPanel = ({ question, selectedOption, onSelectOption, isMarked }: QuestionPanelProps) => {
   return (
-    <div className="flex-1 overflow-y-auto p-6 lg:p-8">
+    <div className="flex-1 overflow-y-auto p-6 lg:p-10 bg-white">
       {/* Question Header */}
       <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-200">
         <div className="flex items-center gap-3">
@@ -84,7 +101,7 @@ const QuestionPanel = ({ question, selectedOption, onSelectOption, isMarked }: Q
       </div>
 
       {/* Question Text */}
-      <div className="mb-8 text-base leading-relaxed whitespace-pre-line text-slate-800 bg-slate-50 p-6 rounded-lg border border-slate-200">
+      <div className="mb-8 prose prose-slate prose-lg max-w-none text-slate-800">
         {renderTextWithMath(question.text)}
       </div>
 
@@ -94,10 +111,9 @@ const QuestionPanel = ({ question, selectedOption, onSelectOption, isMarked }: Q
           <label
             key={index}
             className={`flex items-start gap-4 p-5 rounded-lg border-2 cursor-pointer transition-all text-sm
-              ${
-                selectedOption === index + 1
-                  ? "border-slate-900 bg-slate-50 shadow-sm"
-                  : "border-slate-200 hover:border-slate-400 hover:bg-slate-50"
+              ${selectedOption === index + 1
+                ? "border-slate-900 bg-slate-50 shadow-sm"
+                : "border-slate-200 hover:border-slate-400 hover:bg-slate-50"
               }`}
           >
             <input

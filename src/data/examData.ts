@@ -30,35 +30,35 @@ export const examConfig: ExamConfig = {
 export const questions: Question[] = [
   {
     id: 1,
-    text: "Consider the following relation R= {(4,5),(5,4),(7,6),(6,7)} on set I= {4,5,6,7}. Which of the following properties relation R does not have?\n\nA. Reflexive property\nB. Symmetric property\nC. Transitive property\nD. Antisymmetric property\n\nChoose the correct answer from the options given below:",
+    text: "Consider the following relation $R = \\{(4,5),(5,4),(7,6),(6,7)\\}$ on set $I = \\{4,5,6,7\\}$. Which of the following properties relation $R$ does not have?",
     options: [
-      "A, C and D only",
-      "A, B and D only",
-      "A, B, C and D",
-      "B, C and D only",
+      "$A$, $C$ and $D$ only",
+      "$A$, $B$ and $D$ only",
+      "$A$, $B$, $C$ and $D$",
+      "$B$, $C$ and $D$ only",
     ],
     correctAnswer: 1,
   },
   {
     id: 2,
-    text: "If an algebraic system (M, *) where M is the set of all non-zero real numbers and * is a binary operator defined by X*Y = XY/4, which of the following properties are satisfied by M?\n\nA. Closure Property\nB. Associative Property\nC. Inverse property\nD. Commutative property\n\nChoose the correct answer from the options given below:",
+    text: "If an algebraic system $(M, *)$ where $M$ is the set of all non-zero real numbers and $*$ is a binary operator defined by $X*Y = XY/4$, which of the following properties are satisfied by $M$?",
     options: [
-      "A, B and D only",
-      "A, B and C only",
-      "A, B, C and D",
-      "B, C and D only",
+      "$A$, $B$ and $D$ only",
+      "$A$, $B$ and $C$ only",
+      "$A$, $B$, $C$ and $D$",
+      "$B$, $C$ and $D$ only",
     ],
     correctAnswer: 3,
   },
   {
     id: 3,
-    text: "What will be the output after minimizing the following expression with the help of a K-map?\n\nF(X,Y) = XY + X'Y + YX'",
-    options: ["X", "X + Y", "XY", "Y"],
+    text: "What will be the output after minimizing the following expression with the help of a K-map?\n\n$$F(X,Y) = XY + X'Y + YX'$$",
+    options: ["$X$", "$X + Y$", "$XY$", "$Y$"],
     correctAnswer: 2,
   },
   {
     id: 4,
-    text: "Find the least upper bound and greatest lower bound of S= {X,Y,Z} if they exist, of the poset whose Hasse diagram is shown below:",
+    text: "Find the least upper bound and greatest lower bound of $S= \\{X,Y,Z\\}$ if they exist, of the poset whose Hasse diagram is shown below:",
     options: [
       "The least upper bound is T and the greatest lower bound is X",
       "The least upper bound is Z and the greatest lower bound is E",
@@ -80,13 +80,13 @@ export const questions: Question[] = [
   },
   {
     id: 6,
-    text: "For a Non-deterministic Finite Automaton (NDFA) with N number of states, the equivalent Deterministic Finite Automaton (DFA) has D number of states. Then, possible number of states in DFA can be defined as:",
-    options: ["N × 2", "N ÷ 2", "2^N", "N × D"],
+    text: "For a Non-deterministic Finite Automaton (NDFA) with $N$ number of states, the equivalent Deterministic Finite Automaton (DFA) has $D$ number of states. Then, possible number of states in DFA can be defined as:",
+    options: ["$N \\times 2$", "$N \\div 2$", "$2^N$", "$N \\times D$"],
     correctAnswer: 3,
   },
   {
     id: 7,
-    text: "Suppose D1 = (S1, Σ, q1, F1, δ1) and D2 = (S2, Σ, q2, F2, δ2) are finite automata accepting languages L1 and L2, respectively. Then, which of the following languages will also be accepted by the finite automata:\n\nA. L1 ∪ L2\nB. L1 ∩ L2\nC. L1 - L2\nD. L2 - L1\n\nChoose the correct answer from the options given below:",
+    text: "Suppose $D1 = (S1, \\Sigma, q1, F1, \\delta1)$ and $D2 = (S2, \\Sigma, q2, F2, \\delta2)$ are finite automata accepting languages $L1$ and $L2$, respectively. Then, which of the following languages will also be accepted by the finite automata:\n\nA. $L1 \\cup L2$\nB. $L1 \\cap L2$\nC. $L1 - L2$\nD. $L2 - L1$",
     options: [
       "A, B and D only",
       "A, B and C only",
@@ -97,7 +97,7 @@ export const questions: Question[] = [
   },
   {
     id: 8,
-    text: "Match LIST-I with LIST-II\n\nA. A Language L can be accepted by a Finite Automata, if and only if, the set of equivalence classes of I is finite → III. Myhill-Nerode Theorem\nB. For every finite automaton M = (Q, Σ, q0, A, δ), the language L(M) is regular → IV. Kleen's Theorem\nC. Let X and Y be two regular expressions over Σ. If X does not contain null, then the equation R = Y + RX in R, has a unique solution given by R = YX* → I. Arden's Theorem\nD. The regular expressions X and Y are equivalent if the corresponding finite automata are equivalent → II. Regular Expression Equivalence\n\nChoose the correct answer from the options given below:",
+    text: "Match LIST-I with LIST-II\n\nA. A Language $L$ can be accepted by a Finite Automata, if and only if, the set of equivalence classes of $I$ is finite → III. Myhill-Nerode Theorem\nB. For every finite automaton $M = (Q, \\Sigma, q0, A, \\delta)$, the language $L(M)$ is regular → IV. Kleen's Theorem\nC. Let $X$ and $Y$ be two regular expressions over $\\Sigma$. If $X$ does not contain null, then the equation $R = Y + RX$ in $R$, has a unique solution given by $R = YX^*$ → I. Arden's Theorem\nD. The regular expressions $X$ and $Y$ are equivalent if the corresponding finite automata are equivalent → II. Regular Expression Equivalence",
     options: [
       "A - I, B - IV, C - III, D - II",
       "A - I, B - III, C - II, D - IV",
@@ -108,19 +108,19 @@ export const questions: Question[] = [
   },
   {
     id: 9,
-    text: "If Li is the set of languages of type i for i=0,1,2 or 3. Then, as per Chomsky hierarchy, arrange the given set of four languages in order from subset to super set, from left to right.\n\nA. L3\nB. L2\nC. L1\nD. L0\n\nChoose the correct answer from the options given below:",
+    text: "If $L_i$ is the set of languages of type $i$ for $i=0,1,2$ or $3$. Then, as per Chomsky hierarchy, arrange the given set of four languages in order from subset to super set, from left to right.\n\nA. $L_3$\nB. $L_2$\nC. $L_1$\nD. $L_0$",
     options: ["A, B, C, D", "A, C, D, B", "B, A, D, C", "C, B, D, A"],
     correctAnswer: 1,
   },
   {
     id: 10,
-    text: "How many productions will be there, after constructing the reduced grammar for the given grammar below?\n\n1. X → aYa\n2. Y → Xb\n3. Y → bCC\n4. Y → ZaY\n5. C → abb\n6. C → ZZ\n7. E → aC\n8. Z → aZY",
+    text: "How many productions will be there, after constructing the reduced grammar for the given grammar below?\n\n$1. X \\to aYa$\n$2. Y \\to Xb$\n$3. Y \\to bCC$\n$4. Y \\to ZaY$\n$5. C \\to abb$\n$6. C \\to ZZ$\n$7. E \\to aC$\n$8. Z \\to aZY$",
     options: ["Three", "Four", "Five", "Six"],
     correctAnswer: 2,
   },
   {
     id: 11,
-    text: "In a standard Turing Machine T, the transition function δ(q, a) for q ∈ Q and a ∈ Γ is defined:",
+    text: "In a standard Turing Machine $T$, the transition function $\\delta(q, a)$ for $q \\in Q$ and $a \\in \\Gamma$ is defined:",
     options: [
       "For some, not necessarily for all elements of (q, a) ∈ Q × Γ",
       "For no element of (q, a) ∈ Q × Γ",
@@ -210,7 +210,7 @@ export const questions: Question[] = [
   },
   {
     id: 21,
-    text: "Consider a pipeline system. Let tp = 20 ns, k = 4 segments, n = 100 tasks. For non-pipeline system, tn = ktp. Find the speedup of pipeline processing over non-pipeline processing to execute 100 tasks.",
+    text: "Consider a pipeline system. Let $t_p = 20$ ns, $k = 4$ segments, $n = 100$ tasks. For non-pipeline system, $t_n = kt_p$. Find the speedup of pipeline processing over non-pipeline processing to execute 100 tasks.",
     options: ["3.88", "0.08", "0.88", "1.88"],
     correctAnswer: 1,
   },
