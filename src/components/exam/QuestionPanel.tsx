@@ -1,3 +1,4 @@
+import React from "react";
 import type { Question } from "@/data/examTypes";
 import { Star, Award } from "lucide-react";
 import "katex/dist/katex.min.css";

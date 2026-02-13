@@ -30,7 +30,7 @@ export const examConfig: ExamConfig = {
 export const questions: Question[] = [
   {
     id: 1,
-    text: "Consider the following relation $R = \\{(4,5),(5,4),(7,6),(6,7)\\}$ on set $I = \\{4,5,6,7\\}$. Which of the following properties relation $R$ does not have?",
+    text: "Consider the following relation $R = \\{(4,5),(5,4),(7,6),(6,7)\\}$ on set $I = \\{4,5,6,7\\}$. Which of the following properties relation $R$ does not have?\n\nA. Reflexive property\nB. Symmetric property\nC. Transitive property\nD. Antisymmetric property",
     options: [
       "$A$, $C$ and $D$ only",
       "$A$, $B$ and $D$ only",
@@ -41,7 +41,7 @@ export const questions: Question[] = [
   },
   {
     id: 2,
-    text: "If an algebraic system $(M, *)$ where $M$ is the set of all non-zero real numbers and $*$ is a binary operator defined by $X*Y = XY/4$, which of the following properties are satisfied by $M$?",
+    text: "If an algebraic system $(M, *)$ where $M$ is the set of all non-zero real numbers and $*$ is a binary operator defined by $X*Y = XY/4$, which of the following properties are satisfied by $M$?\n\nA. Closure Property\nB. Associative Property\nC. Inverse property\nD. Commutative property",
     options: [
       "$A$, $B$ and $D$ only",
       "$A$, $B$ and $C$ only",
