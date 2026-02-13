@@ -5,6 +5,7 @@ import QuestionPanel from "@/components/exam/QuestionPanel";
 import QuestionPalette from "@/components/exam/QuestionPalette";
 import Timer from "@/components/exam/Timer";
 import ResultsPage from "@/components/exam/ResultsPage";
+import { ChevronLeft, ChevronRight, Star, Eraser, Send, X, GraduationCap } from "lucide-react";
 
 interface ExamPageProps {
   paper: ExamPaper;
@@ -73,24 +74,40 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
     setSubmitted(true);
   }, []);
 
-  if (submitted) return <ResultsPage paper={paper} answers={answers} onBack={onExit} />;
+  const handleExit = () => {
+    if (window.confirm("Are you sure you want to exit? Your progress will be lost.")) {
+      onExit();
+    }
+  };
+
+  if (submitted) return <ResultsPage paper={paper} answers={answers} statuses={statuses} onBack={onExit} />;
 
   const isMarked = statuses[currentIndex] === "marked" || statuses[currentIndex] === "marked-answered";
   const answeredCount = statuses.filter((s) => s === "answered" || s === "marked-answered").length;
 
   return (
-    <div className="h-screen flex flex-col overflow-hidden bg-background">
-      {/* Compact Header */}
-      <header className="bg-primary text-primary-foreground px-3 py-2 flex items-center justify-between flex-shrink-0">
+    <div className="h-screen flex flex-col overflow-hidden bg-gray-50">
+      {/* Header */}
+      <header className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-3 flex items-center justify-between flex-shrink-0 shadow-lg">
         <div className="flex items-center gap-3">
-          <h1 className="text-sm font-bold">{config.title}</h1>
-          <span className="text-[10px] opacity-70 hidden sm:inline">{config.subject}</span>
+          <GraduationCap size={24} />
+          <div>
+            <h1 className="text-base font-bold">{config.title}</h1>
+            <span className="text-xs opacity-90 hidden sm:inline">{config.subject}</span>
+          </div>
         </div>
-        <div className="flex items-center gap-3 text-[10px]">
-          <span className="hidden sm:inline opacity-70">{config.date}</span>
-          <span className="bg-secondary text-secondary-foreground px-2 py-0.5 rounded-full font-bold">
+        <div className="flex items-center gap-4 text-xs">
+          <span className="hidden sm:inline opacity-90">{config.date}</span>
+          <span className="bg-white text-blue-600 px-3 py-1.5 rounded-full font-bold shadow-md">
             {answeredCount}/{config.totalQuestions}
           </span>
+          <button
+            onClick={handleExit}
+            className="bg-white/20 hover:bg-white/30 px-3 py-1.5 rounded-lg font-semibold transition-all flex items-center gap-1"
+          >
+            <X size={16} />
+            Exit
+          </button>
         </div>
       </header>
 
@@ -106,40 +123,44 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
           />
 
           {/* Bottom nav */}
-          <div className="flex items-center justify-between px-3 py-2 border-t bg-card flex-shrink-0 gap-2">
+          <div className="flex items-center justify-between px-4 py-3 border-t bg-white flex-shrink-0 gap-3 shadow-lg">
             <button
               onClick={goPrev}
               disabled={currentIndex === 0}
-              className="bg-primary text-primary-foreground px-3 py-1.5 rounded text-xs font-semibold disabled:opacity-30 hover:opacity-90 transition-opacity"
+              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-lg text-sm font-semibold disabled:opacity-30 disabled:cursor-not-allowed hover:shadow-md transition-all flex items-center gap-2"
             >
-              ‹ Prev
+              <ChevronLeft size={16} />
+              Previous
             </button>
             <div className="flex gap-2">
               <button
                 onClick={toggleMark}
-                className="bg-exam-sidebar text-exam-sidebar-foreground px-3 py-1.5 rounded text-xs font-semibold hover:opacity-90 transition-opacity"
+                className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-2 shadow-md"
               >
-                {isMarked ? "Unmark" : "★ Mark"}
+                <Star size={16} fill={isMarked ? "white" : "none"} />
+                {isMarked ? "Unmark" : "Mark"}
               </button>
               <button
                 onClick={clearResponse}
-                className="bg-destructive text-destructive-foreground px-3 py-1.5 rounded text-xs font-semibold hover:opacity-90 transition-opacity"
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all flex items-center gap-2 shadow-md"
               >
+                <Eraser size={16} />
                 Clear
               </button>
             </div>
             <button
               onClick={goNext}
               disabled={currentIndex === questions.length - 1}
-              className="bg-primary text-primary-foreground px-3 py-1.5 rounded text-xs font-semibold disabled:opacity-30 hover:opacity-90 transition-opacity"
+              className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-4 py-2 rounded-lg text-sm font-semibold disabled:opacity-30 disabled:cursor-not-allowed hover:shadow-md transition-all flex items-center gap-2"
             >
-              Next ›
+              Next
+              <ChevronRight size={16} />
             </button>
           </div>
         </div>
 
         {/* Sidebar */}
-        <aside className="w-[220px] lg:w-[250px] border-l bg-card flex flex-col p-2 gap-2 flex-shrink-0 overflow-y-auto">
+        <aside className="w-[240px] lg:w-[280px] border-l bg-white flex flex-col p-4 gap-4 flex-shrink-0 overflow-y-auto shadow-xl">
           <Timer durationMinutes={config.durationMinutes} onTimeUp={handleTimeUp} isRunning={true} />
 
           <QuestionPalette
@@ -151,9 +172,10 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
 
           <button
             onClick={handleSubmit}
-            className="mt-auto bg-secondary text-secondary-foreground px-3 py-2.5 rounded-lg text-xs font-bold hover:opacity-90 transition-opacity flex-shrink-0"
+            className="mt-auto bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-4 py-3 rounded-xl text-sm font-bold transition-all flex-shrink-0 shadow-lg flex items-center justify-center gap-2"
           >
-            ✔ SUBMIT
+            <Send size={18} />
+            SUBMIT EXAM
           </button>
         </aside>
       </div>
