@@ -26,19 +26,19 @@ const Timer = ({ durationMinutes, onTimeUp, isRunning }: TimerProps) => {
   const pct = ((total - secondsLeft) / total) * 100;
 
   return (
-    <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl p-4 border-2 border-blue-200 shadow-md">
+    <div className="bg-white rounded border-2 border-slate-300 p-4">
       <div className="flex items-center justify-center gap-2 mb-3">
-        <Clock size={18} className={isLow ? "text-red-600 animate-pulse" : "text-blue-600"} />
+        <Clock size={18} className={isLow ? "text-red-600 animate-pulse" : "text-slate-700"} />
         <span className="text-xs font-semibold text-gray-700">Time Remaining</span>
       </div>
       
-      <div className={`text-center font-mono text-3xl font-bold mb-3 ${isLow ? "text-red-600 animate-pulse" : "text-gray-900"}`}>
+      <div className={`text-center font-mono text-3xl font-bold mb-3 ${isLow ? "text-red-600" : "text-slate-800"}`}>
         {String(minutes).padStart(2, "0")}:{String(seconds).padStart(2, "0")}
       </div>
       
       <div className="w-full bg-gray-200 rounded-full h-2.5 mb-2 overflow-hidden">
         <div
-          className={`h-2.5 rounded-full transition-all ${isLow ? "bg-gradient-to-r from-red-500 to-red-600" : "bg-gradient-to-r from-blue-500 to-purple-600"}`}
+          className={`h-2.5 rounded-full transition-all ${isLow ? "bg-red-600" : "bg-blue-600"}`}
           style={{ width: `${Math.min(pct, 100)}%` }}
         />
       </div>

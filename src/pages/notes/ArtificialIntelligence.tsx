@@ -409,6 +409,132 @@ const ArtificialIntelligence = () => {
             </div>
           </section>
 
+          {/* Machine Learning Basics Section */}
+          <section className="mb-10">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-green-500">10.8 Machine Learning Fundamentals</h2>
+            
+            <div className="space-y-6">
+              <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-lg">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Types of Machine Learning</h3>
+                <div className="grid md:grid-cols-3 gap-4">
+                  <div className="bg-white p-4 rounded">
+                    <p className="font-semibold mb-2">Supervised Learning</p>
+                    <ul className="text-sm list-disc ml-4 space-y-1 text-gray-700">
+                      <li>Learns from labeled data</li>
+                      <li>Classification: discrete output</li>
+                      <li>Regression: continuous output</li>
+                      <li>Examples: Decision trees, SVM, Neural networks</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white p-4 rounded">
+                    <p className="font-semibold mb-2">Unsupervised Learning</p>
+                    <ul className="text-sm list-disc ml-4 space-y-1 text-gray-700">
+                      <li>Learns from unlabeled data</li>
+                      <li>Clustering: group similar data</li>
+                      <li>Dimensionality reduction</li>
+                      <li>Examples: K-means, PCA, Hierarchical clustering</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white p-4 rounded">
+                    <p className="font-semibold mb-2">Reinforcement Learning</p>
+                    <ul className="text-sm list-disc ml-4 space-y-1 text-gray-700">
+                      <li>Learns through trial and error</li>
+                      <li>Agent, environment, rewards</li>
+                      <li>Goal: maximize cumulative reward</li>
+                      <li>Examples: Q-learning, SARSA</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Decision Trees</h3>
+                <div className="space-y-4">
+                  <div className="bg-white p-4 rounded">
+                    <p className="font-semibold mb-2">Characteristics:</p>
+                    <ul className="list-disc ml-6 space-y-1 text-sm text-gray-700">
+                      <li>Tree-structured classifier</li>
+                      <li>Internal nodes: tests on attributes</li>
+                      <li>Leaf nodes: class labels</li>
+                      <li>Easy to interpret and visualize</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white p-4 rounded">
+                    <p className="font-semibold mb-2">Splitting Criteria:</p>
+                    <ul className="list-disc ml-6 space-y-1 text-sm text-gray-700">
+                      <li><strong>Information Gain:</strong> Based on entropy reduction</li>
+                      <li><strong>Gini Index:</strong> Measure of impurity</li>
+                      <li><strong>Gain Ratio:</strong> Normalized information gain</li>
+                      <li>Select attribute with highest gain</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white p-4 rounded">
+                    <p className="font-semibold mb-2">Entropy Formula:</p>
+                    <p className="text-sm text-gray-700 font-mono">H(S) = -Σ p_i log₂(p_i)</p>
+                    <p className="text-xs text-gray-600 mt-1">where p_i is proportion of class i</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-purple-50 border-l-4 border-purple-500 p-6 rounded-r-lg">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Neural Networks</h3>
+                <div className="space-y-4">
+                  <div className="bg-white p-4 rounded">
+                    <p className="font-semibold mb-2">Basic Concepts:</p>
+                    <ul className="list-disc ml-6 space-y-1 text-sm text-gray-700">
+                      <li><strong>Perceptron:</strong> Single-layer neural network</li>
+                      <li><strong>Activation Functions:</strong> Sigmoid, ReLU, tanh</li>
+                      <li><strong>Backpropagation:</strong> Training algorithm</li>
+                      <li><strong>Layers:</strong> Input, hidden, output</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white p-4 rounded">
+                    <p className="font-semibold mb-2">Training Process:</p>
+                    <ul className="list-disc ml-6 space-y-1 text-sm text-gray-700">
+                      <li>Forward pass: compute output</li>
+                      <li>Calculate error/loss</li>
+                      <li>Backward pass: compute gradients</li>
+                      <li>Update weights using gradient descent</li>
+                      <li>Repeat until convergence</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-r-lg">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Model Evaluation</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="bg-white p-4 rounded">
+                    <p className="font-semibold mb-2">Classification Metrics:</p>
+                    <ul className="list-disc ml-6 space-y-1 text-sm text-gray-700">
+                      <li><strong>Accuracy:</strong> (TP+TN)/(TP+TN+FP+FN)</li>
+                      <li><strong>Precision:</strong> TP/(TP+FP)</li>
+                      <li><strong>Recall:</strong> TP/(TP+FN)</li>
+                      <li><strong>F1-Score:</strong> 2×(Precision×Recall)/(Precision+Recall)</li>
+                    </ul>
+                  </div>
+                  <div className="bg-white p-4 rounded">
+                    <p className="font-semibold mb-2">Validation Techniques:</p>
+                    <ul className="list-disc ml-6 space-y-1 text-sm text-gray-700">
+                      <li><strong>Train-Test Split:</strong> 70-30 or 80-20</li>
+                      <li><strong>K-Fold Cross Validation:</strong> K equal folds</li>
+                      <li><strong>Leave-One-Out:</strong> K = n (dataset size)</li>
+                      <li><strong>Stratified Sampling:</strong> Preserve class distribution</li>
+                    </ul>
+                  </div>
+                </div>
+                <div className="bg-white p-4 rounded mt-4">
+                  <p className="font-semibold mb-2">Overfitting and Underfitting:</p>
+                  <ul className="list-disc ml-6 space-y-1 text-sm text-gray-700">
+                    <li><strong>Overfitting:</strong> Model too complex, fits noise. Solution: regularization, pruning</li>
+                    <li><strong>Underfitting:</strong> Model too simple, poor fit. Solution: increase complexity</li>
+                    <li><strong>Bias-Variance Tradeoff:</strong> Balance between underfitting and overfitting</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* Exam Tips Section */}
           <section className="mb-10">
             <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-red-500">Exam Tips & Important Points</h2>
@@ -424,6 +550,7 @@ const ArtificialIntelligence = () => {
                     <li><strong>Propositional Logic:</strong> Truth tables, inference rules</li>
                     <li><strong>First Order Logic:</strong> Quantifiers, unification</li>
                     <li><strong>Knowledge Representation:</strong> Different methods and their uses</li>
+                    <li><strong>Machine Learning:</strong> Types, decision trees, neural networks</li>
                   </ul>
                 </div>
 
@@ -437,6 +564,8 @@ const ArtificialIntelligence = () => {
                     <li>Apply inference rules in propositional logic</li>
                     <li>Identify agent type for given scenario</li>
                     <li>Classify environment (observable, deterministic, etc.)</li>
+                    <li>Calculate entropy and information gain for decision trees</li>
+                    <li>Compare supervised vs unsupervised learning</li>
                   </ul>
                 </div>
 
@@ -449,6 +578,8 @@ const ArtificialIntelligence = () => {
                     <li>Admissible heuristic: h(n) ≤ h*(n)</li>
                     <li>Modus Ponens: P, P→Q ⊢ Q</li>
                     <li>Resolution: (A∨B), (¬B∨C) ⊢ (A∨C)</li>
+                    <li>Entropy: H(S) = -Σ p_i log₂(p_i)</li>
+                    <li>Accuracy = (TP+TN)/(TP+TN+FP+FN)</li>
                   </ul>
                 </div>
 
@@ -460,6 +591,8 @@ const ArtificialIntelligence = () => {
                     <li>Wrong logical connective in FOL translation</li>
                     <li>Mixing up universal and existential quantifiers</li>
                     <li>Not considering all environment characteristics</li>
+                    <li>Confusing precision and recall</li>
+                    <li>Not recognizing overfitting symptoms</li>
                   </ul>
                 </div>
               </div>

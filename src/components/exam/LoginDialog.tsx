@@ -40,9 +40,9 @@ const LoginDialog = ({ open, onLoginSuccess }: LoginDialogProps) => {
     <Dialog open={open} modal>
       <DialogContent className="sm:max-w-md" onPointerDownOutside={(e) => e.preventDefault()}>
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold">Student Login</DialogTitle>
+          <DialogTitle className="text-2xl font-bold text-slate-800">Candidate Login</DialogTitle>
           <DialogDescription>
-            Please login to begin your mock test
+            Enter your credentials to access the examination portal
           </DialogDescription>
         </DialogHeader>
         
@@ -90,22 +90,22 @@ const LoginDialog = ({ open, onLoginSuccess }: LoginDialogProps) => {
           </div>
 
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+            <div className="bg-red-50 border border-red-300 text-red-700 px-4 py-3 rounded text-sm">
               {error}
             </div>
           )}
 
           <Button
             type="submit"
-            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 rounded-lg transition-all shadow-md"
+            className="w-full bg-slate-700 hover:bg-slate-800 text-white font-semibold py-3 rounded transition-colors border border-slate-800"
           >
             Login to Start Test
           </Button>
         </form>
 
-        <div className="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-          <p className="text-xs text-blue-800 font-semibold mb-2">Default Login Credentials:</p>
-          <div className="text-xs text-blue-700 space-y-1">
+        <div className="mt-4 p-4 bg-slate-50 border border-slate-300 rounded">
+          <p className="text-xs text-slate-800 font-semibold mb-2">Default Login Credentials:</p>
+          <div className="text-xs text-slate-700 space-y-1">
             <p>• User ID: <span className="font-mono font-semibold">{DEFAULT_ID}</span></p>
             <p>• Password: <span className="font-mono font-semibold">{DEFAULT_PASSWORD}</span></p>
           </div>
