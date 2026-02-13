@@ -10,11 +10,11 @@ interface QuestionPaletteProps {
 }
 
 const statusColors: Record<QuestionStatus, string> = {
-  "not-visited": "bg-muted text-muted-foreground border-border",
-  answered: "bg-exam-answered text-white border-exam-answered",
-  "not-answered": "bg-destructive/80 text-white border-destructive/80",
-  marked: "bg-exam-marked text-white border-exam-marked",
-  "marked-answered": "bg-exam-marked-answered text-white border-exam-marked-answered",
+  "not-visited": "bg-slate-200 text-slate-600 border-slate-300",
+  answered: "bg-green-600 text-white border-green-700",
+  "not-answered": "bg-red-500 text-white border-red-600",
+  marked: "bg-amber-500 text-white border-amber-600",
+  "marked-answered": "bg-purple-600 text-white border-purple-700",
 };
 
 const QuestionPalette = ({ totalQuestions, currentQuestion, questionStatuses, onQuestionClick }: QuestionPaletteProps) => {
@@ -27,20 +27,20 @@ const QuestionPalette = ({ totalQuestions, currentQuestion, questionStatuses, on
   };
 
   return (
-    <div className="flex flex-col gap-2">
-      <div className="bg-exam-sidebar text-exam-sidebar-foreground rounded-md p-2 text-center font-bold text-xs">
+    <div className="flex flex-col gap-3">
+      <div className="bg-slate-900 text-white rounded-lg p-3 text-center font-bold text-sm shadow-sm">
         Question Palette
       </div>
 
-      <div className="grid grid-cols-8 lg:grid-cols-6 gap-1 px-1 max-h-[30vh] overflow-y-auto">
+      <div className="grid grid-cols-5 gap-2 p-2 max-h-[35vh] overflow-y-auto bg-slate-50 rounded-lg border border-slate-200">
         {Array.from({ length: totalQuestions }, (_, i) => (
           <button
             key={i}
             onClick={() => onQuestionClick(i)}
             className={cn(
-              "w-7 h-7 rounded text-[10px] font-bold border transition-all hover:scale-105",
+              "w-full aspect-square rounded-lg text-xs font-bold border-2 transition-all hover:scale-105 shadow-sm",
               statusColors[questionStatuses[i]],
-              currentQuestion === i && "ring-2 ring-exam-current ring-offset-1"
+              currentQuestion === i && "ring-2 ring-slate-900 ring-offset-2"
             )}
           >
             {i + 1}
@@ -48,26 +48,26 @@ const QuestionPalette = ({ totalQuestions, currentQuestion, questionStatuses, on
         ))}
       </div>
 
-      <div className="grid grid-cols-3 gap-x-2 gap-y-1 px-1 text-[9px] border-t pt-2">
-        <div className="flex items-center gap-1">
-          <span className="w-3 h-3 rounded bg-exam-answered inline-block flex-shrink-0" />
-          <span>{counts.answered} Ans</span>
+      <div className="grid grid-cols-2 gap-2 p-3 text-[10px] bg-slate-50 rounded-lg border border-slate-200">
+        <div className="flex items-center gap-2">
+          <span className="w-4 h-4 rounded bg-green-600 border border-green-700 inline-block flex-shrink-0" />
+          <span className="text-slate-700 font-medium">{counts.answered} Answered</span>
         </div>
-        <div className="flex items-center gap-1">
-          <span className="w-3 h-3 rounded bg-muted border inline-block flex-shrink-0" />
-          <span>{counts["not-visited"]} NV</span>
+        <div className="flex items-center gap-2">
+          <span className="w-4 h-4 rounded bg-slate-200 border border-slate-300 inline-block flex-shrink-0" />
+          <span className="text-slate-700 font-medium">{counts["not-visited"]} Not Visited</span>
         </div>
-        <div className="flex items-center gap-1">
-          <span className="w-3 h-3 rounded bg-destructive/80 inline-block flex-shrink-0" />
-          <span>{counts["not-answered"]} NA</span>
+        <div className="flex items-center gap-2">
+          <span className="w-4 h-4 rounded bg-red-500 border border-red-600 inline-block flex-shrink-0" />
+          <span className="text-slate-700 font-medium">{counts["not-answered"]} Not Answered</span>
         </div>
-        <div className="flex items-center gap-1">
-          <span className="w-3 h-3 rounded bg-exam-marked inline-block flex-shrink-0" />
-          <span>{counts.marked} Mark</span>
+        <div className="flex items-center gap-2">
+          <span className="w-4 h-4 rounded bg-amber-500 border border-amber-600 inline-block flex-shrink-0" />
+          <span className="text-slate-700 font-medium">{counts.marked} Marked</span>
         </div>
-        <div className="flex items-center gap-1">
-          <span className="w-3 h-3 rounded bg-exam-marked-answered inline-block flex-shrink-0" />
-          <span>{counts["marked-answered"]} M&A</span>
+        <div className="flex items-center gap-2 col-span-2">
+          <span className="w-4 h-4 rounded bg-purple-600 border border-purple-700 inline-block flex-shrink-0" />
+          <span className="text-slate-700 font-medium">{counts["marked-answered"]} Marked & Answered</span>
         </div>
       </div>
     </div>

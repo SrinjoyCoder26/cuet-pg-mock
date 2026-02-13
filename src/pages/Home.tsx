@@ -33,17 +33,36 @@ const Home = () => {
   ];
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-purple-50 p-4">
-      <div className="w-full max-w-5xl">
-        <div className="text-center mb-12">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white w-24 h-24 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-            <GraduationCap size={48} />
+    <div className="min-h-screen bg-slate-50">
+      {/* Header */}
+      <header className="bg-white border-b border-slate-200 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex items-center gap-3">
+            <div className="bg-slate-900 text-white w-10 h-10 rounded-lg flex items-center justify-center">
+              <GraduationCap size={24} />
+            </div>
+            <div>
+              <h1 className="text-lg font-bold text-slate-900">CUET PG Preparation Platform</h1>
+              <p className="text-xs text-slate-600">National Testing Agency (NTA)</p>
+            </div>
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-3">CUET PG Mock Test Platform</h1>
-          <p className="text-xl text-gray-600 mb-2">Data Science, AI, Cyber Security & Computer Science</p>
-          <p className="text-sm text-gray-500">(MTQP04)</p>
         </div>
+      </header>
 
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 backdrop-blur-sm rounded-xl mb-6 border border-white/20">
+            <GraduationCap size={32} />
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">CUET PG Mock Test Platform</h2>
+          <p className="text-xl text-slate-300 mb-2">Data Science, AI, Cyber Security & Computer Science</p>
+          <p className="text-sm text-slate-400 uppercase tracking-wider">(MTQP04)</p>
+        </div>
+      </section>
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-3 gap-6">
           {navigationCards.map((card) => {
             const IconComponent = card.icon;
@@ -51,33 +70,62 @@ const Home = () => {
               <div
                 key={card.path}
                 onClick={() => navigate(card.path)}
-                className="bg-white rounded-2xl border-2 border-gray-200 hover:border-blue-500 hover:shadow-2xl transition-all p-8 cursor-pointer group"
+                className="bg-white rounded-lg border border-slate-200 shadow-sm hover:shadow-lg transition-all cursor-pointer group overflow-hidden"
               >
-                <div className={`bg-gradient-to-br ${card.bgGradient} w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                  <div className={`bg-gradient-to-r ${card.gradient} text-white w-14 h-14 rounded-lg flex items-center justify-center`}>
-                    <IconComponent size={28} />
+                {/* Card Header */}
+                <div className={`bg-gradient-to-br ${card.bgGradient} p-6 border-b border-slate-200`}>
+                  <div className="flex items-center justify-center w-14 h-14 bg-white rounded-lg shadow-sm mb-4 group-hover:scale-110 transition-transform">
+                    <div className={`bg-gradient-to-r ${card.gradient} text-white w-12 h-12 rounded-md flex items-center justify-center`}>
+                      <IconComponent size={24} />
+                    </div>
                   </div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-2">
+                    {card.title}
+                  </h3>
+                  <p className="text-slate-600 text-sm">
+                    {card.description}
+                  </p>
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                  {card.title}
-                </h2>
-                <p className="text-gray-600 mb-6">
-                  {card.description}
-                </p>
-                <Button className={`w-full bg-gradient-to-r ${card.gradient} hover:opacity-90 text-white font-semibold py-3 rounded-xl shadow-md`}>
-                  Get Started →
-                </Button>
+
+                {/* Card Footer */}
+                <div className="p-6">
+                  <Button className={`w-full bg-gradient-to-r ${card.gradient} hover:opacity-90 text-white font-semibold shadow-sm`}>
+                    Access Now
+                  </Button>
+                </div>
               </div>
             );
           })}
         </div>
 
-        <div className="text-center mt-12">
-          <p className="text-sm text-gray-500">
+        {/* Info Section */}
+        <div className="mt-12 bg-white rounded-lg border border-slate-200 shadow-sm p-8">
+          <h3 className="text-xl font-bold text-slate-900 mb-4">About This Platform</h3>
+          <div className="grid md:grid-cols-3 gap-6 text-sm text-slate-600">
+            <div>
+              <div className="font-semibold text-slate-900 mb-2">Comprehensive Preparation</div>
+              <p>Access full-length mock tests designed to match the actual CUET PG examination pattern.</p>
+            </div>
+            <div>
+              <div className="font-semibold text-slate-900 mb-2">Detailed Syllabus</div>
+              <p>Review the complete MTQP04 syllabus covering all topics for thorough preparation.</p>
+            </div>
+            <div>
+              <div className="font-semibold text-slate-900 mb-2">Study Materials</div>
+              <p>Comprehensive notes and resources for all subjects to enhance your understanding.</p>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-white border-t border-slate-200 mt-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center">
+          <p className="text-sm text-slate-500">
             National Testing Agency (NTA) • Official Mock Test Platform
           </p>
         </div>
-      </div>
+      </footer>
     </div>
   );
 };

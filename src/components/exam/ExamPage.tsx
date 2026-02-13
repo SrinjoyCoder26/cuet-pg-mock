@@ -88,33 +88,35 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
   const answeredCount = statuses.filter((s) => s === "answered" || s === "marked-answered").length;
 
   return (
-    <div className="h-screen flex flex-col overflow-hidden bg-gray-50">
+    <div className="h-screen flex flex-col overflow-hidden bg-slate-50">
       {/* Header */}
-      <header className="bg-slate-800 text-white px-4 py-3 flex items-center justify-between flex-shrink-0 border-b-4 border-slate-700">
+      <header className="bg-slate-900 text-white px-4 py-3 flex items-center justify-between flex-shrink-0 shadow-lg">
         <div className="flex items-center gap-3">
-          <GraduationCap size={24} />
+          <div className="bg-white/10 backdrop-blur-sm p-1.5 rounded-lg border border-white/20">
+            <GraduationCap size={20} />
+          </div>
           <div>
-            <h1 className="text-base font-bold">{config.title}</h1>
-            <span className="text-xs opacity-90 hidden sm:inline">{config.subject}</span>
+            <h1 className="text-sm font-bold">{config.title}</h1>
+            <span className="text-xs text-slate-300 hidden sm:inline">{config.subject}</span>
           </div>
         </div>
-        <div className="flex items-center gap-4 text-xs">
-          <div className="hidden md:flex items-center gap-2 bg-slate-700 px-3 py-1.5 rounded border border-slate-600">
-            <Avatar className="w-7 h-7">
+        <div className="flex items-center gap-3 text-xs">
+          <div className="hidden md:flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/20">
+            <Avatar className="w-6 h-6">
               <AvatarImage src="https://images.unsplash.com/flagged/photo-1571367034861-e6729ad9c2d5?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt={CANDIDATE_NAME} />
-              <AvatarFallback className="bg-white text-slate-800 text-xs font-bold">RK</AvatarFallback>
+              <AvatarFallback className="bg-white text-slate-900 text-xs font-bold">RK</AvatarFallback>
             </Avatar>
-            <span className="font-semibold">{CANDIDATE_NAME}</span>
+            <span className="font-medium">{CANDIDATE_NAME}</span>
           </div>
-          <span className="hidden sm:inline opacity-90">{config.date}</span>
-          <span className="bg-white text-slate-800 px-3 py-1.5 rounded font-bold border border-slate-300">
+          <span className="hidden sm:inline text-slate-300">{config.date}</span>
+          <div className="bg-white text-slate-900 px-3 py-1.5 rounded-lg font-bold shadow-sm">
             {answeredCount}/{config.totalQuestions}
-          </span>
+          </div>
           <button
             onClick={handleExit}
-            className="bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded font-semibold transition-colors flex items-center gap-1 border border-red-700"
+            className="bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-lg font-semibold transition-colors flex items-center gap-1.5 shadow-sm"
           >
-            <X size={16} />
+            <X size={14} />
             Exit
           </button>
         </div>
@@ -123,7 +125,7 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
       {/* Main: question + sidebar */}
       <div className="flex flex-1 overflow-hidden">
         {/* Question Area */}
-        <div className="flex-1 flex flex-col min-w-0">
+        <div className="flex-1 flex flex-col min-w-0 bg-white">
           <QuestionPanel
             question={questions[currentIndex]}
             selectedOption={answers[currentIndex]}
@@ -132,11 +134,11 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
           />
 
           {/* Bottom nav */}
-          <div className="flex items-center justify-between px-4 py-3 border-t border-slate-200 bg-white flex-shrink-0 gap-3">
+          <div className="flex items-center justify-between px-4 py-3 border-t border-slate-200 bg-slate-50 flex-shrink-0 gap-3">
             <button
               onClick={goPrev}
               disabled={currentIndex === 0}
-              className="bg-slate-600 text-white px-4 py-2 rounded text-sm font-semibold disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-700 transition-colors flex items-center gap-2 border border-slate-700"
+              className="bg-slate-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-800 transition-colors flex items-center gap-2 shadow-sm"
             >
               <ChevronLeft size={16} />
               Previous
@@ -144,14 +146,14 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
             <div className="flex gap-2">
               <button
                 onClick={toggleMark}
-                className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded text-sm font-semibold transition-colors flex items-center gap-2 border border-amber-700"
+                className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 shadow-sm"
               >
                 <Star size={16} fill={isMarked ? "white" : "none"} />
                 {isMarked ? "Unmark" : "Mark"}
               </button>
               <button
                 onClick={clearResponse}
-                className="bg-slate-500 hover:bg-slate-600 text-white px-4 py-2 rounded text-sm font-semibold transition-colors flex items-center gap-2 border border-slate-600"
+                className="bg-slate-600 hover:bg-slate-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 shadow-sm"
               >
                 <Eraser size={16} />
                 Clear
@@ -160,7 +162,7 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
             <button
               onClick={goNext}
               disabled={currentIndex === questions.length - 1}
-              className="bg-slate-600 text-white px-4 py-2 rounded text-sm font-semibold disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-700 transition-colors flex items-center gap-2 border border-slate-700"
+              className="bg-slate-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-800 transition-colors flex items-center gap-2 shadow-sm"
             >
               Next
               <ChevronRight size={16} />
@@ -169,7 +171,7 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
         </div>
 
         {/* Sidebar */}
-        <aside className="w-[240px] lg:w-[280px] border-l border-slate-200 bg-slate-50 flex flex-col p-4 gap-4 flex-shrink-0 overflow-y-auto">
+        <aside className="w-[260px] lg:w-[300px] border-l border-slate-200 bg-white flex flex-col p-4 gap-4 flex-shrink-0 overflow-y-auto shadow-lg">
           <Timer durationMinutes={config.durationMinutes} onTimeUp={handleTimeUp} isRunning={true} />
 
           <QuestionPalette
@@ -181,7 +183,7 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
 
           <button
             onClick={handleSubmit}
-            className="mt-auto bg-green-700 hover:bg-green-800 text-white px-4 py-3 rounded text-sm font-bold transition-colors flex-shrink-0 flex items-center justify-center gap-2 border-2 border-green-800"
+            className="mt-auto bg-green-700 hover:bg-green-800 text-white px-4 py-3.5 rounded-lg text-sm font-bold transition-colors flex-shrink-0 flex items-center justify-center gap-2 shadow-md"
           >
             <Send size={18} />
             SUBMIT EXAM
