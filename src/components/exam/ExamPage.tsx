@@ -12,9 +12,10 @@ import { ChevronLeft, ChevronRight, Star, Eraser, Send, GraduationCap, Eye, Shie
 interface ExamPageProps {
   paper: ExamPaper;
   onExit: () => void;
+  onSubmit?: () => void;
 }
 
-const ExamPage = ({ paper, onExit }: ExamPageProps) => {
+const ExamPage = ({ paper, onExit, onSubmit }: ExamPageProps) => {
   const { config, questions } = paper;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(new Array(questions.length).fill(null));
@@ -70,13 +71,15 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
   const handleSubmit = () => {
     if (window.confirm("Submit the exam? This cannot be undone.")) {
       setSubmitted(true);
+      onSubmit?.();
     }
   };
 
   const handleTimeUp = useCallback(() => {
     alert("Time's up! Auto-submitting...");
     setSubmitted(true);
-  }, []);
+    onSubmit?.();
+  }, [onSubmit]);
 
   if (submitted) return <ResultsPage paper={paper} answers={answers} statuses={statuses} onBack={onExit} />;
 

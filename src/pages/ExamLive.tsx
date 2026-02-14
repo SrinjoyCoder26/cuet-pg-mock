@@ -141,7 +141,7 @@ const ExamLive = () => {
 
     return (
         <>
-            <ExamPage paper={paper} onExit={handleExit} />
+            <ExamPage paper={paper} onExit={handleExit} onSubmit={() => setIsSubmitted(true)} />
 
             {/* Violation Alert Dialog */}
             <AlertDialog open={!!violationType && !isSubmitted}>
