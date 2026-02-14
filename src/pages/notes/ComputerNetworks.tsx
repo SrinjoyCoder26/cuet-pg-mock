@@ -894,32 +894,6 @@ For destination D:
 - A → E: cost = 5, path = A-B-C-E
                 `}
               />
-                    <ul className="list-disc ml-6 space-y-1">
-                      <li>RIP (Routing Information Protocol)</li>
-                      <li>Uses hop count as metric</li>
-                      <li>Bellman-Ford algorithm</li>
-                      <li>Slow convergence, count-to-infinity problem</li>
-                    </ul>
-                  </div>
-                  <div className="bg-white p-4 rounded">
-                    <p className="font-semibold text-lg mb-2">Link State Routing:</p>
-                    <ul className="list-disc ml-6 space-y-1">
-                      <li>OSPF (Open Shortest Path First)</li>
-                      <li>Each router has complete network topology</li>
-                      <li>Dijkstra's algorithm</li>
-                      <li>Fast convergence, more complex</li>
-                    </ul>
-                  </div>
-                  <div className="bg-white p-4 rounded">
-                    <p className="font-semibold text-lg mb-2">Path Vector Routing:</p>
-                    <ul className="list-disc ml-6 space-y-1">
-                      <li>BGP (Border Gateway Protocol)</li>
-                      <li>Used for inter-domain routing (Internet backbone)</li>
-                      <li>Stores entire path, avoids loops</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
             </div>
           </section>
 
