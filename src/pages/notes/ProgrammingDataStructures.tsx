@@ -1,6 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import FormulaBox from "@/components/diagrams/FormulaBox";
+import WorkedExample from "@/components/diagrams/WorkedExample";
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
 
 const ProgrammingDataStructures = () => {
   const navigate = useNavigate();
@@ -173,6 +177,275 @@ int main() {
             </div>
           </section>
 
+          {/* Complexity Analysis Section */}
+          <section className="mb-10">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-green-500">6.3A Time & Space Complexity Analysis</h2>
+            
+            <div className="space-y-6">
+              <FormulaBox
+                title="Common Time Complexities (Best to Worst)"
+                formulas={[
+                  {
+                    label: "Constant",
+                    formula: "O(1) \\text{ - Array access, hash table lookup}",
+                    block: false
+                  },
+                  {
+                    label: "Logarithmic",
+                    formula: "O(\\log n) \\text{ - Binary search, balanced tree operations}",
+                    block: false
+                  },
+                  {
+                    label: "Linear",
+                    formula: "O(n) \\text{ - Linear search, array traversal}",
+                    block: false
+                  },
+                  {
+                    label: "Linearithmic",
+                    formula: "O(n \\log n) \\text{ - Merge sort, heap sort, quick sort (avg)}",
+                    block: false
+                  },
+                  {
+                    label: "Quadratic",
+                    formula: "O(n^2) \\text{ - Bubble sort, selection sort, nested loops}",
+                    block: false
+                  },
+                  {
+                    label: "Cubic",
+                    formula: "O(n^3) \\text{ - Matrix multiplication, triple nested loops}",
+                    block: false
+                  },
+                  {
+                    label: "Exponential",
+                    formula: "O(2^n) \\text{ - Recursive Fibonacci, subset generation}",
+                    block: false
+                  },
+                  {
+                    label: "Factorial",
+                    formula: "O(n!) \\text{ - Permutations, traveling salesman (brute force)}",
+                    block: false
+                  }
+                ]}
+              />
+
+              <WorkedExample
+                title="Analyze Time Complexity"
+                problem="What is the time complexity of the following code?
+```c
+for(int i = 0; i < n; i++) {
+    for(int j = 0; j < n; j++) {
+        printf(\"%d %d\\n\", i, j);
+    }
+}
+```"
+                solution={`
+**Analysis:**
+
+Outer loop: runs n times
+Inner loop: runs n times for each outer iteration
+
+Total iterations = n × n = n²
+
+**Answer:** Time Complexity = $O(n^2)$
+
+**Space Complexity:** $O(1)$ (constant extra space)
+                `}
+              />
+
+              <WorkedExample
+                title="Complexity with Different Loop Patterns"
+                problem="What is the time complexity when j starts from i?
+```c
+for(int i = 0; i < n; i++) {
+    for(int j = i; j < n; j++) {
+        printf(\"%d %d\\n\", i, j);
+    }
+}
+```"
+                solution={`
+**Analysis:**
+
+When i = 0: inner loop runs n times
+When i = 1: inner loop runs (n-1) times
+When i = 2: inner loop runs (n-2) times
+...
+When i = n-1: inner loop runs 1 time
+
+Total iterations = n + (n-1) + (n-2) + ... + 1
+
+Using arithmetic series sum formula:
+$\\text{Sum} = \\frac{n(n+1)}{2} = \\frac{n^2 + n}{2}$
+
+Dominant term: $n^2$
+
+**Answer:** Time Complexity = $O(n^2)$
+
+Even though iterations are roughly half of the previous example, Big-O ignores constant factors.
+                `}
+              />
+
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Sorting Algorithm Comparison</h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse border border-gray-300 bg-white">
+                    <thead>
+                      <tr className="bg-gray-100">
+                        <th className="border border-gray-300 p-2">Algorithm</th>
+                        <th className="border border-gray-300 p-2">Best Case</th>
+                        <th className="border border-gray-300 p-2">Average Case</th>
+                        <th className="border border-gray-300 p-2">Worst Case</th>
+                        <th className="border border-gray-300 p-2">Space</th>
+                        <th className="border border-gray-300 p-2">Stable?</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="border border-gray-300 p-2 font-semibold">Bubble Sort</td>
+                        <td className="border border-gray-300 p-2 text-center">O(n)</td>
+                        <td className="border border-gray-300 p-2 text-center">O(n²)</td>
+                        <td className="border border-gray-300 p-2 text-center bg-red-50">O(n²)</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(1)</td>
+                        <td className="border border-gray-300 p-2 text-center">✓</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-gray-300 p-2 font-semibold">Selection Sort</td>
+                        <td className="border border-gray-300 p-2 text-center">O(n²)</td>
+                        <td className="border border-gray-300 p-2 text-center">O(n²)</td>
+                        <td className="border border-gray-300 p-2 text-center bg-red-50">O(n²)</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(1)</td>
+                        <td className="border border-gray-300 p-2 text-center">✗</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-gray-300 p-2 font-semibold">Insertion Sort</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(n)</td>
+                        <td className="border border-gray-300 p-2 text-center">O(n²)</td>
+                        <td className="border border-gray-300 p-2 text-center bg-red-50">O(n²)</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(1)</td>
+                        <td className="border border-gray-300 p-2 text-center">✓</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-gray-300 p-2 font-semibold">Merge Sort</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(n log n)</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(n log n)</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(n log n)</td>
+                        <td className="border border-gray-300 p-2 text-center bg-red-50">O(n)</td>
+                        <td className="border border-gray-300 p-2 text-center">✓</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-gray-300 p-2 font-semibold">Quick Sort</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(n log n)</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(n log n)</td>
+                        <td className="border border-gray-300 p-2 text-center bg-red-50">O(n²)</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(log n)</td>
+                        <td className="border border-gray-300 p-2 text-center">✗</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-gray-300 p-2 font-semibold">Heap Sort</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(n log n)</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(n log n)</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(n log n)</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(1)</td>
+                        <td className="border border-gray-300 p-2 text-center">✗</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-gray-300 p-2 font-semibold">Counting Sort</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(n+k)</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(n+k)</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(n+k)</td>
+                        <td className="border border-gray-300 p-2 text-center bg-red-50">O(k)</td>
+                        <td className="border border-gray-300 p-2 text-center">✓</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p className="text-sm text-gray-600 mt-2">k = range of input values</p>
+                </div>
+              </div>
+
+              <div className="bg-purple-50 border-l-4 border-purple-500 p-6 rounded-r-lg">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Searching Algorithm Comparison</h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full border-collapse border border-gray-300 bg-white">
+                    <thead>
+                      <tr className="bg-gray-100">
+                        <th className="border border-gray-300 p-2">Algorithm</th>
+                        <th className="border border-gray-300 p-2">Time Complexity</th>
+                        <th className="border border-gray-300 p-2">Space</th>
+                        <th className="border border-gray-300 p-2">Requirement</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td className="border border-gray-300 p-2 font-semibold">Linear Search</td>
+                        <td className="border border-gray-300 p-2 text-center">O(n)</td>
+                        <td className="border border-gray-300 p-2 text-center">O(1)</td>
+                        <td className="border border-gray-300 p-2">None</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-gray-300 p-2 font-semibold">Binary Search</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(log n)</td>
+                        <td className="border border-gray-300 p-2 text-center">O(1)</td>
+                        <td className="border border-gray-300 p-2">Sorted array</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-gray-300 p-2 font-semibold">Jump Search</td>
+                        <td className="border border-gray-300 p-2 text-center">O(√n)</td>
+                        <td className="border border-gray-300 p-2 text-center">O(1)</td>
+                        <td className="border border-gray-300 p-2">Sorted array</td>
+                      </tr>
+                      <tr>
+                        <td className="border border-gray-300 p-2 font-semibold">Interpolation Search</td>
+                        <td className="border border-gray-300 p-2 text-center bg-green-50">O(log log n)</td>
+                        <td className="border border-gray-300 p-2 text-center">O(1)</td>
+                        <td className="border border-gray-300 p-2">Sorted, uniformly distributed</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <WorkedExample
+                title="Binary Search Implementation and Analysis"
+                problem="Implement binary search to find element 7 in array [1, 3, 5, 7, 9, 11, 13]"
+                solution={`
+**Algorithm:**
+\`\`\`c
+int binarySearch(int arr[], int n, int target) {
+    int left = 0, right = n - 1;
+    
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        
+        if (arr[mid] == target)
+            return mid;  // Found
+        else if (arr[mid] < target)
+            left = mid + 1;  // Search right half
+        else
+            right = mid - 1;  // Search left half
+    }
+    
+    return -1;  // Not found
+}
+\`\`\`
+
+**Step-by-step execution for target = 7:**
+
+Array: [1, 3, 5, 7, 9, 11, 13] (indices 0-6)
+
+**Iteration 1:**
+- left = 0, right = 6, mid = 3
+- arr[3] = 7 ✓ **FOUND!**
+
+**Answer:** Element 7 found at index 3
+
+**Complexity Analysis:**
+- Time: $O(\\log n)$ - halves search space each iteration
+- Space: $O(1)$ - constant extra space
+- Max iterations: $\\lceil \\log_2 n \\rceil$ = 3 for n=7
+                `}
+              />
+            </div>
+          </section>
+
           {/* Arrays Section */}
           <section className="mb-10">
             <h2 className="text-2xl font-bold text-gray-900 mb-4 pb-2 border-b-2 border-green-500">6.4 Arrays</h2>
@@ -242,6 +515,91 @@ int main() {
                       <li>Browser history</li>
                     </ul>
                   </div>
+                </div>
+              </div>
+
+              <div className="bg-yellow-50 border-l-4 border-yellow-500 p-6 rounded-r-lg">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Stack Implementation</h3>
+                <div className="space-y-4">
+                  <div className="bg-white p-4 rounded">
+                    <p className="font-semibold mb-2">Array Implementation:</p>
+                    <div className="font-mono text-sm bg-gray-50 p-3 rounded">
+                      <pre>{`#define MAX 100
+
+typedef struct {
+    int arr[MAX];
+    int top;
+} Stack;
+
+void init(Stack* s) {
+    s->top = -1;
+}
+
+int isEmpty(Stack* s) {
+    return s->top == -1;
+}
+
+int isFull(Stack* s) {
+    return s->top == MAX - 1;
+}
+
+void push(Stack* s, int x) {
+    if (isFull(s)) {
+        printf("Stack Overflow\\n");
+        return;
+    }
+    s->arr[++(s->top)] = x;
+}
+
+int pop(Stack* s) {
+    if (isEmpty(s)) {
+        printf("Stack Underflow\\n");
+        return -1;
+    }
+    return s->arr[(s->top)--];
+}
+
+int peek(Stack* s) {
+    if (isEmpty(s)) {
+        printf("Stack Empty\\n");
+        return -1;
+    }
+    return s->arr[s->top];
+}`}</pre>
+                    </div>
+                  </div>
+
+                  <WorkedExample
+                    title="Balanced Parentheses Check"
+                    problem="Check if parentheses are balanced: '({[()]})' using stack"
+                    solution={`
+**Algorithm:**
+1. For each opening bracket: push to stack
+2. For each closing bracket: pop and check if matches
+3. At end: stack should be empty
+
+**Execution for '({[()]})':**
+
+| Character | Action | Stack |
+|-----------|--------|-------|
+| '(' | push | ['('] |
+| '{' | push | ['(', '{'] |
+| '[' | push | ['(', '{', '['] |
+| '(' | push | ['(', '{', '[', '('] |
+| ')' | pop, match '(' | ['(', '{', '['] |
+| ']' | pop, match '[' | ['(', '{'] |
+| '}' | pop, match '{' | ['('] |
+| ')' | pop, match '(' | [] |
+
+Final stack: Empty ✓
+
+**Result:** Balanced!
+
+**Unbalanced Example:** '({[)'
+- After processing: Stack = ['(', '{', '[']
+- Not empty → Unbalanced
+                    `}
+                  />
                 </div>
               </div>
             </div>
@@ -387,6 +745,249 @@ int main() {
                       <li><strong>Level Order:</strong> Level by level (BFS)</li>
                     </ul>
                   </div>
+                </div>
+              </div>
+
+              <div className="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-r-lg">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Tree Traversal Algorithms</h3>
+                <div className="space-y-4">
+                  <WorkedExample
+                    title="Binary Tree Traversals"
+                    problem="Given the binary tree:
+```
+        1
+       / \\
+      2   3
+     / \\
+    4   5
+```
+Perform Inorder, Preorder, and Postorder traversals."
+                    solution={`
+**Tree Structure:**
+\`\`\`
+        1
+       / \\
+      2   3
+     / \\
+    4   5
+\`\`\`
+
+**Inorder Traversal (Left → Node → Right):**
+
+Algorithm:
+1. Traverse left subtree
+2. Visit node
+3. Traverse right subtree
+
+Execution:
+- Visit 2's left (4): visit 4 → [4]
+- Visit 2: [4, 2]
+- Visit 2's right (5): visit 5 → [4, 2, 5]
+- Visit 1: [4, 2, 5, 1]
+- Visit 3: [4, 2, 5, 1, 3]
+
+**Result:** 4, 2, 5, 1, 3
+
+**Preorder Traversal (Node → Left → Right):**
+
+Algorithm:
+1. Visit node
+2. Traverse left subtree
+3. Traverse right subtree
+
+Execution:
+- Visit 1: [1]
+- Visit 2: [1, 2]
+- Visit 4: [1, 2, 4]
+- Visit 5: [1, 2, 4, 5]
+- Visit 3: [1, 2, 4, 5, 3]
+
+**Result:** 1, 2, 4, 5, 3
+
+**Postorder Traversal (Left → Right → Node):**
+
+Algorithm:
+1. Traverse left subtree
+2. Traverse right subtree
+3. Visit node
+
+Execution:
+- Visit 4: [4]
+- Visit 5: [4, 5]
+- Visit 2: [4, 5, 2]
+- Visit 3: [4, 5, 2, 3]
+- Visit 1: [4, 5, 2, 3, 1]
+
+**Result:** 4, 5, 2, 3, 1
+
+**Note:** Inorder of BST gives sorted order!
+                    `}
+                  />
+
+                  <div className="bg-white p-4 rounded">
+                    <p className="font-semibold mb-3">Traversal Implementations in C:</p>
+                    <div className="space-y-3">
+                      <div className="font-mono text-sm bg-gray-50 p-3 rounded">
+                        <pre>{`// Inorder Traversal
+void inorder(Node* root) {
+    if (root == NULL) return;
+    
+    inorder(root->left);
+    printf("%d ", root->data);
+    inorder(root->right);
+}
+
+// Preorder Traversal
+void preorder(Node* root) {
+    if (root == NULL) return;
+    
+    printf("%d ", root->data);
+    preorder(root->left);
+    preorder(root->right);
+}
+
+// Postorder Traversal
+void postorder(Node* root) {
+    if (root == NULL) return;
+    
+    postorder(root->left);
+    postorder(root->right);
+    printf("%d ", root->data);
+}`}</pre>
+                      </div>
+                    </div>
+                  </div>
+
+                  <FormulaBox
+                    title="Tree Properties Formulas"
+                    formulas={[
+                      {
+                        label: "Number of nodes at level i",
+                        formula: "\\text{Nodes at level } i = 2^i",
+                        block: false
+                      },
+                      {
+                        label: "Maximum nodes in tree of height h",
+                        formula: "\\text{Max nodes} = 2^{h+1} - 1",
+                        block: true
+                      },
+                      {
+                        label: "Height of perfect binary tree with n nodes",
+                        formula: "h = \\lfloor \\log_2 n \\rfloor",
+                        block: true
+                      },
+                      {
+                        label: "Leaf nodes in full binary tree",
+                        formula: "\\text{Leaves} = \\frac{n + 1}{2}",
+                        block: true
+                      },
+                      {
+                        label: "Relationship (Leaves and Degree-2 nodes)",
+                        formula: "L = I + 1 \\text{ where } L = \\text{leaves, } I = \\text{internal nodes with 2 children}",
+                        block: true
+                      }
+                    ]}
+                  />
+                </div>
+              </div>
+
+              <div className="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-lg">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">Graph Traversal Algorithms</h3>
+                <div className="space-y-4">
+                  <div className="bg-white p-4 rounded">
+                    <p className="font-semibold mb-2">Breadth-First Search (BFS):</p>
+                    <ul className="list-disc ml-6 space-y-1">
+                      <li>Uses Queue data structure</li>
+                      <li>Explores level by level</li>
+                      <li>Time: O(V + E), Space: O(V)</li>
+                      <li>Finds shortest path in unweighted graph</li>
+                    </ul>
+                    <div className="font-mono text-sm bg-gray-50 p-3 rounded mt-2">
+                      <pre>{`void BFS(int start, int V, int graph[][V]) {
+    bool visited[V] = {false};
+    Queue q;
+    
+    visited[start] = true;
+    enqueue(&q, start);
+    
+    while (!isEmpty(&q)) {
+        int v = dequeue(&q);
+        printf("%d ", v);
+        
+        for (int i = 0; i < V; i++) {
+            if (graph[v][i] && !visited[i]) {
+                visited[i] = true;
+                enqueue(&q, i);
+            }
+        }
+    }
+}`}</pre>
+                    </div>
+                  </div>
+
+                  <div className="bg-white p-4 rounded">
+                    <p className="font-semibold mb-2">Depth-First Search (DFS):</p>
+                    <ul className="list-disc ml-6 space-y-1">
+                      <li>Uses Stack (recursion/explicit stack)</li>
+                      <li>Explores as deep as possible first</li>
+                      <li>Time: O(V + E), Space: O(V)</li>
+                      <li>Used in topological sort, cycle detection</li>
+                    </ul>
+                    <div className="font-mono text-sm bg-gray-50 p-3 rounded mt-2">
+                      <pre>{`void DFS(int v, bool visited[], int graph[][V], int V) {
+    visited[v] = true;
+    printf("%d ", v);
+    
+    for (int i = 0; i < V; i++) {
+        if (graph[v][i] && !visited[i]) {
+            DFS(i, visited, graph, V);
+        }
+    }
+}`}</pre>
+                    </div>
+                  </div>
+
+                  <WorkedExample
+                    title="BFS vs DFS Comparison"
+                    problem="Given graph with edges: 0-1, 0-2, 1-3, 1-4, 2-5. Starting from node 0, show BFS and DFS traversal order."
+                    solution={`
+**Graph Structure:**
+\`\`\`
+    0
+   / \\
+  1   2
+ / \\   \\
+3   4   5
+\`\`\`
+
+**BFS Traversal (Level by Level):**
+
+Queue operations:
+- Start: Queue = [0], Visited = {0}
+- Visit 0: Queue = [1, 2], Output = [0]
+- Visit 1: Queue = [2, 3, 4], Output = [0, 1]
+- Visit 2: Queue = [3, 4, 5], Output = [0, 1, 2]
+- Visit 3: Queue = [4, 5], Output = [0, 1, 2, 3]
+- Visit 4: Queue = [5], Output = [0, 1, 2, 3, 4]
+- Visit 5: Queue = [], Output = [0, 1, 2, 3, 4, 5]
+
+**BFS Result:** 0 → 1 → 2 → 3 → 4 → 5
+
+**DFS Traversal (Depth First):**
+
+Stack operations (using recursion):
+- Visit 0, explore neighbors: [0]
+- Visit 1 (first neighbor), explore: [0, 1]
+- Visit 3 (first child of 1): [0, 1, 3]
+- Backtrack to 1, visit 4: [0, 1, 3, 4]
+- Backtrack to 0, visit 2: [0, 1, 3, 4, 2]
+- Visit 5 (child of 2): [0, 1, 3, 4, 2, 5]
+
+**DFS Result:** 0 → 1 → 3 → 4 → 2 → 5
+
+**Key Difference:** BFS explores neighbors first, DFS goes deep first.
+                    `}
+                  />
                 </div>
               </div>
             </div>
