@@ -70,15 +70,13 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
   const handleSubmit = () => {
     if (window.confirm("Submit the exam? This cannot be undone.")) {
       setSubmitted(true);
-      onExit();
     }
   };
 
   const handleTimeUp = useCallback(() => {
     alert("Time's up! Auto-submitting...");
     setSubmitted(true);
-    onExit();
-  }, [onExit]);
+  }, []);
 
   if (submitted) return <ResultsPage paper={paper} answers={answers} statuses={statuses} onBack={onExit} />;
 
