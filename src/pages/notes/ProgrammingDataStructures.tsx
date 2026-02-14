@@ -230,14 +230,15 @@ int main() {
 
               <WorkedExample
                 title="Analyze Time Complexity"
-                problem="What is the time complexity of the following code?
-```c
+                problem={`What is the time complexity of the following code?
+\`\`\`c
 for(int i = 0; i < n; i++) {
     for(int j = 0; j < n; j++) {
-        printf(\"%d %d\\n\", i, j);
+        printf("%d %d\\n", i, j);
     }
 }
-```"
+\`\`\`
+`}
                 solution={`
 **Analysis:**
 
@@ -254,14 +255,15 @@ Total iterations = n × n = n²
 
               <WorkedExample
                 title="Complexity with Different Loop Patterns"
-                problem="What is the time complexity when j starts from i?
-```c
+                problem={`What is the time complexity when j starts from i?
+\`\`\`c
 for(int i = 0; i < n; i++) {
     for(int j = i; j < n; j++) {
-        printf(\"%d %d\\n\", i, j);
+        printf("%d %d\\n", i, j);
     }
 }
-```"
+\`\`\`
+`}
                 solution={`
 **Analysis:**
 
