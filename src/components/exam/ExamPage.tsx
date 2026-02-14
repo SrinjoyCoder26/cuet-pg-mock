@@ -68,13 +68,17 @@ const ExamPage = ({ paper, onExit }: ExamPageProps) => {
   const goPrev = () => { if (currentIndex > 0) visitQuestion(currentIndex - 1); };
 
   const handleSubmit = () => {
-    if (window.confirm("Submit the exam? This cannot be undone.")) setSubmitted(true);
+    if (window.confirm("Submit the exam? This cannot be undone.")) {
+      setSubmitted(true);
+      onExit();
+    }
   };
 
   const handleTimeUp = useCallback(() => {
     alert("Time's up! Auto-submitting...");
     setSubmitted(true);
-  }, []);
+    onExit();
+  }, [onExit]);
 
   if (submitted) return <ResultsPage paper={paper} answers={answers} statuses={statuses} onBack={onExit} />;
 

@@ -12,9 +12,10 @@ const ExamLive = () => {
 
     const [violationType, setViolationType] = useState<"fullscreen" | "tab-switch" | "blur" | null>(null);
     const [isTerminated, setIsTerminated] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
 
     useEffect(() => {
-        if (!paper) return;
+        if (!paper || isSubmitted) return;
 
         // Force Full Screen on Mount
         const enterFullScreen = () => {
@@ -80,7 +81,7 @@ const ExamLive = () => {
             document.removeEventListener("contextmenu", handleContextMenu);
             document.removeEventListener("keydown", handleKeyDown);
         };
-    }, [paper]);
+    }, [paper, isSubmitted]);
 
 
     const handleReturnToFullScreen = () => {
@@ -131,12 +132,11 @@ const ExamLive = () => {
     }
 
     const handleExit = () => {
-        if (window.confirm("Are you sure you want to finish the exam?")) {
-            if (document.fullscreenElement) {
-                document.exitFullscreen().catch(err => console.error(err));
-            }
-            navigate("/exam");
+        setIsSubmitted(true);
+        if (document.fullscreenElement) {
+            document.exitFullscreen().catch(err => console.error(err));
         }
+        navigate("/exam");
     };
 
     return (
@@ -144,7 +144,7 @@ const ExamLive = () => {
             <ExamPage paper={paper} onExit={handleExit} />
 
             {/* Violation Alert Dialog */}
-            <AlertDialog open={!!violationType}>
+            <AlertDialog open={!!violationType && !isSubmitted}>
                 <AlertDialogContent className="bg-red-50 border-red-200">
                     <AlertDialogHeader>
                         <AlertDialogTitle className="flex items-center gap-2 text-red-700">
