@@ -11,68 +11,192 @@ interface QuestionPanelProps {
   isMarked: boolean;
 }
 
-const renderTextWithMath = (text: string) => {
-  if (!text) return null;
-  // Split by double newlines for paragraph spacing
-  const paragraphs = text.split(/\n\n+/);
+// Renders inline content: handles bold (**text**), inline math ($...$), and plain text
+const renderInlineContent = (text: string, keyPrefix: string): React.ReactNode[] => {
+  const parts: React.ReactNode[] = [];
+  let currentIndex = 0;
+
+  // Match **bold**, $$block math$$, $inline math$
+  const inlineRegex = /(\*\*[^*]+?\*\*|\$\$[\s\S]+?\$\$|\$[^$\n]+?\$)/g;
+  let match;
+
+  while ((match = inlineRegex.exec(text)) !== null) {
+    // Add text before match
+    if (match.index > currentIndex) {
+      parts.push(<span key={`${keyPrefix}-t-${currentIndex}`}>{text.substring(currentIndex, match.index)}</span>);
+    }
+
+    const matched = match[0];
+    if (matched.startsWith('**') && matched.endsWith('**')) {
+      // Bold text
+      const boldContent = matched.slice(2, -2);
+      parts.push(<strong key={`${keyPrefix}-b-${match.index}`} className="font-bold text-slate-900">{boldContent}</strong>);
+    } else if (matched.startsWith('$$')) {
+      // Block math
+      const latex = matched.slice(2, -2);
+      try {
+        parts.push(
+          <div key={`${keyPrefix}-bm-${match.index}`} className="my-4 overflow-x-auto">
+            <BlockMath math={latex} />
+          </div>
+        );
+      } catch {
+        parts.push(<span key={`${keyPrefix}-bm-${match.index}`}>{matched}</span>);
+      }
+    } else {
+      // Inline math
+      const latex = matched.slice(1, -1);
+      try {
+        parts.push(<InlineMath key={`${keyPrefix}-im-${match.index}`} math={latex} />);
+      } catch {
+        parts.push(<span key={`${keyPrefix}-im-${match.index}`}>{matched}</span>);
+      }
+    }
+
+    currentIndex = match.index + matched.length;
+  }
+
+  // Remaining text
+  if (currentIndex < text.length) {
+    parts.push(<span key={`${keyPrefix}-t-end`}>{text.substring(currentIndex)}</span>);
+  }
+
+  return parts;
+};
+
+// Check if a block of text is a markdown table
+const isMarkdownTable = (text: string): boolean => {
+  const lines = text.trim().split('\n');
+  if (lines.length < 2) return false;
+  return lines[0].includes('|') && lines[1].includes('|') && /^\|?[\s-:|]+\|?$/.test(lines[1].trim());
+};
+
+// Render a markdown table as a styled HTML table
+const renderTable = (text: string, keyPrefix: string): React.ReactNode => {
+  const lines = text.trim().split('\n').filter(l => l.trim().length > 0);
+  if (lines.length < 2) return null;
+
+  const parseRow = (line: string): string[] => {
+    return line.split('|').map(cell => cell.trim()).filter((_, i, arr) => i > 0 && i < arr.length);
+  };
+
+  const headerCells = parseRow(lines[0]);
+  // lines[1] is the separator row (|---|---|), skip it
+  const bodyRows = lines.slice(2).filter(l => !/^\|?[\s-:|]+\|?$/.test(l.trim()));
 
   return (
-    <div className="space-y-4">
-      {paragraphs.map((paragraph, pIndex) => {
-        // Render inline math with $...$ and block math with $$...$$
-        const parts: React.ReactNode[] = [];
-        let currentIndex = 0;
-
-        // Match $$...$$ for block math and $...$ for inline math
-        const mathRegex = /(\$\$[\s\S]+?\$\$|\$[^$\n]+?\$)/g;
-        let match;
-
-        while ((match = mathRegex.exec(paragraph)) !== null) {
-          // Add text before math
-          if (match.index > currentIndex) {
-            parts.push(<span key={`${pIndex}-text-${currentIndex}`}>{paragraph.substring(currentIndex, match.index)}</span>);
-          }
-
-          // Add math
-          const mathText = match[0];
-          if (mathText.startsWith('$$')) {
-            // Block math
-            const latex = mathText.slice(2, -2);
-            try {
-              parts.push(
-                <div key={`${pIndex}-math-${match.index}`} className="my-4 overflow-x-auto">
-                  <BlockMath math={latex} />
-                </div>
-              );
-            } catch {
-              parts.push(mathText);
-            }
-          } else {
-            // Inline math
-            const latex = mathText.slice(1, -1);
-            try {
-              parts.push(<InlineMath key={`${pIndex}-math-${match.index}`} math={latex} />);
-            } catch {
-              parts.push(mathText);
-            }
-          }
-
-          currentIndex = match.index + mathText.length;
-        }
-
-        // Add remaining text
-        if (currentIndex < paragraph.length) {
-          parts.push(<span key={`${pIndex}-text-end`}>{paragraph.substring(currentIndex)}</span>);
-        }
-
-        return (
-          <p key={pIndex} className="text-slate-700 leading-relaxed text-lg">
-            {parts.length > 0 ? parts : paragraph}
-          </p>
-        );
-      })}
+    <div key={keyPrefix} className="my-4 overflow-x-auto">
+      <table className="min-w-full border border-slate-300 rounded-lg overflow-hidden text-sm">
+        <thead>
+          <tr className="bg-slate-100">
+            {headerCells.map((cell, i) => (
+              <th key={i} className="px-4 py-2.5 text-left font-semibold text-slate-800 border-b border-slate-300">
+                {renderInlineContent(cell, `${keyPrefix}-th-${i}`)}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {bodyRows.map((row, rIdx) => {
+            const cells = parseRow(row);
+            return (
+              <tr key={rIdx} className={rIdx % 2 === 0 ? "bg-white" : "bg-slate-50"}>
+                {cells.map((cell, cIdx) => (
+                  <td key={cIdx} className="px-4 py-2.5 text-slate-700 border-b border-slate-200">
+                    {renderInlineContent(cell, `${keyPrefix}-td-${rIdx}-${cIdx}`)}
+                  </td>
+                ))}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   );
+};
+
+// Check if a block is a code block
+const isCodeBlock = (text: string): boolean => {
+  return text.trimStart().startsWith('```');
+};
+
+// Render a code block
+const renderCodeBlock = (text: string, keyPrefix: string): React.ReactNode => {
+  const lines = text.trim().split('\n');
+  const firstLine = lines[0].trim();
+  const lang = firstLine.replace(/^```/, '').trim();
+  // Remove first (```) and last (```) lines
+  const codeLines = lines.slice(1);
+  if (codeLines.length > 0 && codeLines[codeLines.length - 1].trim() === '```') {
+    codeLines.pop();
+  }
+  const code = codeLines.join('\n');
+
+  return (
+    <div key={keyPrefix} className="my-4">
+      {lang && <div className="bg-slate-800 text-slate-300 text-xs px-4 py-1.5 rounded-t-lg font-mono">{lang}</div>}
+      <pre className={`bg-slate-900 text-green-300 p-4 ${lang ? 'rounded-b-lg' : 'rounded-lg'} overflow-x-auto text-sm font-mono leading-relaxed`}>
+        <code>{code}</code>
+      </pre>
+    </div>
+  );
+};
+
+// Render a paragraph with inline content + single newline handling
+const renderParagraph = (text: string, keyPrefix: string): React.ReactNode => {
+  // Split by single newlines to handle A.\nB.\nC.\n style lists  
+  const lines = text.split('\n');
+
+  if (lines.length === 1) {
+    const inlineContent = renderInlineContent(text, keyPrefix);
+    return <p key={keyPrefix} className="text-slate-700 leading-relaxed text-lg">{inlineContent}</p>;
+  }
+
+  return (
+    <div key={keyPrefix} className="text-slate-700 leading-relaxed text-lg">
+      {lines.map((line, lIdx) => (
+        <React.Fragment key={`${keyPrefix}-l-${lIdx}`}>
+          {renderInlineContent(line, `${keyPrefix}-l-${lIdx}`)}
+          {lIdx < lines.length - 1 && <br />}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+};
+
+const renderTextWithMath = (text: string) => {
+  if (!text) return null;
+
+  // First, split by code blocks (```...```)
+  const codeBlockRegex = /(```[\s\S]*?```)/g;
+  const topLevelParts = text.split(codeBlockRegex);
+
+  const rendered: React.ReactNode[] = [];
+
+  topLevelParts.forEach((part, partIdx) => {
+    if (isCodeBlock(part)) {
+      rendered.push(renderCodeBlock(part, `cb-${partIdx}`));
+      return;
+    }
+
+    // Split remaining by double newlines for paragraph/table separation
+    const paragraphs = part.split(/\n\n+/);
+
+    paragraphs.forEach((paragraph, pIdx) => {
+      const trimmed = paragraph.trim();
+      if (!trimmed) return;
+
+      const key = `p-${partIdx}-${pIdx}`;
+
+      if (isMarkdownTable(trimmed)) {
+        rendered.push(renderTable(trimmed, key));
+      } else {
+        rendered.push(renderParagraph(trimmed, key));
+      }
+    });
+  });
+
+  return <div className="space-y-3">{rendered}</div>;
 };
 
 const QuestionPanel = ({ question, selectedOption, onSelectOption, isMarked }: QuestionPanelProps) => {

@@ -1,24 +1,8 @@
-export interface Question {
-    id: number;
-    text: string;
-    options: string[];
-    correctAnswer: number; // 1-based index
-}
-
-export interface ExamConfig {
-    title: string;
-    subject: string;
-    totalQuestions: number;
-    totalMarks: number;
-    correctMarks: number;
-    wrongMarks: number;
-    durationMinutes: number;
-    date: string;
-}
+import { ExamConfig, Question } from "./examTypes";
 
 export const examConfig: ExamConfig = {
-    title: "CUET PG 2026 - Mock Test 3",
-    subject: "Data Science, AI, Cyber Security & Computer Science",
+    title: "CUET PG 2026 - Mock Test Series III",
+    subject: "Data Science, AI & Cyber Security (MTQP04)",
     totalQuestions: 75,
     totalMarks: 300,
     correctMarks: 4,
@@ -30,826 +14,826 @@ export const examConfig: ExamConfig = {
 export const questions: Question[] = [
     {
         id: 1,
-        text: "Let $A = \\{1, 2, 3\\}$ and $B = \\{4, 5\\}$. The number of functions from $A$ to $B$ is:",
+        text: "Consider the following Push-Down Automaton (PDA). Which language does a PDA with the following transitions accept, starting from state $q_0$, with stack bottom symbol $Z_0$?\n\n$\\delta(q_0, a, Z_0) = (q_0, AZ_0)$\n$\\delta(q_0, a, A) = (q_0, AA)$\n$\\delta(q_0, b, A) = (q_1, \\varepsilon)$\n$\\delta(q_1, b, A) = (q_1, \\varepsilon)$\n$\\delta(q_1, \\varepsilon, Z_0) = (q_2, Z_0)$ [accepting state $q_2$]",
         options: [
-            "6",
-            "8",
-            "9",
-            "12",
-        ],
-        correctAnswer: 2,
-    },
-    {
-        id: 2,
-        text: "In a group $(G, *)$, the identity element $e$ satisfies:",
-        options: [
-            "$e * a = a$ for all $a$ in $G$",
-            "$a * e = a * a$ for all $a$ in $G$",
-            "$e * a = a$ and $a * e = a$ for all $a$ in $G$",
-            "$e * e = a$ for some $a$ in $G$",
-        ],
-        correctAnswer: 3,
-    },
-    {
-        id: 3,
-        text: "Which of the following is true for an equivalence relation?\n\nA. It partitions the set into disjoint equivalence classes\nB. It must be reflexive, symmetric, and transitive\nC. Each element belongs to exactly one equivalence class\nD. It must be antisymmetric\n\nChoose the correct answer from the options given below:",
-        options: [
-            "A, B and C only",
-            "A, B and D only",
-            "B, C and D only",
-            "A, B, C and D",
+            "$\\{a^n b^n : n \\geq 1\\}$",
+            "$\\{a^n b^{2n} : n \\geq 1\\}$",
+            "$\\{a^n b^m : n \\leq m\\}$",
+            "$\\{a^n b^n c^n : n \\geq 1\\}$"
         ],
         correctAnswer: 1,
     },
     {
-        id: 4,
-        text: "The dual of the Boolean expression $A + B \\cdot C$ is:",
+        id: 2,
+        text: "Which of the following statements about Regular Expressions are TRUE?\n\nA. The language described by $a^*b^*$ includes the empty string $\\varepsilon$.\nB. $(a+b)^*$ represents all strings over $\\{a, b\\}$.\nC. $a^+ = aa^*$ represents one or more $a$'s.\nD. Regular expressions can describe the language $\\{a^n b^n\\}$.\n\nChoose the correct answer:",
         options: [
-            "$A \\cdot B + C$",
-            "$A \\cdot (B + C)$",
-            "$(A + B) \\cdot C$",
-            "$A + B + C$",
+            "A, B and C only",
+            "A and B only",
+            "A, B, C and D",
+            "B, C and D only"
+        ],
+        correctAnswer: 1,
+    },
+    {
+        id: 3,
+        text: "In the Chomsky hierarchy, a Type-2 grammar corresponds to:",
+        options: [
+            "Regular grammar",
+            "Context-free grammar",
+            "Context-sensitive grammar",
+            "Unrestricted grammar"
+        ],
+        correctAnswer: 2,
+    },
+    {
+        id: 4,
+        text: "Rice's Theorem applies to which class of problems?",
+        options: [
+            "Decidable problems about DFA",
+            "Non-trivial semantic properties of Turing Machine languages",
+            "All problems in NP",
+            "Regular language properties"
         ],
         correctAnswer: 2,
     },
     {
         id: 5,
-        text: "Which of the following statements about regular languages is FALSE?",
+        text: "A partial order relation on a set $A$ is defined as a relation that is:",
         options: [
-            "Regular languages are closed under union",
-            "Regular languages are closed under intersection",
-            "Regular languages are closed under complement",
-            "All context-free languages are regular",
+            "Reflexive, symmetric, and transitive",
+            "Reflexive, antisymmetric, and transitive",
+            "Symmetric and transitive only",
+            "Reflexive and symmetric only"
         ],
-        correctAnswer: 4,
+        correctAnswer: 2,
     },
     {
         id: 6,
-        text: "The pumping lemma for regular languages is used to:",
+        text: "The total number of functions from a set $A$ with $m$ elements to a set $B$ with $n$ elements is:",
         options: [
-            "Prove a language is regular",
-            "Prove a language is not regular",
-            "Design finite automata",
-            "Minimize DFA states",
+            "$m^n$",
+            "$n^m$",
+            "$m \\times n$",
+            "$m! / (m-n)!$"
         ],
         correctAnswer: 2,
     },
     {
         id: 7,
-        text: "A context-free language can be recognized by:",
+        text: "In a Boolean Algebra with 8 elements, the number of atoms is:",
         options: [
-            "Finite Automaton",
-            "Push-down Automaton",
-            "Linear Bounded Automaton",
-            "Turing Machine",
+            "2",
+            "3",
+            "4",
+            "8"
         ],
         correctAnswer: 2,
     },
     {
         id: 8,
-        text: "Which of the following problems is undecidable?",
+        text: "Match LIST-I (Graph Type) with LIST-II (Property):\n\n| LIST-I | LIST-II |\n|---|---|\n| A. Euler Graph | I. Has a Hamiltonian cycle |\n| B. Hamiltonian Graph | II. Every vertex has even degree |\n| C. Bipartite Graph | III. Can be 2-colored; no odd-length cycles |\n| D. Planar Graph | IV. Can be drawn without edge crossings |\n\nChoose the correct answer:",
         options: [
-            "Whether a DFA accepts a given string",
-            "Whether a CFG is ambiguous",
-            "Whether two regular languages are equal",
-            "Membership problem for regular languages",
-        ],
-        correctAnswer: 2,
-    },
-    {
-        id: 9,
-        text: "The language accepted by a Turing machine that always halts is called:",
-        options: [
-            "Recursively enumerable language",
-            "Recursive language",
-            "Context-free language",
-            "Regular language",
-        ],
-        correctAnswer: 2,
-    },
-    {
-        id: 10,
-        text: "What is the octal representation of the hexadecimal number 1F?",
-        options: [
-            "37",
-            "31",
-            "27",
-            "17",
+            "A – II, B – I, C – III, D – IV",
+            "A – I, B – II, C – IV, D – III",
+            "A – III, B – I, C – II, D – IV",
+            "A – II, B – IV, C – III, D – I"
         ],
         correctAnswer: 1,
     },
     {
-        id: 11,
-        text: "How many input combinations are possible for a 3-input logic gate?",
+        id: 9,
+        text: "A 4-bit Ring Counter is initialized to the state 1000. What will be the sequence of states after 3 clock pulses?",
         options: [
-            "3",
-            "6",
+            "0100, 0010, 0001",
+            "1100, 1110, 1111",
+            "0001, 0010, 0100",
+            "0100, 0011, 0001"
+        ],
+        correctAnswer: 1,
+    },
+    {
+        id: 10,
+        text: "A BCD (Binary-Coded Decimal) to 7-segment decoder accepts a 4-bit BCD input and produces outputs to drive how many segments?",
+        options: [
+            "4",
+            "5",
+            "7",
+            "8"
+        ],
+        correctAnswer: 3,
+    },
+    {
+        id: 11,
+        text: "In a K-Map for 4 variables, the number of cells is:",
+        options: [
+            "4",
             "8",
-            "9",
+            "16",
+            "32"
         ],
         correctAnswer: 3,
     },
     {
         id: 12,
-        text: "A full-adder circuit has:",
+        text: "Which of the following combinational circuits selects one of many data inputs and forwards the selected input to a single output line?",
         options: [
-            "2 inputs and 1 output",
-            "3 inputs and 2 outputs",
-            "2 inputs and 2 outputs",
-            "3 inputs and 3 outputs",
+            "Demultiplexer",
+            "Decoder",
+            "Multiplexer",
+            "Encoder"
+        ],
+        correctAnswer: 3,
+    },
+    {
+        id: 13,
+        text: "The fan-out of a logic gate specifies:",
+        options: [
+            "The number of inputs the gate can accept",
+            "The maximum number of similar gates that can be driven by the output of one gate",
+            "The propagation delay of the gate",
+            "The power consumption of the gate"
         ],
         correctAnswer: 2,
     },
     {
-        id: 13,
-        text: "The simplified form of the Boolean expression $AB + AB'$ is:",
+        id: 14,
+        text: "Which of the following statements about interrupt-driven I/O versus programmed I/O are TRUE?\n\nA. In programmed I/O, the CPU continuously polls the I/O device status (busy-wait).\nB. Interrupt-driven I/O frees the CPU to perform other tasks while waiting for I/O completion.\nC. DMA is a further improvement over interrupt-driven I/O for large data transfers.\nD. Programmed I/O is more efficient than DMA for bulk data transfer.\n\nChoose the correct answer:",
         options: [
-            "$A$",
-            "$B$",
-            "$AB$",
-            "$A + B$",
+            "A, B and C only",
+            "A and B only",
+            "A, B, C and D",
+            "B, C and D only"
         ],
         correctAnswer: 1,
     },
     {
-        id: 14,
-        text: "In a synchronous counter, all flip-flops are triggered by:",
-        options: [
-            "Different clock pulses",
-            "The same clock pulse simultaneously",
-            "Cascaded outputs",
-            "External reset signal",
-        ],
-        correctAnswer: 2,
-    },
-    {
         id: 15,
-        text: "A 3-to-8 line decoder has how many enable inputs typically?",
+        text: "In a set-associative cache with 4 ways and 64 sets, the total number of cache lines is:",
         options: [
-            "0",
-            "1",
-            "2",
-            "3",
+            "64",
+            "256",
+            "128",
+            "512"
         ],
         correctAnswer: 2,
     },
     {
         id: 16,
-        text: "Which of the following is NOT an addressing mode?",
+        text: "Match LIST-I (Bus Arbitration Scheme) with LIST-II (Property):\n\n| LIST-I | LIST-II |\n|---|---|\n| A. Daisy Chain | I. Each device has a unique priority level |\n| B. Independent Request | II. Central arbiter with independent request/grant lines for each device |\n| C. Polling | III. Devices are connected in series; priority decreases along the chain |\n| D. Distributed | IV. No central arbiter; devices negotiate among themselves |\n\nChoose the correct answer:",
         options: [
-            "Immediate addressing",
-            "Register addressing",
-            "Sequential addressing",
-            "Indexed addressing",
-        ],
-        correctAnswer: 3,
-    },
-    {
-        id: 17,
-        text: "In a computer system with cache memory, the effective access time depends on:\n\nA. Cache hit ratio\nB. Cache access time\nC. Main memory access time\nD. Disk access time\n\nChoose the correct answer from the options given below:",
-        options: [
-            "A, B and C only",
-            "A, B and D only",
-            "B, C and D only",
-            "A, B, C and D",
+            "A – III, B – II, C – I, D – IV",
+            "A – I, B – II, C – III, D – IV",
+            "A – III, B – I, C – II, D – IV",
+            "A – II, B – III, C – I, D – IV"
         ],
         correctAnswer: 1,
     },
     {
-        id: 18,
-        text: "The speedup achieved by a pipelined processor is limited by:",
+        id: 17,
+        text: "Calculate the effective CPI for a processor where: 50% of instructions are arithmetic (CPI=1), 20% are load/store (CPI=3), 20% are branch (CPI=2), and 10% are multiply (CPI=4).",
         options: [
-            "Number of stages only",
-            "Clock frequency only",
-            "Pipeline hazards and dependencies",
-            "Cache size",
-        ],
-        correctAnswer: 3,
-    },
-    {
-        id: 19,
-        text: "In a RISC (Reduced Instruction Set Computer) architecture:",
-        options: [
-            "Instructions are of variable length",
-            "Most instructions complete in one clock cycle",
-            "Complex addressing modes are used",
-            "Few registers are available",
+            "1.8",
+            "1.9",
+            "2.0",
+            "2.1"
         ],
         correctAnswer: 2,
     },
     {
-        id: 20,
-        text: "The bus arbitration technique used when multiple devices request bus access simultaneously is:",
+        id: 18,
+        text: "What is the result stored in the Accumulator after executing the following 8085 instructions?\n```\nMVI A, 4FH\nMVI B, 3AH\nADD B\n```",
         options: [
-            "Daisy chaining",
-            "Priority arbitration",
-            "Polling",
-            "All of the above",
+            "89H",
+            "15H",
+            "4FH",
+            "3AH"
         ],
-        correctAnswer: 4,
+        correctAnswer: 1,
+    },
+    {
+        id: 19,
+        text: "In the 8085, the PUSH instruction pushes a register pair onto the stack. When PUSH B is executed, which registers are stored and in what order?",
+        options: [
+            "B first (at SP-1), then C (at SP-2)",
+            "C first (at SP-1), then B (at SP-2)",
+            "Only B is stored",
+            "Only C is stored"
+        ],
+        correctAnswer: 1,
+    },
+    {
+        id: 20,
+        text: "What does the 8085 instruction LHLD 2050H do?",
+        options: [
+            "Loads H from memory address 2050H and L from 2051H",
+            "Loads L from memory address 2050H and H from 2051H",
+            "Stores HL pair at address 2050H",
+            "Loads the accumulator from 2050H"
+        ],
+        correctAnswer: 2,
     },
     {
         id: 21,
-        text: "In the 8085 microprocessor, which flag indicates that the result has even parity?",
+        text: "In 8085 assembly, the instruction DAD B performs:",
         options: [
-            "Sign flag",
-            "Zero flag",
-            "Parity flag",
-            "Auxiliary carry flag",
+            "Decimal adjust accumulator",
+            "Double addition: adds BC pair to HL pair and stores result in HL",
+            "Subtracts BC from HL",
+            "Multiplies B with accumulator"
         ],
-        correctAnswer: 3,
+        correctAnswer: 2,
     },
     {
         id: 22,
-        text: "The instruction STA 3000H in 8085 performs:",
+        text: "Match LIST-I (8085 Interrupt) with LIST-II (Property):\n\n| LIST-I | LIST-II |\n|---|---|\n| A. TRAP | I. Maskable, edge-triggered |\n| B. RST 7.5 | II. Non-maskable, highest priority |\n| C. RST 6.5 | III. Maskable, level-triggered |\n| D. INTR | IV. Maskable, general purpose (vectored by external hardware) |\n\nChoose the correct answer:",
         options: [
-            "Store accumulator content to memory location 3000H",
-            "Load accumulator from memory location 3000H",
-            "Add memory content to accumulator",
-            "Subtract memory content from accumulator",
+            "A – II, B – I, C – III, D – IV",
+            "A – I, B – II, C – III, D – IV",
+            "A – II, B – III, C – I, D – IV",
+            "A – IV, B – I, C – III, D – II"
         ],
         correctAnswer: 1,
     },
     {
         id: 23,
-        text: "How many hardware interrupts are available in 8085?",
+        text: "Consider the following C code. Identify the error:\n```c\n#include <stdio.h>\nint main() {\n    int arr[5] = {1, 2, 3, 4, 5};\n    int i;\n    for(i = 0; i <= 5; i++) {\n        printf(\"%d \", arr[i]);\n    }\n    return 0;\n}\n```",
         options: [
-            "3",
-            "4",
-            "5",
-            "8",
+            "No error; it prints 1 2 3 4 5",
+            "The loop runs 6 times; accessing arr[5] is an out-of-bounds access (undefined behavior)",
+            "Syntax error in the for loop",
+            "The array initialization is incorrect"
         ],
-        correctAnswer: 3,
+        correctAnswer: 2,
     },
     {
         id: 24,
-        text: "The TRAP interrupt in 8085 is:",
+        text: "In a B-Tree of order $m$, each node can have at most $m$ children. The minimum number of children for an internal node (non-root) is:",
         options: [
-            "Maskable and edge-triggered",
-            "Non-maskable and edge-triggered",
-            "Maskable and level-triggered",
-            "Non-maskable and level-triggered",
+            "$m$",
+            "$\\lceil m/2 \\rceil$",
+            "$m - 1$",
+            "$2$"
         ],
         correctAnswer: 2,
     },
     {
         id: 25,
-        text: "The ALE (Address Latch Enable) signal in 8085 is used to:",
+        text: "Which data structure is best suited for implementing priority queues?",
         options: [
-            "Latch the address from AD0-AD7",
-            "Enable interrupts",
-            "Reset the processor",
-            "Control I/O operations",
+            "Array",
+            "Linked list",
+            "Heap",
+            "Stack"
         ],
-        correctAnswer: 1,
+        correctAnswer: 3,
     },
     {
         id: 26,
-        text: "What is the size of 'int' data type in C (on a 32-bit system)?",
+        text: "What is the worst-case time complexity of searching in a balanced Binary Search Tree (e.g., AVL tree)?",
         options: [
-            "2 bytes",
-            "4 bytes",
-            "8 bytes",
-            "Depends on compiler",
+            "$O(n)$",
+            "$O(\\log n)$",
+            "$O(n \\log n)$",
+            "$O(1)$"
         ],
         correctAnswer: 2,
     },
     {
         id: 27,
-        text: "In C, the operator '&&' has higher precedence than:",
+        text: "Consider the following C code:\n```c\nvoid swap(int *a, int *b) {\n    int temp = *a;\n    *a = *b;\n    *b = temp;\n}\nint main() {\n    int x = 5, y = 10;\n    swap(&x, &y);\n    printf(\"%d %d\", x, y);\n}\n```\nThe output is:",
         options: [
-            "$||$",
-            "$*$",
-            "$==$",
-            "$+$",
-        ],
-        correctAnswer: 1,
-    },
-    {
-        id: 28,
-        text: "A recursive function must have:",
-        options: [
-            "A base case",
-            "Multiple parameters",
-            "Return type void",
-            "Global variables",
-        ],
-        correctAnswer: 1,
-    },
-    {
-        id: 29,
-        text: "The time complexity of accessing an element in an array by index is:",
-        options: [
-            "$O(1)$",
-            "$O(\\log n)$",
-            "$O(n)$",
-            "$O(n^2)$",
-        ],
-        correctAnswer: 1,
-    },
-    {
-        id: 30,
-        text: "In a linked list implementation of a queue, which operation is most efficient at both ends?",
-        options: [
-            "Insertion only",
-            "Deletion only",
-            "Both insertion and deletion",
-            "Neither insertion nor deletion",
-        ],
-        correctAnswer: 3,
-    },
-    {
-        id: 31,
-        text: "The infix expression $(A + B) * C - D$ can be converted to postfix as:",
-        options: [
-            "$AB+C*D-$",
-            "$ABC+*D-$",
-            "$AB+*CD-$",
-            "$ABCD+*-$",
-        ],
-        correctAnswer: 1,
-    },
-    {
-        id: 32,
-        text: "A binary tree with n nodes has exactly how many NULL pointers?",
-        options: [
-            "n",
-            "n - 1",
-            "n + 1",
-            "2n",
-        ],
-        correctAnswer: 3,
-    },
-    {
-        id: 33,
-        text: "The worst-case time complexity of searching in a binary search tree is:",
-        options: [
-            "$O(1)$",
-            "$O(\\log n)$",
-            "$O(n)$",
-            "$O(n \\log n)$",
-        ],
-        correctAnswer: 3,
-    },
-    {
-        id: 34,
-        text: "An AVL tree is:",
-        options: [
-            "A binary tree",
-            "A balanced binary search tree",
-            "An unbalanced tree",
-            "A complete binary tree",
+            "5 10",
+            "10 5",
+            "10 10",
+            "5 5"
         ],
         correctAnswer: 2,
     },
     {
-        id: 35,
-        text: "The time complexity of the best case for Insertion Sort is:",
+        id: 28,
+        text: "In a graph with 6 vertices, the maximum number of edges in a simple undirected graph (no self-loops, no multiple edges) is:",
         options: [
-            "$O(n)$",
-            "$O(n \\log n)$",
-            "$O(n^2)$",
-            "$O(\\log n)$",
+            "6",
+            "12",
+            "15",
+            "30"
+        ],
+        correctAnswer: 3,
+    },
+    {
+        id: 29,
+        text: "In Kruskal's algorithm for finding a Minimum Spanning Tree, which data structure is most efficiently used to detect cycles?",
+        options: [
+            "Stack",
+            "Queue",
+            "Union-Find (Disjoint Set Union) data structure",
+            "Hash Table"
+        ],
+        correctAnswer: 3,
+    },
+    {
+        id: 30,
+        text: "Which of the following problems is NP-Complete?\n\nA. Travelling Salesman Problem (decision version)\nB. 3-SAT\nC. Graph Coloring (with $k \\geq 3$ colors)\nD. Sorting an array\n\nChoose the correct answer:",
+        options: [
+            "A, B and C only",
+            "A and B only",
+            "A, B, C and D",
+            "B and C only"
+        ],
+        correctAnswer: 1,
+    },
+    {
+        id: 31,
+        text: "The Floyd-Warshall algorithm finds:",
+        options: [
+            "Single-source shortest path",
+            "All-pairs shortest path",
+            "Minimum spanning tree",
+            "Maximum flow"
+        ],
+        correctAnswer: 2,
+    },
+    {
+        id: 32,
+        text: "The space complexity of DFS on a graph with $V$ vertices and $E$ edges (using adjacency list) is:",
+        options: [
+            "$O(V)$",
+            "$O(E)$",
+            "$O(V + E)$",
+            "$O(V^2)$"
+        ],
+        correctAnswer: 1,
+    },
+    {
+        id: 33,
+        text: "In Unix/Linux file systems, an inode stores which of the following?\n\nA. File name\nB. File permissions and ownership\nC. File size and timestamps\nD. Pointers to data blocks on disk\n\nChoose the correct answer:",
+        options: [
+            "B, C and D only",
+            "A, B and C only",
+            "A, B, C and D",
+            "B and C only"
+        ],
+        correctAnswer: 1,
+    },
+    {
+        id: 34,
+        text: "Match LIST-I (Disk Scheduling Algorithm) with LIST-II (Key Property):\n\n| LIST-I | LIST-II |\n|---|---|\n| A. FCFS | I. Services requests in the direction of head movement, then reverses |\n| B. SSTF | II. Services requests in order they arrive |\n| C. SCAN | III. Services the closest request first; may cause starvation |\n| D. C-SCAN | IV. Like SCAN but only services in one direction, then jumps to start |\n\nChoose the correct answer:",
+        options: [
+            "A – II, B – III, C – I, D – IV",
+            "A – III, B – II, C – I, D – IV",
+            "A – II, B – I, C – III, D – IV",
+            "A – I, B – III, C – IV, D – II"
+        ],
+        correctAnswer: 1,
+    },
+    {
+        id: 35,
+        text: "In a paging system with page size 4 KB and logical address space of 32 bits, the number of entries in the page table is:",
+        options: [
+            "$2^{20}$ (approximately 1 million entries)",
+            "$2^{10}$",
+            "$2^{12}$",
+            "$2^{8}$"
         ],
         correctAnswer: 1,
     },
     {
         id: 36,
-        text: "Merge Sort is based on which algorithmic paradigm?",
+        text: "Thrashing in an operating system occurs when:",
         options: [
-            "Greedy",
-            "Dynamic Programming",
-            "Divide and Conquer",
-            "Backtracking",
+            "The CPU utilization is very high",
+            "Processes spend more time paging (swapping pages in/out) than executing",
+            "Too many processes are waiting for I/O",
+            "The file system runs out of disk space"
         ],
-        correctAnswer: 3,
+        correctAnswer: 2,
     },
     {
         id: 37,
-        text: "Which sorting algorithm has the best space complexity?",
+        text: "Which of the following synchronization problems demonstrates the producer-consumer scenario?\n\nA. Bounded Buffer problem\nB. Dining Philosophers problem\nC. Readers-Writers problem\nD. Barbershop problem\n\nChoose the correct answer:",
         options: [
-            "Merge Sort",
-            "Quick Sort",
-            "Heap Sort",
-            "Counting Sort",
+            "A only",
+            "A and D only",
+            "A, B and C only",
+            "All of the above involve synchronization"
         ],
-        correctAnswer: 3,
+        correctAnswer: 1,
     },
     {
         id: 38,
-        text: "The time complexity of linear search is:",
+        text: "The CSMA/CD protocol is used in which type of network?",
         options: [
-            "$O(1)$",
-            "$O(\\log n)$",
-            "$O(n)$",
-            "$O(n^2)$",
+            "Token Ring (IEEE 802.5)",
+            "Wireless LAN (IEEE 802.11)",
+            "Wired Ethernet (IEEE 802.3)",
+            "Bluetooth"
         ],
         correctAnswer: 3,
     },
     {
         id: 39,
-        text: "Floyd-Warshall algorithm is used to find:",
+        text: "In the Stop-and-Wait protocol, the maximum utilization of the channel depends on:",
         options: [
-            "Single source shortest path",
-            "All pairs shortest paths",
-            "Minimum spanning tree",
-            "Maximum flow",
+            "Only the bandwidth",
+            "The ratio of transmission time to the sum of transmission and propagation time",
+            "Only the propagation delay",
+            "The number of frames in the buffer"
         ],
         correctAnswer: 2,
     },
     {
         id: 40,
-        text: "The activity selection problem can be optimally solved using:",
+        text: "Match LIST-I (TCP/IP Layer) with LIST-II (Protocol):\n\n| LIST-I | LIST-II |\n|---|---|\n| A. Application Layer | I. IP, ICMP |\n| B. Transport Layer | II. HTTP, FTP, DNS |\n| C. Internet Layer | III. TCP, UDP |\n| D. Network Access Layer | IV. Ethernet, Wi-Fi |\n\nChoose the correct answer:",
         options: [
-            "Dynamic programming",
-            "Greedy algorithm",
-            "Backtracking",
-            "Branch and bound",
+            "A – II, B – III, C – I, D – IV",
+            "A – I, B – III, C – II, D – IV",
+            "A – II, B – I, C – III, D – IV",
+            "A – III, B – II, C – I, D – IV"
         ],
-        correctAnswer: 2,
+        correctAnswer: 1,
     },
     {
         id: 41,
-        text: "Bellman-Ford algorithm can handle:",
+        text: "In CIDR notation, 192.168.1.0/24 means:",
         options: [
-            "Only positive edge weights",
-            "Negative edge weights",
-            "Only directed graphs",
-            "Only undirected graphs",
+            "The first 24 bits are the host portion",
+            "The first 24 bits are the network portion, leaving 8 bits for hosts",
+            "There are 24 hosts in the network",
+            "The subnet mask is 255.255.0.0"
         ],
         correctAnswer: 2,
     },
     {
         id: 42,
-        text: "The space complexity of Breadth-First Search is:",
+        text: "HTTP uses which transport layer protocol by default?",
         options: [
-            "$O(V)$",
-            "$O(E)$",
-            "$O(V + E)$",
-            "$O(V \\times E)$",
-        ],
-        correctAnswer: 1,
-    },
-    {
-        id: 43,
-        text: "The recurrence relation $T(n) = 2T(n/2) + n$ has a solution of:",
-        options: [
-            "$O(n)$",
-            "$O(n \\log n)$",
-            "$O(n^2)$",
-            "$O(\\log n)$",
+            "UDP",
+            "TCP",
+            "SCTP",
+            "ICMP"
         ],
         correctAnswer: 2,
     },
     {
-        id: 44,
-        text: "Which of the following is NOT a state of a process?",
+        id: 43,
+        text: "Which of the following is an admissible heuristic for the 8-puzzle problem?",
         options: [
-            "New",
-            "Ready",
-            "Waiting",
-            "Sleeping",
+            "Number of misplaced tiles",
+            "Number of tiles in the correct position",
+            "Total number of moves made so far",
+            "Random value between 0 and 100"
         ],
-        correctAnswer: 4,
+        correctAnswer: 1,
+    },
+    {
+        id: 44,
+        text: "In a Bayesian Network, the joint probability distribution is computed as:",
+        options: [
+            "Product of all marginal probabilities",
+            "Product of conditional probabilities of each node given its parents",
+            "Sum of all node probabilities",
+            "Maximum of all conditional probabilities"
+        ],
+        correctAnswer: 2,
     },
     {
         id: 45,
-        text: "A zombie process is:",
+        text: "Which of the following is TRUE about the Minimax algorithm with alpha-beta pruning?\n\nA. It produces the same result as Minimax without pruning.\nB. It can prune branches that cannot affect the final decision.\nC. It works only for games with perfect information.\nD. Best case time complexity is $O(b^{d/2})$ with optimal ordering.\n\nChoose the correct answer:",
         options: [
-            "A process that has completed execution but still has an entry in process table",
-            "A process waiting for I/O",
-            "A process in ready queue",
-            "A terminated process with no parent",
+            "A, B, C and D",
+            "A and B only",
+            "A, B and D only",
+            "B and C only"
         ],
         correctAnswer: 1,
     },
     {
         id: 46,
-        text: "In preemptive scheduling:",
+        text: "In propositional logic, modus ponens states that from $P$ and $P \\to Q$, we can infer:",
         options: [
-            "Process cannot be interrupted once it starts execution",
-            "Process can be interrupted and moved to ready state",
-            "Only I/O bound processes are scheduled",
-            "No context switching occurs",
+            "$P$",
+            "$Q$",
+            "$\\neg P$",
+            "$P \\wedge Q$"
         ],
         correctAnswer: 2,
     },
     {
         id: 47,
-        text: "Which scheduling algorithm gives minimum average waiting time?",
+        text: "Unification in First-Order Logic is the process of:",
         options: [
-            "FCFS",
-            "SJF",
-            "Round Robin",
-            "Priority Scheduling",
+            "Combining two different logical systems",
+            "Finding a substitution that makes two expressions identical",
+            "Converting FOL to propositional logic",
+            "Removing quantifiers from expressions"
         ],
         correctAnswer: 2,
     },
     {
         id: 48,
-        text: "A critical section is a:",
+        text: "In the Hill Cipher with key matrix $K$ and plaintext vector $P$ (mod 26), which condition must $K$ satisfy for decryption to be possible?",
         options: [
-            "Code segment that can be executed by multiple processes simultaneously",
-            "Code segment that accesses shared resources",
-            "Code segment that never terminates",
-            "Code segment with no loops",
+            "$K$ must be a symmetric matrix",
+            "$K$ must have an inverse modulo 26 (i.e., $\\gcd(\\det(K), 26) = 1$)",
+            "$K$ must be an identity matrix",
+            "$K$ must have all positive entries"
         ],
         correctAnswer: 2,
     },
     {
         id: 49,
-        text: "The wait() operation on a semaphore S:",
+        text: "In RSA encryption, if we choose $p = 5$ and $q = 7$, then $n$ and $\\phi(n)$ are:",
         options: [
-            "Increments S",
-            "Decrements S",
-            "Sets S to 0",
-            "Sets S to 1",
+            "$n = 35$, $\\phi(n) = 24$",
+            "$n = 12$, $\\phi(n) = 35$",
+            "$n = 35$, $\\phi(n) = 12$",
+            "$n = 35$, $\\phi(n) = 34$"
         ],
-        correctAnswer: 2,
+        correctAnswer: 1,
     },
     {
         id: 50,
-        text: "Which of the following conditions is NOT necessary for deadlock?\n\nA. Mutual exclusion\nB. Preemption\nC. Hold and wait\nD. Circular wait\n\nChoose the correct answer from the options given below:",
+        text: "Which of the following correctly describes the operation modes of a block cipher?\n\nA. ECB (Electronic Codebook) encrypts each block independently.\nB. CBC (Cipher Block Chaining) XORs each plaintext block with the previous ciphertext block before encryption.\nC. CTR (Counter) mode turns a block cipher into a stream cipher.\nD. In ECB mode, identical plaintext blocks produce identical ciphertext blocks.\n\nChoose the correct answer:",
         options: [
-            "A only",
-            "B only",
-            "C only",
-            "D only",
+            "A, B, C and D",
+            "A and B only",
+            "A, B and D only",
+            "B, C and D only"
         ],
-        correctAnswer: 2,
+        correctAnswer: 1,
     },
     {
         id: 51,
-        text: "In demand paging, a page fault occurs when:",
+        text: "Match LIST-I (Cipher Type) with LIST-II (Example):\n\n| LIST-I | LIST-II |\n|---|---|\n| A. Substitution Cipher | I. Rail Fence Cipher |\n| B. Transposition Cipher | II. Caesar Cipher |\n| C. Block Cipher | III. AES |\n| D. Stream Cipher | IV. RC4 |\n\nChoose the correct answer:",
         options: [
-            "A page is modified",
-            "A page is accessed that is not in memory",
-            "Memory is full",
-            "CPU is idle",
+            "A – II, B – I, C – III, D – IV",
+            "A – I, B – II, C – IV, D – III",
+            "A – III, B – I, C – II, D – IV",
+            "A – II, B – IV, C – III, D – I"
         ],
-        correctAnswer: 2,
+        correctAnswer: 1,
     },
     {
         id: 52,
-        text: "The optimal page replacement algorithm:",
+        text: "A man-in-the-middle attack can be prevented by:",
         options: [
-            "Is practical to implement",
-            "Replaces the page that will not be used for the longest time",
-            "Replaces the oldest page",
-            "Replaces a random page",
+            "Using a longer password",
+            "Using digital certificates to authenticate communicating parties",
+            "Increasing encryption key size only",
+            "Using a hub instead of a switch"
         ],
         correctAnswer: 2,
     },
     {
         id: 53,
-        text: "Internal fragmentation occurs in:",
+        text: "Which of the following data visualization techniques is most appropriate for showing the distribution of a single continuous variable?",
         options: [
-            "Fixed partitioning",
-            "Dynamic partitioning",
-            "Segmentation",
-            "Virtual memory",
+            "Bar chart",
+            "Histogram",
+            "Pie chart",
+            "Scatter plot"
         ],
-        correctAnswer: 1,
+        correctAnswer: 2,
     },
     {
         id: 54,
-        text: "The purpose of the checksum field in TCP/UDP is to:",
+        text: "In a scatter plot, a positive linear correlation between two variables is indicated by:",
         options: [
-            "Provide flow control",
-            "Detect errors in transmitted data",
-            "Provide congestion control",
-            "Establish connection",
+            "Points randomly scattered with no pattern",
+            "Points forming an upward-sloping trend from left to right",
+            "Points forming a U-shape",
+            "Points forming a downward-slope from left to right"
         ],
         correctAnswer: 2,
     },
     {
         id: 55,
-        text: "In the TCP three-way handshake, the second message sent is:",
+        text: "In a Convolutional Neural Network (CNN), the purpose of the pooling layer is to:",
         options: [
-            "SYN",
-            "SYN + ACK",
-            "ACK",
-            "FIN",
+            "Increase the spatial dimensions of the feature map",
+            "Reduce the spatial dimensions of the feature map while retaining important features",
+            "Add more trainable parameters to the model",
+            "Apply the activation function"
         ],
         correctAnswer: 2,
     },
     {
         id: 56,
-        text: "The subnet mask 255.255.255.192 represents how many hosts per subnet?",
+        text: "Match LIST-I (Data Science Concept) with LIST-II (Description):\n\n| LIST-I | LIST-II |\n|---|---|\n| A. Feature Engineering | I. Selecting the most relevant features for the model |\n| B. Feature Selection | II. Creating new features from existing data to improve model performance |\n| C. Data Augmentation | III. Increasing training data by applying transformations (rotation, flip, etc.) |\n| D. One-Hot Encoding | IV. Converting categorical variables into binary columns |\n\nChoose the correct answer:",
         options: [
-            "32",
-            "62",
-            "64",
-            "128",
+            "A – II, B – I, C – III, D – IV",
+            "A – I, B – II, C – IV, D – III",
+            "A – II, B – IV, C – III, D – I",
+            "A – III, B – I, C – II, D – IV"
+        ],
+        correctAnswer: 1,
+    },
+    {
+        id: 57,
+        text: "Gradient Boosting works by:",
+        options: [
+            "Training multiple models in parallel and averaging their predictions",
+            "Building models sequentially, where each new model corrects the errors of the previous ones",
+            "Training a single model with a very large number of features",
+            "Using only decision stumps (depth-1 trees)"
         ],
         correctAnswer: 2,
     },
     {
-        id: 57,
-        text: "ICMP (Internet Control Message Protocol) is used for:",
-        options: [
-            "File transfer",
-            "Email delivery",
-            "Error reporting and diagnostics",
-            "Web browsing",
-        ],
-        correctAnswer: 3,
-    },
-    {
         id: 58,
-        text: "The Stop-and-Wait protocol has an efficiency of:",
+        text: "Which of the following is TRUE about the K-Means clustering algorithm?\n\nA. It requires the number of clusters $k$ to be specified in advance.\nB. It assigns each data point to the nearest centroid.\nC. It is guaranteed to find the global optimum.\nD. It iteratively updates centroids until convergence.\n\nChoose the correct answer:",
         options: [
-            "100%",
-            "Greater than 50%",
-            "Depends on propagation delay and transmission time",
-            "Always 50%",
+            "A, B and D only",
+            "A and B only",
+            "A, B, C and D",
+            "B, C and D only"
         ],
-        correctAnswer: 3,
+        correctAnswer: 1,
     },
     {
         id: 59,
-        text: "FTP uses which transport layer protocol?",
+        text: "In the context of NLP, word embeddings (like Word2Vec) represent words as:",
         options: [
-            "UDP only",
-            "TCP only",
-            "Both TCP and UDP",
-            "SCTP",
+            "One-hot encoded binary vectors",
+            "Dense, continuous-valued vectors in a lower-dimensional space",
+            "Sparse bag-of-words vectors",
+            "Binary tree structures"
         ],
         correctAnswer: 2,
     },
     {
         id: 60,
-        text: "A switch operates primarily at which OSI layer?",
+        text: "The Elbow Method in K-Means clustering is used to determine:",
         options: [
-            "Physical layer",
-            "Data link layer",
-            "Network layer",
-            "Transport layer",
+            "The optimal learning rate",
+            "The optimal number of clusters $k$",
+            "The number of iterations needed",
+            "The initial centroid positions"
         ],
         correctAnswer: 2,
     },
     {
         id: 61,
-        text: "Distance vector routing protocols use:",
+        text: "A computer system uses demand paging. If the probability of a page fault is $p$ and the page fault service time is $t_{pf}$, and memory access time is $t_m$, the effective memory access time is approximately:",
         options: [
-            "Dijkstra's algorithm",
-            "Bellman-Ford algorithm",
-            "Prim's algorithm",
-            "Kruskal's algorithm",
+            "$t_m + p \\times t_{pf}$",
+            "$(1 - p) \\times t_m + p \\times t_{pf}$",
+            "$p \\times t_m + (1-p) \\times t_{pf}$",
+            "$t_m \\times t_{pf} / p$"
         ],
         correctAnswer: 2,
     },
     {
         id: 62,
-        text: "Which search algorithm is guaranteed to find the optimal solution if it exists?",
+        text: "In the 8085, what is the address range for RST 5.5 vector?",
         options: [
-            "Depth-First Search",
-            "Breadth-First Search with unit costs",
-            "Hill Climbing",
-            "Greedy Best-First Search",
+            "002CH",
+            "0034H",
+            "003CH",
+            "0024H"
         ],
-        correctAnswer: 2,
+        correctAnswer: 1,
     },
     {
         id: 63,
-        text: "In iterative deepening search, the depth limit is:",
+        text: "A B+ Tree is preferred over a B-Tree for database indexing because:",
         options: [
-            "Fixed",
-            "Gradually increased",
-            "Gradually decreased",
-            "Random",
+            "B+ Trees have faster insertion times",
+            "All data records are stored at the leaf level and leaves are linked, enabling efficient range queries",
+            "B+ Trees require less memory",
+            "B+ Trees do not need balancing"
         ],
         correctAnswer: 2,
     },
     {
         id: 64,
-        text: "A heuristic function that never overestimates the cost to reach the goal is called:",
+        text: "In the context of Information Theory, entropy $H(X)$ of a random variable $X$ with $n$ equally likely outcomes is:",
         options: [
-            "Inadmissible",
-            "Admissible",
-            "Consistent",
-            "Inconsistent",
-        ],
-        correctAnswer: 2,
-    },
-    {
-        id: 65,
-        text: "In propositional logic, $P \\to Q$ is equivalent to:",
-        options: [
-            "$\\neg P \\lor Q$",
-            "$P \\land Q$",
-            "$P \\lor \\neg Q$",
-            "$\\neg P \\land \\neg Q$",
+            "$\\log_2(n)$ bits",
+            "$n \\times \\log_2(n)$ bits",
+            "$1/n$ bits",
+            "$n^2$ bits"
         ],
         correctAnswer: 1,
     },
     {
-        id: 66,
-        text: "The existential quantifier $\\exists x P(x)$ means:",
+        id: 65,
+        text: "The Hamming distance between two binary strings 1010101 and 1001110 is:",
         options: [
-            "$P(x)$ is true for all $x$",
-            "$P(x)$ is true for at least one $x$",
-            "$P(x)$ is false for all $x$",
-            "$P(x)$ is false for at least one $x$",
-        ],
-        correctAnswer: 2,
-    },
-    {
-        id: 67,
-        text: "A knowledge base in AI consists of:",
-        options: [
-            "Facts only",
-            "Rules only",
-            "Both facts and rules",
-            "Neither facts nor rules",
+            "2",
+            "3",
+            "4",
+            "5"
         ],
         correctAnswer: 3,
     },
     {
-        id: 68,
-        text: "Forward chaining in expert systems is:",
+        id: 66,
+        text: "In the Dining Philosophers problem, which of the following solutions prevents deadlock?",
         options: [
-            "Goal-driven reasoning",
-            "Data-driven reasoning",
-            "Backward reasoning",
-            "Random reasoning",
+            "Each philosopher picks up the left fork first, then the right fork",
+            "Allow at most $n-1$ philosophers to sit at the table simultaneously (where $n$ is the total number)",
+            "Each philosopher tries to pick up both forks; if unsuccessful, puts both down and waits randomly",
+            "Both B and C are valid solutions"
+        ],
+        correctAnswer: 4,
+    },
+    {
+        id: 67,
+        text: "The time complexity of building a heap from an unsorted array of $n$ elements using the bottom-up approach is:",
+        options: [
+            "$O(n \\log n)$",
+            "$O(n)$",
+            "$O(n^2)$",
+            "$O(\\log n)$"
+        ],
+        correctAnswer: 2,
+    },
+    {
+        id: 68,
+        text: "Which of the following is TRUE about HTTPS?",
+        options: [
+            "It is the same as HTTP with no added security",
+            "It uses SSL/TLS to provide encrypted communication between client and server",
+            "It operates on port 80 by default",
+            "It does not use certificates"
         ],
         correctAnswer: 2,
     },
     {
         id: 69,
-        text: "The main advantage of public key cryptography over symmetric key cryptography is:",
+        text: "In a Red-Black Tree, which of the following properties must hold?\n\nA. Every node is either red or black.\nB. The root is always black.\nC. No two consecutive red nodes on any path from root to leaf.\nD. Every path from root to null leaf has the same number of black nodes.\n\nChoose the correct answer:",
         options: [
-            "Faster encryption",
-            "No need for secure key exchange",
-            "Simpler implementation",
-            "Less computational overhead",
-        ],
-        correctAnswer: 2,
-    },
-    {
-        id: 70,
-        text: "A replay attack involves:",
-        options: [
-            "Retransmitting valid data to gain unauthorized access",
-            "Modifying data during transmission",
-            "Denying service to legitimate users",
-            "Breaking encryption keys",
+            "A, B, C and D",
+            "A and B only",
+            "A, B and C only",
+            "B, C and D only"
         ],
         correctAnswer: 1,
     },
     {
-        id: 71,
-        text: "Digital certificates are issued by:",
+        id: 70,
+        text: "The Naive Bayes classifier assumes:",
         options: [
-            "Users themselves",
-            "Certificate Authority (CA)",
-            "Internet Service Providers",
-            "Operating system vendors",
+            "All features are correlated",
+            "Features are conditionally independent given the class label",
+            "The training set must be very large",
+            "Only numerical features can be used"
+        ],
+        correctAnswer: 2,
+    },
+    {
+        id: 71,
+        text: "In transfer learning, a pre-trained model is used as:",
+        options: [
+            "A completely new model trained from scratch",
+            "A starting point, where learned features are transferred to a new related task",
+            "A replacement for the testing dataset",
+            "An alternative to data preprocessing"
         ],
         correctAnswer: 2,
     },
     {
         id: 72,
-        text: "In supervised learning, the training dataset consists of:",
+        text: "The Big-O notation $O(1)$ represents:",
         options: [
-            "Input features only",
-            "Output labels only",
-            "Both input features and output labels",
-            "Neither input nor output",
+            "Linear time complexity",
+            "Constant time complexity",
+            "Logarithmic time complexity",
+            "Quadratic time complexity"
         ],
-        correctAnswer: 3,
+        correctAnswer: 2,
     },
     {
         id: 73,
-        text: "The k-Nearest Neighbors (k-NN) algorithm is:\n\nA. A lazy learning algorithm\nB. An instance-based learning algorithm\nC. Can be used for both classification and regression\nD. Requires training phase to build a model\n\nChoose the correct answer from the options given below:",
+        text: "Which protocol is used for secure remote login?",
         options: [
-            "A, B and C only",
-            "A, B and D only",
-            "B, C and D only",
-            "A, B, C and D",
+            "Telnet",
+            "SSH (Secure Shell)",
+            "FTP",
+            "HTTP"
         ],
-        correctAnswer: 1,
+        correctAnswer: 2,
     },
     {
         id: 74,
-        text: "Feature scaling is important for algorithms that:",
+        text: "L1 regularization (Lasso) in machine learning tends to produce:",
         options: [
-            "Use distance metrics",
-            "Are tree-based",
-            "Use frequency counts",
-            "Are rule-based",
+            "Models with all features having equal weights",
+            "Sparse models where some feature weights become exactly zero",
+            "Models with very large weights",
+            "Models identical to L2 regularization"
         ],
-        correctAnswer: 1,
+        correctAnswer: 2,
     },
     {
         id: 75,
-        text: "The confusion matrix is used to evaluate:",
+        text: "In the context of operating systems, a zombie process is:",
         options: [
-            "Regression models",
-            "Classification models",
-            "Clustering algorithms",
-            "Dimensionality reduction",
+            "A process that has been killed by the administrator",
+            "A process that has completed execution but still has an entry in the process table (its parent hasn't read its exit status)",
+            "A process waiting for I/O",
+            "A process in the ready queue"
         ],
         correctAnswer: 2,
     },

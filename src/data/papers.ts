@@ -6,7 +6,6 @@ import { examConfig as config2026_3, questions as questions2026_3 } from "./exam
 import { examConfig as config2026_4, questions as questions2026_4 } from "./examData20264";
 import { examConfig as config2026_5, questions as questions2026_5 } from "./examData20265";
 import { examConfig as config2026_6, questions as questions2026_6 } from "./examData20266";
-import { examConfig as config2026_7, questions as questions2026_7 } from "./examData20267";
 import { ExamPaper } from "./examTypes";
 
 export interface PaperWithId extends ExamPaper {
@@ -14,11 +13,6 @@ export interface PaperWithId extends ExamPaper {
 }
 
 export const papers: PaperWithId[] = [
-  {
-    id: "2026-7",
-    config: config2026_7,
-    questions: questions2026_7
-  },
   {
     id: "2026-6",
     config: config2026_6,
