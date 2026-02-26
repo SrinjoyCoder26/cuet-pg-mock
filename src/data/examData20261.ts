@@ -406,7 +406,7 @@ export const questions: Question[] = [
             "9.25 ms",
             "14.75 ms"
         ],
-        correctAnswer: 1,
+        correctAnswer: 3,
     },
     {
         id: 37,

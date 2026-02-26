@@ -173,7 +173,7 @@ export const questions: Question[] = [
             "$A'C' + CD + A'B$",
             "$BD + A'C' + ACD'$",
             "$A'D + CD + AB'$",
-            "$BD + A'C'$"
+            "$B'C' + CD$"
         ],
         correctAnswer: 4,
     },
@@ -296,7 +296,7 @@ export const questions: Question[] = [
             "1000",
             "0001"
         ],
-        correctAnswer: 3,
+        correctAnswer: 2,
     },
     {
         id: 27,

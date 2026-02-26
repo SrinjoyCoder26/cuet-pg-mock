@@ -236,7 +236,7 @@ export const questions: Question[] = [
         id: 21,
         text: "Equation $\\sin(x) - x/2 = 0$ is solved using Newton-Raphson method with $x_0 = \\pi/2$. Then $x_1$ is approximately:",
         options: [
-            "1.1731",
+            "2.0",
             "0.9046",
             "1.4142",
             "1.0000"
@@ -285,7 +285,7 @@ export const questions: Question[] = [
             "$(1, 0, 1)$",
             "Both $(1,0,0)$ and $(0,1,1)$"
         ],
-        correctAnswer: 4,
+        correctAnswer: 1,
     },
     {
         id: 26,
@@ -307,7 +307,7 @@ export const questions: Question[] = [
             "76.3%",
             "72.5%"
         ],
-        correctAnswer: 1,
+        correctAnswer: 3,
     },
     {
         id: 28,
@@ -402,11 +402,11 @@ export const questions: Question[] = [
         text: "A neuron has 3 inputs with weights 2, 3, 4 and inputs 5, 1, 2 respectively. The bias is 1. Using a linear activation function with constant of proportionality = 1, the output is:",
         options: [
             "24",
-            "21",
+            "22",
             "20",
             "18"
         ],
-        correctAnswer: 1,
+        correctAnswer: 2,
     },
     {
         id: 37,
@@ -450,7 +450,7 @@ export const questions: Question[] = [
             "5.2 ms",
             "3.8 ms"
         ],
-        correctAnswer: 2,
+        correctAnswer: 3,
     },
     {
         id: 41,
@@ -633,7 +633,7 @@ export const questions: Question[] = [
         text: "Using hash function $h(key) = key \\mod 11$ with linear probing, keys 22, 33, 44, 55, 66, 11, 77 are inserted into a table of size 11. What is the location of key 77?",
         options: [
             "0",
-            "1",
+            "6",
             "2",
             "3"
         ],
@@ -747,7 +747,7 @@ export const questions: Question[] = [
             "24000 Hz",
             "31500 Hz"
         ],
-        correctAnswer: 2,
+        correctAnswer: 1,
     },
     {
         id: 68,
@@ -791,7 +791,7 @@ export const questions: Question[] = [
             "0111110110",
             "0111110010"
         ],
-        correctAnswer: 2,
+        correctAnswer: 1,
     },
     {
         id: 72,
@@ -835,6 +835,6 @@ export const questions: Question[] = [
             "8",
             "9"
         ],
-        correctAnswer: 1,
+        correctAnswer: 2,
     },
 ];

@@ -192,7 +192,7 @@ export const questions: Question[] = [
         id: 17,
         text: "Calculate the effective CPI for a processor where 40% of instructions are arithmetic (CPI=1), 30% are load/store (CPI=3), 20% are branch (CPI=2), and 10% are multiply (CPI=5).",
         options: [
-            "2.1",
+            "2.2",
             "2.3",
             "1.8",
             "2.0"
