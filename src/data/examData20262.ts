@@ -784,7 +784,7 @@ export const questions: Question[] = [
     },
     {
         id: 71,
-        text: "In SSL/TLS, which protocol is used during the handshake to establish a secure connection?",
+        text: "In SSL/TLS, the handshake process uses which cryptographic approach to establish a secure connection?",
         options: [
             "HTTP",
             "FTP",

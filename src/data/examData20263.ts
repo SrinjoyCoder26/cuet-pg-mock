@@ -435,7 +435,7 @@ export const questions: Question[] = [
         text: "In the Stop-and-Wait protocol, the maximum utilization of the channel depends on:",
         options: [
             "Only the bandwidth",
-            "The ratio of transmission time to the sum of transmission and propagation time",
+            "The ratio of transmission time to the sum of transmission time and round-trip propagation time",
             "Only the propagation delay",
             "The number of frames in the buffer"
         ],
@@ -534,7 +534,7 @@ export const questions: Question[] = [
         text: "In the Hill Cipher with key matrix $K$ and plaintext vector $P$ (mod 26), which condition must $K$ satisfy for decryption to be possible?",
         options: [
             "$K$ must be a symmetric matrix",
-            "$K$ must have an inverse modulo 26 (i.e., $\\gcd(\\det(K), 26) = 1$)",
+            "$\\gcd(\\det(K), 26) = 1$",
             "$K$ must be an identity matrix",
             "$K$ must have all positive entries"
         ],
@@ -729,14 +729,14 @@ export const questions: Question[] = [
     },
     {
         id: 66,
-        text: "In the Dining Philosophers problem, which of the following solutions prevents deadlock?",
+        text: "Which of the following strategies can prevent deadlock in the Dining Philosophers problem?\n\n(A). Each philosopher picks up the left fork first, then the right fork.\n(B). Allow at most $n-1$ philosophers to sit at the table simultaneously.\n(C). Each philosopher tries to pick up both forks; if unsuccessful, puts both down and waits randomly.\n(D). Assign a total ordering to forks and require philosophers to pick up the lower-numbered fork first.\n\nChoose the correct answer:",
         options: [
-            "Each philosopher picks up the left fork first, then the right fork",
-            "Allow at most $n-1$ philosophers to sit at the table simultaneously (where $n$ is the total number)",
-            "Each philosopher tries to pick up both forks; if unsuccessful, puts both down and waits randomly",
-            "Both B and C are valid solutions"
+            "(A) and (B) only",
+            "(B) and (C) only",
+            "(B), (C) and (D) only",
+            "(A), (B), (C) and (D)"
         ],
-        correctAnswer: 4,
+        correctAnswer: 3,
     },
     {
         id: 67,

@@ -304,7 +304,7 @@ export const questions: Question[] = [
         options: [
             "74.1%",
             "80.0%",
-            "76.3%",
+            "76.9%",
             "72.5%"
         ],
         correctAnswer: 3,
@@ -388,14 +388,14 @@ export const questions: Question[] = [
     },
     {
         id: 35,
-        text: "In a Self-Organizing Map (SOM), the node that is closest to the input vector is called:",
+        text: "In a Self-Organizing Map (SOM), which of the following statements about the node closest to the input vector are correct?\n\n(A). It is called the Best Matching Unit (BMU).\n(B). It is also called the Winner node.\n(C). It is always the node with the highest weight vector magnitude.\n(D). Its neighborhood is updated during training.\n\nChoose the correct answer:",
         options: [
-            "Kohonen node",
-            "Best Matching Unit (BMU)",
-            "Winner node",
-            "Both BMU and Winner node"
+            "(A) and (C) only",
+            "(A), (B) and (D) only",
+            "(A) and (B) only",
+            "(A), (B), (C) and (D)"
         ],
-        correctAnswer: 4,
+        correctAnswer: 2,
     },
     {
         id: 36,
@@ -498,7 +498,7 @@ export const questions: Question[] = [
     },
     {
         id: 45,
-        text: "Which instruction in the 8085 microprocessor performs $DE = DE + DE$?",
+        text: "Which instruction in the 8085 microprocessor performs $HL = HL + DE$?",
         options: [
             "DAD D",
             "DAD H",
@@ -538,7 +538,7 @@ export const questions: Question[] = [
             "3",
             "0"
         ],
-        correctAnswer: 2,
+        correctAnswer: 4,
     },
     {
         id: 49,
@@ -822,7 +822,7 @@ export const questions: Question[] = [
             "3, 2, 1, 4, 5",
             "5, 4, 3, 2, 1",
             "4, 5, 3, 2, 1",
-            "1, 5, 4, 3, 2"
+            "3, 1, 4, 2, 5"
         ],
         correctAnswer: 4,
     },

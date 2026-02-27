@@ -126,7 +126,7 @@ export const questions: Question[] = [
         id: 11,
         text: "What will be the minimized expression for $F(A,B,C,D) = \\Sigma m(0,1,2,3,8,9,10,11)$?",
         options: [
-            "$B'$ (i.e., $A'B' + AB'$ simplifies to $B'$)",
+            "$B'$",
             "$A'B$",
             "$AB' + A'B$",
             "$A + B'$"
@@ -358,8 +358,8 @@ export const questions: Question[] = [
         text: "Arrange the following sorting algorithms in order of their worst-case time complexity from best (lowest) to worst (highest):\n\nA. Merge Sort → $O(n \\log n)$\nB. Bubble Sort → $O(n^2)$\nC. Heap Sort → $O(n \\log n)$\nD. Quick Sort → $O(n^2)$\n\nThe correct ordering from best to worst worst-case complexity:",
         options: [
             "A, C, B, D",
+            "C, A, D, B",
             "A, C, D, B",
-            "A, C then D, B (ties within groups)",
             "B, D, A, C"
         ],
         correctAnswer: 3,
@@ -773,14 +773,14 @@ export const questions: Question[] = [
     },
     {
         id: 70,
-        text: "Which CPU scheduling algorithm may cause starvation?",
+        text: "Which of the following CPU scheduling algorithms can cause starvation?\n\n(A). Priority Scheduling\n(B). Round Robin\n(C). Shortest Job First (SJF)\n(D). First Come First Serve (FCFS)\n\nChoose the correct answer:",
         options: [
-            "First Come First Serve (FCFS)",
-            "Round Robin",
-            "Priority Scheduling",
-            "Shortest Job First (SJF)"
+            "(A) only",
+            "(A) and (C) only",
+            "(A), (B) and (C) only",
+            "(A), (C) and (D) only"
         ],
-        correctAnswer: 3,
+        correctAnswer: 2,
     },
     {
         id: 71,

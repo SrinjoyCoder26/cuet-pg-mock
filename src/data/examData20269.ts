@@ -25,7 +25,7 @@ export const questions: Question[] = [
     },
     {
         id: 2,
-        text: "A 2-3 Tree is a type of B-Tree. If a 2-3 Tree has a height of 3 (root at height 0), what is the maximum number of keys it can store?",
+        text: "A 2-3 Tree is a type of B-Tree. If a 2-3 Tree has a height of 2 (root at height 0), what is the maximum number of keys it can store?",
         options: [
             "15",
             "26",
@@ -238,7 +238,7 @@ export const questions: Question[] = [
         options: [
             "~3.4",
             "~4.0",
-            "~3.1",
+            "~3.24",
             "~2.7"
         ],
         correctAnswer: 3,
@@ -252,7 +252,7 @@ export const questions: Question[] = [
             "$A'B'$",
             "$(A'B')'$"
         ],
-        correctAnswer: 4,
+        correctAnswer: 1,
     },
     {
         id: 23,
@@ -388,7 +388,7 @@ export const questions: Question[] = [
     },
     {
         id: 35,
-        text: "How many `AND` gates and `OR` gates are required to implement a 4-bit carry-lookahead adder from 4 full adders and a carry-lookahead generator? (Considering only the generator logic for carries C1, C2, C3, C4)\n\n*This is a conceptual design question.*",
+        text: "How does the number of AND and OR gates scale when designing an n-bit carry-lookahead generator?",
         options: [
             "The number of gates grows linearly.",
             "The number of gates grows quadratically.",

@@ -725,7 +725,7 @@ export const questions: Question[] = [
             "(B) < (C) < (A) < (D)",
             "(A) < (C) < (B) < (D)"
         ],
-        correctAnswer: 1,
+        correctAnswer: 2,
     },
     {
         id: 66,
@@ -824,7 +824,7 @@ export const questions: Question[] = [
             "$A\\ B + C * D\\ E / - F\\ \\hat{}$",
             "$AB+C-DE/*F\\hat{}$"
         ],
-        correctAnswer: 3,
+        correctAnswer: 1,
     },
     {
         id: 75,

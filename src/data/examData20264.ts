@@ -126,10 +126,10 @@ export const questions: Question[] = [
         id: 11,
         text: "A 4-bit Johnson Counter is initialized to 0000. The state after 5 clock cycles is:",
         options: [
-            "11111",
-            "11110",
-            "11100",
-            "10000"
+            "1111",
+            "1110",
+            "1100",
+            "1000"
         ],
         correctAnswer: 2,
     },
@@ -709,12 +709,12 @@ export const questions: Question[] = [
         id: 64,
         text: "A computer system uses 3-level page table. If the virtual address is 48 bits, page size is 4 KB ($2^{12}$ bytes), and each page table entry is 8 bytes, how many bits are used for each level of the page table?",
         options: [
-            "12 bits per level (3 levels × 12 = 36 bits for page number)",
-            "9 bits per level (3 levels × 9 = 27 bits; not enough)",
-            "10 bits per level (3 levels × 10 = 30 bits; not correct either)",
-            "12 bits per level (correct: 48 - 12 = 36 bits / 3 = 12 bits per level)"
+            "12 bits per level",
+            "9 bits per level",
+            "10 bits per level",
+            "8 bits per level"
         ],
-        correctAnswer: 4,
+        correctAnswer: 1,
     },
     {
         id: 65,

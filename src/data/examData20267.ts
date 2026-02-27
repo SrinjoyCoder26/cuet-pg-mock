@@ -25,7 +25,7 @@ export const questions: Question[] = [
     },
     {
         id: 2,
-        text: "A hash table of size 10 uses the hash function $h(key) = key \\mod 10$. If quadratic probing ($h(key) + i^2$) is used to resolve collisions, what is the final state after inserting the keys: 89, 18, 49, 58, 69?",
+        text: "A hash table of size 10 uses the hash function $h(key) = key \\mod 10$. If linear probing is used to resolve collisions, what is the final state after inserting the keys: 89, 18, 49, 58, 69?",
         options: [
             "_, 58, _, _, 49, _, _, _, 18, 89",
             "49, 58, 69, _, _, _, _, _, 18, 89",
@@ -267,7 +267,7 @@ export const questions: Question[] = [
     },
     {
         id: 24,
-        text: "A computer has a direct-mapped cache of 1024 lines and a block size of 16 bytes. To which cache line number does the memory address `0xABCD` map?",
+        text: "A computer has a direct-mapped cache of 256 lines and a block size of 16 bytes. To which cache line number does the memory address `0xABCD` map?",
         options: [
             "Line 43",
             "Line 205",

@@ -36,14 +36,14 @@ export const questions: Question[] = [
     },
     {
         id: 3,
-        text: "Simplify the Boolean expression using algebraic manipulation: $A'B'C + A'BC' + AB'C' + ABC$.",
+        text: "Simplify the Boolean expression using algebraic manipulation: $A'B'C' + A'B'C + A'BC' + A'BC + ABC$.",
         options: [
             "$A' + B' + C'$",
             "$A + B + C$",
             "$A'B' + BC' + AC$",
             "$A' + BC$"
         ],
-        correctAnswer: 3,
+        correctAnswer: 4,
     },
     {
         id: 4,
@@ -113,7 +113,7 @@ export const questions: Question[] = [
     },
     {
         id: 10,
-        text: "Convert the NFA with transitions $\\delta(q_0,0)= \\{q_0,q_1\\}$, $\\delta(q_0,1)= \\{q_1\\}$, $\\delta(q_1,0)= \\{q_2\\}$, $\\delta(q_1,1)= \\{q_2\\}$, $\\delta(q_2,\\varepsilon)= \\{q_2\\}$ to an equivalent DFA. How many states does the DFA have?",
+        text: "Convert the NFA with transitions $\\delta(q_0,0)= \\{q_0,q_1\\}$, $\\delta(q_0,1)= \\{q_1\\}$, $\\delta(q_1,0)= \\{q_2\\}$, $\\delta(q_1,1)= \\{q_2\\}$, $\\delta(q_2,\\varepsilon)= \\{q_2\\}$ to an equivalent DFA. How many states does the DFA have? *(Do not count the trap/dead state)*",
         options: [
             "2",
             "3",
@@ -806,14 +806,14 @@ export const questions: Question[] = [
     },
     {
         id: 73,
-        text: "RAID level with block-level striping and dedicated parity disk is:",
+        text: "RAID level with block-level striping and distributed parity across all disks is:",
         options: [
             "RAID 0",
             "RAID 1",
             "RAID 3",
             "RAID 5"
         ],
-        correctAnswer: 3,
+        correctAnswer: 4,
     },
     {
         id: 74,

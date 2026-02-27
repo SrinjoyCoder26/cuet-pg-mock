@@ -201,7 +201,7 @@ export const questions: Question[] = [
     },
     {
         id: 18,
-        text: "What does `sizeof(void)` return in a standard C compiler?",
+        text: "What does `sizeof(void)` return according to the strict ISO C standard?",
         options: [
             "0",
             "1",
@@ -421,14 +421,14 @@ export const questions: Question[] = [
     },
     {
         id: 38,
-        text: "Consider the following processes with their arrival times and burst times. What is the average waiting time using the Shortest Remaining Time First (SRTF) algorithm?\n\n| Process | Arrival Time | Burst Time |\n|---|---|---|\n| P1 | 0 | 8 |\n| P2 | 1 | 4 |\n| P3 | 2 | 9 |\n| P4 | 3 | 5 |",
+        text: "Consider the following processes with their arrival times and burst times. What is the average waiting time using the Non-Preemptive Shortest Job First (SJF) algorithm?\n\n| Process | Arrival Time | Burst Time |\n|---|---|---|\n| P1 | 0 | 8 |\n| P2 | 1 | 4 |\n| P3 | 2 | 9 |\n| P4 | 3 | 5 |",
         options: [
             "6.0",
             "7.75",
             "9.5",
             "5.25"
         ],
-        correctAnswer: 1,
+        correctAnswer: 2,
     },
     {
         id: 39,
@@ -549,7 +549,7 @@ export const questions: Question[] = [
             "The 500K partition.",
             "The 300K partition."
         ],
-        correctAnswer: 1,
+        correctAnswer: 2,
     },
     {
         id: 50,
