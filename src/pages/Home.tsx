@@ -1,9 +1,36 @@
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { GraduationCap, FileText, BookOpen, Library } from "lucide-react";
+import { GraduationCap, FileText, BookOpen, Library, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+// Target: 10th March 2026, 9:00 AM IST (IST = UTC+5:30)
+const EXAM_TARGET_MS = Date.UTC(2026, 2, 10, 3, 30, 0); // 9:00 AM IST = 3:30 AM UTC
+
+function getTimeLeft() {
+  const now = Date.now();
+  const diff = Math.max(0, EXAM_TARGET_MS - now);
+  const totalSeconds = Math.floor(diff / 1000);
+  return {
+    days: Math.floor(totalSeconds / 86400),
+    hours: Math.floor((totalSeconds % 86400) / 3600),
+    minutes: Math.floor((totalSeconds % 3600) / 60),
+    seconds: totalSeconds % 60,
+  };
+}
 
 const Home = () => {
   const navigate = useNavigate();
+  const [timeLeft, setTimeLeft] = useState(getTimeLeft);
+  const intervalRef = useRef<ReturnType<typeof setInterval>>(null);
+
+  useEffect(() => {
+    intervalRef.current = setInterval(() => {
+      setTimeLeft(getTimeLeft());
+    }, 1000);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, []);
 
   const navigationCards = [
     {
@@ -57,7 +84,32 @@ const Home = () => {
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">CUET PG Mock Test Platform</h2>
           <p className="text-xl text-slate-300 mb-2">Data Science, AI, Cyber Security & Computer Science</p>
-          <p className="text-sm text-slate-400 uppercase tracking-wider">(MTQP04)</p>
+          <p className="text-sm text-slate-400 uppercase tracking-wider mb-8">(MTQP04)</p>
+
+          {/* Countdown Timer */}
+          <div className="mt-4">
+            <div className="inline-flex items-center gap-2 text-sm text-slate-300 mb-4">
+              <Calendar size={16} />
+              <span>Exam Date: 10th March 2026, 9:00 AM IST</span>
+            </div>
+            <div className="flex items-center justify-center gap-3 sm:gap-4">
+              {[
+                { label: "Days", value: timeLeft.days },
+                { label: "Hours", value: timeLeft.hours },
+                { label: "Minutes", value: timeLeft.minutes },
+                { label: "Seconds", value: timeLeft.seconds },
+              ].map((unit) => (
+                <div key={unit.label} className="flex flex-col items-center">
+                  <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center mb-1">
+                    <span className="text-2xl sm:text-3xl font-bold tabular-nums">
+                      {String(unit.value).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <span className="text-xs text-slate-400 uppercase tracking-wider">{unit.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
